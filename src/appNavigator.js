@@ -29,5 +29,4 @@ const appNavigator = createStackNavigator(
     },
   }
 );
-
   export default appNavigator;

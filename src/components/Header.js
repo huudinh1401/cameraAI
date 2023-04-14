@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
         
     },
     bgAvatar: {
-      textAlign: 'center',
       alignItems: 'flex-start',
       paddingTop: 13,
       paddingLeft: 8,

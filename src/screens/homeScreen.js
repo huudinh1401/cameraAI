@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {Alert, Button, ScrollView, Text, StyleSheet, View} from 'react-native';
 import Header from '../components/Header.js';
 import SlideImage from '../components/SlideImage.js';
-
+import RowHome from '../components/rowHome.js';
+import RowHomeMid from '../components/rowHomeMid.js';
 export default class homeScreen extends React.Component {
   render() {
     return (
@@ -10,55 +11,17 @@ export default class homeScreen extends React.Component {
         <Header/>
         <ScrollView style = { styles.Scroll }>
           <SlideImage/>
-
-          <Text>Welcome to AI Camera System</Text>
-          <Text>Cong Ty TNHH Nguyen Luan</Text>
-          <Text>To get started, edit App.js</Text>
-          <Text>Welcome to AI Camera System</Text>
-          <Text>Cong Ty TNHH Nguyen Luan</Text>
-          <Text>To get started, edit App.js</Text>
-          <Text>Welcome to AI Camera System</Text>
-          <Text>Cong Ty TNHH Nguyen Luan</Text>
-          <Text>To get started, edit App.js</Text>
-          <Text>Welcome to AI Camera System</Text>
-          <Text>Cong Ty TNHH Nguyen Luan</Text>
-          <Text>To get started, edit App.js</Text>
-          <Text>Welcome to AI Camera System</Text>
-          <Text>Cong Ty TNHH Nguyen Luan</Text>
-          <Text>To get started, edit App.js</Text>
-          <Text>Welcome to AI Camera System</Text>
-          <Text>Cong Ty TNHH Nguyen Luan</Text>
-          <Text>To get started, edit App.js</Text>
-          <Text>Welcome to AI Camera System</Text>
-          <Text>Cong Ty TNHH Nguyen Luan</Text>
-          <Text>To get started, edit App.js</Text>
-          <Text>Welcome to AI Camera System</Text>
-          <Text>Cong Ty TNHH Nguyen Luan</Text>
-          <Text>To get started, edit App.js</Text>
-          <Text>Welcome to AI Camera System</Text>
-          <Text>Cong Ty TNHH Nguyen Luan</Text>
-          <Text>To get started, edit App.js</Text>
-          <Text>Welcome to AI Camera System</Text>
-          <Text>Cong Ty TNHH Nguyen Luan</Text>
-          <Text>To get started, edit App.js</Text>
-          <Text>Welcome to AI Camera System</Text>
-          <Text>To get started, edit App.js</Text>
-          <Text>Welcome to AI Camera System</Text>
-          <Text>To get started, edit App.js</Text>
-          <Text>Welcome to AI Camera System</Text>
-          <Text>To get started, edit App.js</Text>
-          <Text>Welcome to AI Camera System</Text>
-          <Text>To get started, edit App.js</Text>
-          <Text>Welcome to AI Camera System</Text>
-          <Text>To get started, edit App.js</Text>
-          <Text>Welcome to AI Camera System</Text>
-          <Text>To get started, edit App.js</Text>
-          <Text>Welcome to AI Camera System</Text>
-          <Text>To get started, edit App.js</Text>
-          <Text>Welcome to AI Camera System</Text>
-          <Text>To get started, edit App.js</Text>
-
-
+          <View style = { styles.viewScroll }> 
+            <RowHome/>
+            <RowHomeMid/>
+            <RowHome/>
+            <RowHomeMid/>
+            <RowHome/>
+            <RowHomeMid/>
+            <RowHome/>
+            <RowHomeMid/>
+          </View>
+          
         </ScrollView>
         
       </View>
@@ -67,6 +30,9 @@ export default class homeScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  viewScroll:{
+    marginTop: -25,
+  },
   Scroll:{
     marginTop: -20,
     marginLeft: 5,
