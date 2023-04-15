@@ -1,17 +1,24 @@
 import React, {Component} from 'react';
 import { Text, StyleSheet, View, Image } from 'react-native';
+import { Icon } from 'react-native-elements'
 
 export default class Header extends React.Component {
   render() {
     return (
       <View style = { styles.bgHeader }>
         <View style = { styles.bgAvatar }>
-          <Image style = { styles.avatar } source={require('../images/avatar.png')} resizeMode='stretch'/>  
+        <Icon
+            style = { styles.avatar }
+            name='person-circle-outline'
+            type='ionicon' /> 
         </View>
         
         <Text style = { styles.headerStyle }>Camera AI</Text>
         <View style = { styles.bgExit }>
-          <Image style = { styles.exit } source={require('../images/exit.png')} resizeMode='stretch'/>
+        <Icon
+            style = { styles.avatar }
+            name='exit-outline'
+            type='ionicon' /> 
         </View>
         
       </View>
@@ -23,7 +30,7 @@ const styles = StyleSheet.create({
     bgHeader: {
         borderBottomRightRadius: 10,
         borderBottomLeftRadius: 10,
-        backgroundColor: 'blue',
+        backgroundColor: '#339966',
         elevation: 10,
         height: 75,
         shadowColor: '#00000',
@@ -42,7 +49,7 @@ const styles = StyleSheet.create({
     },
     bgAvatar: {
       alignItems: 'flex-start',
-      paddingTop: 13,
+      paddingTop: 15,
       paddingLeft: 8,
       width: 30,
       height: 30,

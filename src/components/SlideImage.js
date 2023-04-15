@@ -7,7 +7,7 @@ export default class SlideImage extends React.Component {
   render() {
     return (
       <View >
-        <Swiper autoplay={true} autoplayTimeout={1} autoplayDirection={false} style={styles.wrapper}>
+        <Swiper autoplay={true} autoplayTimeout={5} autoplayDirection={false} style={styles.wrapper}>
             <Image style = { styles.bgImg } source={require('../images/PhanThiet.jpg')} />
             <Image style = { styles.bgImg } source={require('../images/PhanThiet.png')} />
             <Image style = { styles.bgImg } source={require('../images/PhanThiet.jpg')} />

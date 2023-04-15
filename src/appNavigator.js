@@ -2,6 +2,7 @@ import { createStackNavigator } from "react-navigation-stack";
 import homeScreen from "./screens/homeScreen";
 import notifyScreen from "./screens/notifyScreen";
 
+
 const appNavigator = createStackNavigator(
   {
     Home: {
