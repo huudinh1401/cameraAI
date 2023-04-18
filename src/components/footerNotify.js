@@ -1,20 +1,20 @@
 import React, {Component} from 'react';
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
-export default class Footer extends React.Component {
+export default class FooterNotify extends React.Component {
   render() {
     const { navigation } = this.props;
     return (
       <View style = { styles.bgFooter }>
-        <View style = { styles.iconfooter }>
-            <TouchableOpacity onPress={() => navigation.navigate('Notify')}>
+        <View style = { styles.iconfooterChoose }>
+        <View style = { styles.iconfooterIn }>
               <Icon
-                  name='notifications-outline'
-                  type='ionicon'
+                reverse
+                name='notifications-outline'
+                type='ionicon'
+                color='#993399'
               />
-            </TouchableOpacity>
-          
-          <Text style = { styles.text }>Thông báo</Text>
+            </View>
           
         </View>
 
@@ -25,16 +25,13 @@ export default class Footer extends React.Component {
           <Text style = { styles.text }>abc</Text>
         </View>
 
-        <View style = { styles.iconfooterChoose }>
-          <View style = { styles.iconfooterIn }>
-          <Icon
-                
-                reverse
-                name='home'
-                type='ionicon'
-                color='#993399' 
-                onPress={() => console.log('hello')}/>
-          </View>
+        <View style = { styles.iconfooter }>
+          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+            <Icon
+                name='home-outline'
+                type='ionicon' />
+            <Text style = { styles.text }>Trang chủ</Text>
+        </TouchableOpacity>
             
         </View>
 

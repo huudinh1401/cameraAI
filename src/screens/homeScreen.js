@@ -1,16 +1,20 @@
 import React, {Component} from 'react';
-import {Alert, Button, ScrollView, Text, StyleSheet, View} from 'react-native';
+import {Alert, TouchableOpacity, ScrollView, Text, StyleSheet, View} from 'react-native';
 import Header from '../components/Header.js';
 import SlideImage from '../components/SlideImage.js';
 import RowHome from '../components/rowHome.js';
 import RowHomeMid from '../components/rowHomeMid.js';
 import Footer from '../components/footer.js';
+import { Icon } from 'react-native-elements';
 
 export default class homeScreen extends React.Component {
   render() {
+    const { navigation } = this.props;
     return (
       <View style = { styles.mainView }>
-        <Header/>
+        <Header
+          navigation = {navigation}
+        />
         <View>
           <ScrollView style = { styles.Scroll }>
             <SlideImage/>
@@ -19,16 +23,13 @@ export default class homeScreen extends React.Component {
             <View style = { styles.viewScroll }> 
               <RowHome/>
               <RowHomeMid/>
-              <RowHome/>
-              
               
             </View>
-
           </ScrollView>
         </View>
-        
-        
-        <Footer/>
+        <Footer
+          navigation = {navigation}
+        />
       </View>
     );
   }

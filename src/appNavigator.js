@@ -1,12 +1,17 @@
 import { createStackNavigator } from "react-navigation-stack";
 import homeScreen from "./screens/homeScreen";
 import notifyScreen from "./screens/notifyScreen";
+import loginScreen from "./screens/loginScreen";
 
 
 const appNavigator = createStackNavigator(
   {
     Home: {
       screen: homeScreen,
+      navigationOptions: { headerShown: false }
+    },
+    Login: {
+      screen: loginScreen,
       navigationOptions: { headerShown: false }
     },
     Notify: {
@@ -22,7 +27,7 @@ const appNavigator = createStackNavigator(
     }
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Login',
     defaultNavigationOptions: {
       headerStyle: { backgroundColor: '#339966' },
       headerTintColor: '#fff',

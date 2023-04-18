@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import { Text, StyleSheet, View, Image } from 'react-native';
+import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements'
 
 export default class Header extends React.Component {
   render() {
+    const { navigation } = this.props;
     return (
       <View style = { styles.bgHeader }>
         <View style = { styles.bgAvatar }>
@@ -14,11 +15,15 @@ export default class Header extends React.Component {
         </View>
         
         <Text style = { styles.headerStyle }>Camera AI</Text>
-        <View style = { styles.bgExit }>
-        <Icon
-            style = { styles.avatar }
-            name='exit-outline'
-            type='ionicon' /> 
+        <View style = { styles.bgExit } >
+          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+            <Icon
+              style = { styles.avatar }
+              name='exit-outline'
+              type='ionicon'
+            /> 
+          </TouchableOpacity>
+        
         </View>
         
       </View>
