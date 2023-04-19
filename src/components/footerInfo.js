@@ -1,23 +1,24 @@
 import React, {Component} from 'react';
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
-export default class FooterNotify extends React.Component {
+
+export default class FooterInfo extends React.Component {
   render() {
     const { navigation } = this.props;
     return (
       <View style = { styles.bgFooter }>
-        <View style = { styles.iconfooterChoose }>
-        <View style = { styles.iconfooterIn }>
+        <View style = { styles.iconfooter }>
+            <TouchableOpacity onPress={() => navigation.navigate('Notify')}>
               <Icon
-                reverse
-                name='notifications-outline'
-                type='ionicon'
-                color='#993399'
+                  name='notifications-outline'
+                  type='ionicon'
               />
-            </View>
+              <Text style = { styles.text }>Thông báo</Text>
+            </TouchableOpacity>
+          
+          
           
         </View>
-
         <View style = { styles.iconfooter }>
           <Icon
             name='heart-outline'
@@ -41,16 +42,15 @@ export default class FooterNotify extends React.Component {
             type='ionicon' />
           <Text style = { styles.text }>xyz</Text>
         </View>
-
-        <View style = { styles.iconfooter }>
-          <TouchableOpacity onPress={() => navigation.navigate('Info')}>
-            <Icon
-              name='information-circle-outline'
-              type='ionicon' />
-            <Text style = { styles.text }>Thông tin</Text>
-          </TouchableOpacity>
+        <View style = { styles.iconfooterChoose }>
+            <View style = { styles.iconfooterIn }>
+                <Icon
+                    reverse
+                    name='information-circle'
+                    type='ionicon'
+                    color='#993399' />
+            </View>
         </View>
-        
       </View>
       
     );

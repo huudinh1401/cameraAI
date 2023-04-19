@@ -10,12 +10,9 @@ export default class Footer extends React.Component {
             <TouchableOpacity onPress={() => navigation.navigate('Notify')}>
               <Icon
                   name='notifications-outline'
-                  type='ionicon'
-              />
+                  type='ionicon' />
+              <Text style = { styles.text }>Thông báo</Text>
             </TouchableOpacity>
-          
-          <Text style = { styles.text }>Thông báo</Text>
-          
         </View>
 
         <View style = { styles.iconfooter }>
@@ -28,7 +25,6 @@ export default class Footer extends React.Component {
         <View style = { styles.iconfooterChoose }>
           <View style = { styles.iconfooterIn }>
           <Icon
-                
                 reverse
                 name='home'
                 type='ionicon'
@@ -46,10 +42,13 @@ export default class Footer extends React.Component {
         </View>
 
         <View style = { styles.iconfooter }>
-        <Icon
-            name='settings-outline'
-            type='ionicon' />
-          <Text style = { styles.text }>Cài đặt</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Info')}>
+            <Icon
+              name='information-circle-outline'
+              type='ionicon' />
+            <Text style = { styles.text }>Thông tin</Text>
+          </TouchableOpacity>
+        
         </View>
         
       </View>

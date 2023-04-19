@@ -21,7 +21,7 @@ export default class homeScreen extends React.Component {
       
 
             <View style = { styles.viewScroll }> 
-              <RowHome/>
+              <RowHome navigation = {navigation}/>
               <RowHomeMid/>
               
             </View>
