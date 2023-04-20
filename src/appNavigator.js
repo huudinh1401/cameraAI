@@ -4,6 +4,7 @@ import notifyScreen from "./screens/notifyScreen";
 import loginScreen from "./screens/loginScreen";
 import infoScreen from "./screens/InfoScreen";
 import cameraScreen from "./screens/cameraScreen";
+import WeatherScreen from "./screens/weatherScreen";
 
 
 const appNavigator = createStackNavigator(
@@ -16,6 +17,18 @@ const appNavigator = createStackNavigator(
       screen: loginScreen,
       navigationOptions: { headerShown: false }
     },
+    Weather:{
+      screen: WeatherScreen,
+      navigationOptions: {
+        title: 'Thời Tiết',
+        headerTitleStyle: {
+          textAlign: 'center',
+          flexGrow:1,
+          alignSelf:'center',
+        }
+      }
+    },
+  
     Camera: {
       screen: cameraScreen,
       navigationOptions: {

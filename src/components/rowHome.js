@@ -22,7 +22,7 @@ export default class RowHome extends React.Component {
           <Text style = { styles.text } >Camera an ninh</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style = { styles.col } onPress={() => navigation.navigate('Camera')}>
+        <TouchableOpacity style = { styles.col } onPress={() => navigation.navigate('Weather')}>
           <View style = { styles.bgIcon }>
             <Image style = { styles.icon } source={require('../images/weather.png')} />
           </View>
