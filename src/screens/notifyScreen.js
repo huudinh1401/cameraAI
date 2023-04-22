@@ -1,7 +1,16 @@
 import React, {Component} from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import FooterNotify from '../components/footerNotify';
+import BouncingPreloader from 'react-native-bouncing-preloaders';
 
+const icons = [
+  "https://www.shareicon.net/data/256x256/2016/05/04/759946_bar_512x512.png",
+  "https://www.shareicon.net/data/256x256/2016/05/04/759908_food_512x512.png",
+  "https://www.shareicon.net/data/256x256/2016/05/04/759956_food_512x512.png",
+  "https://www.shareicon.net/data/256x256/2016/05/04/759954_food_512x512.png",
+  "https://www.shareicon.net/data/256x256/2016/05/04/759906_food_512x512.png",
+  "https://www.shareicon.net/data/256x256/2016/05/04/759921_food_512x512.png"
+];
 export default class notifyScreen extends React.Component {
   render() {
     const { navigation } = this.props;
@@ -9,10 +18,21 @@ export default class notifyScreen extends React.Component {
       <View style = { styles.mainView }>
           <View style = { styles.notify }>
             <Text>Bạn hiện chưa có thông báo mới!</Text>
+            <View style = {{justifyContent: 'center', alignContent: 'center', flex: 1}}>
+              <BouncingPreloader
+                icons={icons}
+                leftRotation="-350deg"
+                rightRotation="200deg"
+                leftDistance={-180}
+                rightDistance={-250}
+                speed={1500} />
+            </View>
+            
           </View>
           <FooterNotify
-          navigation = {navigation}
+            navigation = {navigation}
           />
+          
       </View>
       
     );
@@ -24,8 +44,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     flex: 1,
     flexDirection: 'column',
+    
   },
   notify:{
-    alignItems:"center"
+    alignItems:"center",
+    flex: 1,
+    flexDirection: 'column',
   },
 });

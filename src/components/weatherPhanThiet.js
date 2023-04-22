@@ -18,13 +18,8 @@ export default class WeatherPhanThiet extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       this.setState({isLoading: false});
-    }, 500)
-    this.getNhietDo()
-    this.getDescription()
-    this.getIcon()
-    this.getDoAm()
-    this.getTamNhin()
-    this.getTocDoGio()
+    }, 1000)
+    this.getThoiTiet()
   }
 
   constructor(props) {
@@ -41,65 +36,20 @@ export default class WeatherPhanThiet extends React.Component {
     }
   }
  
-  async getNhietDo() {
+  async getThoiTiet() {
     try {
       const response = await fetch(url);
       const json = await response.json();
       this.setState({ currentTemp: json.main.temp+'°C'});
-    } catch (error) {
-      console.log(error);
-    } 
-  }
-
-  async getDescription() {
-    try {
-      const response = await fetch(url);
-      const json = await response.json();
       this.setState({ Description: json.weather[0].description});
-    } catch (error) {
-      console.log(error);
-    } 
-  }
-
-  async getIcon() {
-    try {
-      const response = await fetch(url);
-      const json = await response.json();
-      this.setState({ Icon: json.weather[0].icon+'.png'});
-    } catch (error) {
-      console.log(error);
-    } 
-  }
-  async getDoAm() {
-    try {
-      const response = await fetch(url);
-      const json = await response.json();
-      this.setState({ Humidity: json.main.humidity+' %'});
-    } catch (error) {
-      console.log(error);
-    } 
-  }
-  async getTamNhin() {
-    try {
-      const response = await fetch(url);
-      const json = await response.json();
       this.setState({ Visibility: json.visibility / 1000 +' km'});
-    } catch (error) {
-      console.log(error);
-    } 
-  }
-
-  async getTocDoGio() {
-    try {
-      const response = await fetch(url);
-      const json = await response.json();
+      this.setState({ Icon: json.weather[0].icon+'.png'});
+      this.setState({ Humidity: json.main.humidity+' %'});
       this.setState({ Speed: json.wind.speed +' m/s'});
     } catch (error) {
       console.log(error);
     } 
   }
-
-  
   render() {
     return (
         <ImageBackground source={require('../images/phanthiet.jpg')} style = {styles.image}>

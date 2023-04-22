@@ -12,15 +12,26 @@ import {
 
 import { Icon } from 'react-native-elements';
 
+const userID = 'admin';
+const userPass = 'admin';
+
 export default class loginScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hidepassword: true
+      hidepassword: true,
+      id: '',
+      password: ''
     }
   }
   setPasswordVisibility = () => {
     this.setState({hidepassword: !this.state.hidepassword});
+  }
+  handleLogin = () => {
+    const { id, password } = this.state
+    if (id === userID && password === userPass)
+      this.props.navigation.navigate('Home', Alert.alert("Thông báo!","Đăng nhập thành công!"))
+    else  Alert.alert("Thông báo!","ID hoặc Mật Khẩu không đúng, vui lòng thử lại!")
   }
   render (){
     return (
@@ -45,6 +56,8 @@ export default class loginScreen extends React.Component {
                         returnKeyType='next'
                         autoCorrect={false}
                         onSubmitEditing={()=>this.refs.txtPassword.focus()}
+                        onChangeText={id => this.setState({ id })}
+                        value={this.state.id}
                       />
                     </View>
 
@@ -61,6 +74,8 @@ export default class loginScreen extends React.Component {
                         secureTextEntry = {this.state.hidepassword}
                         autoCorrect={false}
                         ref={'txtPassword'}
+                        onChangeText={password => this.setState({ password })}
+                        value={this.state.password}
                       />
 
                       {/* Button an, hien mat khau */}
@@ -79,7 +94,7 @@ export default class loginScreen extends React.Component {
                     {/* Button Dang Nhap */}
                     <TouchableOpacity 
                       style = {styles.buttonLogin} 
-                      onPress={() => this.props.navigation.navigate('Home', Alert.alert("Thông báo!","Đăng nhập thành công!"))}>
+                      onPress={this.handleLogin}>
                       <Text style = {styles.textButtonLogin}>Đăng nhập</Text>
                     </TouchableOpacity>
 
@@ -89,6 +104,7 @@ export default class loginScreen extends React.Component {
                       onPress={() => Alert.alert("Thông báo!","Tính năng này tạm đóng!")}>
                       <Text style = {styles.textButtonRegister}>Đăng ký</Text>
                     </TouchableOpacity>
+
                   </View>
               </View>
           </KeyboardAvoidingView>
@@ -115,13 +131,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   textTitle: {
-    color: '#CCFF00',
+    color: '#FF0000',
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center'
   },
   text: {
-    color: '#00FFFF',
+    color: '#66FF00',
     fontSize: 14,
     textAlign: 'center'
   },
@@ -151,9 +167,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#006600',
     paddingVertical: 8,
     marginHorizontal: 100,
-    borderRadius: 15,
+    borderRadius: 20,
     borderColor: 'white',
     borderWidth:0.5,
+    height: 40
   },
   textButtonLogin: {
     color: 'white',
@@ -165,9 +182,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#993366',
     paddingVertical: 8,
     marginHorizontal: 100,
-    borderRadius: 15,
+    borderRadius: 20,
     borderColor: 'white',
     borderWidth:0.5,
+    height: 40
   },
   textButtonRegister: {
     color: 'white',

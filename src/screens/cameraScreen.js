@@ -6,8 +6,10 @@ import {
     StyleSheet, 
     Dimensions,
     Image, 
-    View} from 'react-native';
-
+    View
+} from 'react-native';
+    
+import { VLCPlayer } from 'react-native-vlc-media-player';
 import { Icon } from 'react-native-elements';
 
 
@@ -20,13 +22,21 @@ export default class cameraScreen extends React.Component {
             <ScrollView style = { styles.Scroll }>
                 <View style = { styles.viewCam }>
 
-                    {/* row 1*/}
+                    {/* Cam 1 Cam 2*/}
                     <View style={{flexDirection: 'row',flex: 1}}>
 
-                        {/* col 1*/}
+                        {/* Cam 1*/}
                         <View style={{flexDirection: 'column',flex: 1}}>
                             <View style={{backgroundColor: 'grey', height: windowWidth/2, marginRight: 1}}>
-
+                            
+                            <VLCPlayer
+                                ref={'Cam1'}
+                                style={{height:windowWidth/2, width: windowWidth/2 - 1}}
+                                videoAspectRatio="16:9"
+                                Orientation = {true}
+                                source={{ uri: 'rtsp://admin:Admin123456@hoaphu.zapto.org:555/Streaming/channels/101'}}
+                                
+                             />
                             </View>
 
                             {/* button change, full*/}
@@ -47,10 +57,15 @@ export default class cameraScreen extends React.Component {
                             
                         </View>
 
-                        {/* col 2*/}
+                        {/* Cam 2*/}
                         <View style={{flexDirection: 'column',flex: 1}}>
                             <View style={{backgroundColor: 'grey',  height: windowWidth/2, marginLeft: 1}}>
-
+                                <VLCPlayer
+                                    ref={'Cam2'}
+                                    style={{height:windowWidth/2, width: windowWidth/2 - 1}}
+                                    videoAspectRatio="16:9"
+                                    source={{ uri: 'rtsp://admin:Admin123456@hoaphu.zapto.org:555/Streaming/channels/101'}}
+                                />
                             </View>
 
                             {/* button change, full*/}
@@ -72,13 +87,18 @@ export default class cameraScreen extends React.Component {
                     </View>
                     {/*end row 1*/}
 
-                    {/* row 2*/}
+                    {/* Cam 3 Cam 4*/}
                     <View style={{flexDirection: 'row',flex: 1}}>
 
-                        {/* row 2 col 1*/}
+                        {/* cam 3 */}
                         <View style={{flexDirection: 'column',flex: 1}}>
                             <View style={{backgroundColor: 'grey', height: windowWidth/2, marginRight: 1}}>
-
+                                <VLCPlayer
+                                    ref={'Cam3'}
+                                    style={{height:windowWidth/2, width: windowWidth/2 - 1}}
+                                    videoAspectRatio="16:9"
+                                    source={{ uri: 'rtsp://admin:Admin123456@hoaphu.zapto.org:555/Streaming/channels/101'}}
+                                />
                             </View>
 
                             {/* button change, full*/}
@@ -99,10 +119,15 @@ export default class cameraScreen extends React.Component {
                             
                         </View>
 
-                        {/* row 2 col 2*/}
+                        {/* Cam 4*/}
                         <View style={{flexDirection: 'column',flex: 1}}>
                             <View style={{backgroundColor: 'grey',  height: windowWidth/2, marginLeft: 1}}>
-
+                                <VLCPlayer
+                                    ref={'Cam4'}
+                                    style={{height:windowWidth/2, width: windowWidth/2 - 1}}
+                                    videoAspectRatio="16:9"
+                                    source={{ uri: 'rtsp://admin:Admin123456@hoaphu.zapto.org:555/Streaming/channels/101'}}
+                                />
                             </View>
                             
                             {/* button change, full*/}
