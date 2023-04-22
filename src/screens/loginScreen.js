@@ -31,66 +31,66 @@ export default class loginScreen extends React.Component {
               <View style = { styles.titleContainer }>
                   <Text style = {styles.textTitle}>Camera An Ninh - AI</Text>
                   <Text style = {styles.text}>Thông Tin Đăng Nhập</Text>
-                  </View>
-                <View style = {styles.infoContainer}>
+                  <View style = {styles.infoContainer}>
 
-                  {/* Text input nhap tai khoan */} 
-                  <View style = {styles.viewID}>
-                    <Icon
-                        name='person-circle'
-                        type='ionicon'
-                    />
-                    <TextInput style = {styles.input}
-                      placeholder= 'Nhập tên tài khoản'
-                      placeholderTextColor= {'grey'}
-                      returnKeyType='next'
-                      autoCorrect={false}
-                      onSubmitEditing={()=>this.refs.txtPassword.focus()}
-                    />
-                  </View>
-
-                  {/* Text input nhap mat khau */}
-                  <View style = {styles.viewID}>
-                    <Icon
-                          name='key'
+                    {/* Text input nhap tai khoan */} 
+                    <View style = {styles.viewID}>
+                      <Icon
+                          name='person-circle'
                           type='ionicon'
-                    />
-                    <TextInput style = {styles.input}
-                      placeholder= 'Nhập mật khẩu'
-                      placeholderTextColor= {'grey'}
-                      returnKeyType='go'
-                      secureTextEntry = {this.state.hidepassword}
-                      autoCorrect={false}
-                      ref={'txtPassword'}
-                    />
+                      />
+                      <TextInput style = {styles.input}
+                        placeholder= 'Nhập tên tài khoản'
+                        placeholderTextColor= {'grey'}
+                        returnKeyType='next'
+                        autoCorrect={false}
+                        onSubmitEditing={()=>this.refs.txtPassword.focus()}
+                      />
+                    </View>
 
-                    {/* Button an, hien mat khau */}
+                    {/* Text input nhap mat khau */}
+                    <View style = {styles.viewID}>
+                      <Icon
+                            name='key'
+                            type='ionicon'
+                      />
+                      <TextInput style = {styles.input}
+                        placeholder= 'Nhập mật khẩu'
+                        placeholderTextColor= {'grey'}
+                        returnKeyType='go'
+                        secureTextEntry = {this.state.hidepassword}
+                        autoCorrect={false}
+                        ref={'txtPassword'}
+                      />
+
+                      {/* Button an, hien mat khau */}
+                      <TouchableOpacity 
+                        style = {{position: 'absolute', right: 3}} 
+                        onPress={this.setPasswordVisibility}>
+                        {
+                          !this.state.hidepassword ? 
+                          <Icon name='eye-outline' type='ionicon' /> 
+                          : 
+                          <Icon name='eye-off-outline' type='ionicon' /> 
+                        }
+                      </TouchableOpacity>
+                    </View>
+
+                    {/* Button Dang Nhap */}
                     <TouchableOpacity 
-                      style = {{position: 'absolute', right: 3}} 
-                      onPress={this.setPasswordVisibility}>
-                      {
-                        !this.state.hidepassword ? 
-                        <Icon name='eye-outline' type='ionicon' /> 
-                        : 
-                        <Icon name='eye-off-outline' type='ionicon' /> 
-                      }
+                      style = {styles.buttonLogin} 
+                      onPress={() => this.props.navigation.navigate('Home', Alert.alert("Thông báo!","Đăng nhập thành công!"))}>
+                      <Text style = {styles.textButtonLogin}>Đăng nhập</Text>
+                    </TouchableOpacity>
+
+                    {/* Button Dang ky */}
+                    <TouchableOpacity 
+                      style = {styles.buttonRegister} 
+                      onPress={() => Alert.alert("Thông báo!","Tính năng này tạm đóng!")}>
+                      <Text style = {styles.textButtonRegister}>Đăng ký</Text>
                     </TouchableOpacity>
                   </View>
-                  {/* Button Dang Nhap */}
-                  <TouchableOpacity 
-                    style = {styles.buttonLogin} 
-                    onPress={() => this.props.navigation.navigate('Home', Alert.alert("Thông báo!","Bạn đã đăng nhập thành công!"))}
-                  >
-                    <Text style = {styles.textButtonLogin}>Đăng nhập</Text>
-            
-                  </TouchableOpacity>
-
-                  {/* Button Dang ky */}
-                  <TouchableOpacity style = {styles.buttonRegister} onPress={() => this.props.navigation.navigate('Home')}>
-                    <Text style = {styles.textButtonRegister}>Đăng ký</Text>
-                  </TouchableOpacity>
-                </View>
-              
+              </View>
           </KeyboardAvoidingView>
         </ImageBackground>
       </View>
@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
   mainView: {
     flex: 1,
     flexDirection: 'column',
+    
   },
   image:{
     flex: 1,
@@ -120,17 +121,15 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   text: {
-    color: '#FF9966',
+    color: '#00FFFF',
     fontSize: 14,
     textAlign: 'center'
   },
   infoContainer:{
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 150,
     height: 80,
     padding: 15,
+    marginTop: 20
+    
   },
   viewID:{
     alignItems: 'center',
@@ -142,6 +141,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginHorizontal: 30,
     height: 40,
+    width: 300
   },
   input: {
     paddingHorizontal: 15,

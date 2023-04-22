@@ -4,16 +4,16 @@ import { StyleSheet,
   Text,
   ImageBackground,
   Image,
- } from 'react-native';
+} from 'react-native';
 
 
   const date = new Date().getDate(); //Current Date
   const month = new Date().getMonth() + 1; //Current Month
   const year = new Date().getFullYear(); //Current Year
 
-  const url = 'https://api.openweathermap.org/data/2.5/weather?lang=vi&units=metric&appid=dec88dc4a5477646356fe07a2dfa9a14&q=dalat';
+  const url = 'https://api.openweathermap.org/data/2.5/weather?lang=vi&units=metric&appid=dec88dc4a5477646356fe07a2dfa9a14&q=danang';
 
-export default class WeatherDaLat extends React.Component {
+export default class WeatherDaNang extends React.Component {
 
   componentDidMount() {
     this.getNhietDo()
@@ -94,37 +94,34 @@ export default class WeatherDaLat extends React.Component {
       console.log(error);
     } 
   }
-  
   render() {
-
     const {currentDate, currentTemp, Description, Icon, Humidity, Visibility, Speed} = this.state;
-
     return (
-        <ImageBackground source={require('../images/dalat.jpg')} style = {styles.image}>
-          <View style ={{alignItems:'center', backgroundColor: 'rgba(238,130,238, 0.2)', marginHorizontal: 20, borderRadius: 20, padding: 30}}>
-            <Text style ={{color: 'white', fontSize: 26}}> Thành phố Đà Lạt </Text>
+        <ImageBackground source={require('../images/danang.jpg')} style = {styles.image}>
+          <View style ={{alignItems:'center', backgroundColor: 'rgba(0,139,139, 0.5)', marginHorizontal: 20, borderRadius: 20, padding: 30}}>
+            <Text style ={{color: 'white', fontSize: 26}}>Thành phố  Đà Nẵng</Text>
             <Text style = {{color:'#00FFFF', fontSize: 20}}>{currentDate}</Text>
             <Text style ={{color:'yellow', fontSize: 24, marginTop: 30}}>{Description}</Text>
 
             <View style ={{alignItems:'center', marginTop: 15}}>
               <View style = {{flexDirection: 'row'}}>
-                <Image style = {{height: 90, width: 90}} src= {'https://openweathermap.org/img/wn/'+ Icon} />
-                <Text style ={{color: '#006600', fontSize: 60, marginLeft: 30}}> {currentTemp} </Text>
+                <Image style = {{height: 90, width: 90}} src= {'https://openweathermap.org/img/wn/' + Icon} />
+                <Text style ={{color: '#880000', fontSize: 60, marginLeft: 30}}> {currentTemp} </Text>
               </View>
               <View>
                 <View style ={{flexDirection:'row'}}>
-                  <Text style ={{color: '#550000', fontSize: 18}}>Độ ẩm: </Text>
-                  <Text style ={{color: '#550000', fontSize: 18}}> {Humidity}</Text>
+                  <Text style ={{color: '#00FFFF', fontSize: 18}}>Độ ẩm: </Text>
+                  <Text style ={{color: '#00FFFF', fontSize: 18}}> {Humidity}</Text>
                 </View>
 
                 <View style ={{flexDirection:'row'}}>
-                  <Text style ={{color: '#550000', fontSize: 18}}>Tầm nhìn: </Text>
-                  <Text style ={{color: '#550000', fontSize: 18}}> {Visibility}</Text>
+                  <Text style ={{color: '#00FFFF', fontSize: 18}}>Tầm nhìn: </Text>
+                  <Text style ={{color: '#00FFFF', fontSize: 18}}> {Visibility}</Text>
                 </View>
 
                 <View style ={{flexDirection:'row'}}>
-                  <Text style ={{color: '#550000', fontSize: 18}}>Tốc độ gió: </Text>
-                  <Text style ={{color: '#550000', fontSize: 18}}> {Speed}</Text>
+                  <Text style ={{color: '#00FFFF', fontSize: 18}}>Tốc độ gió: </Text>
+                  <Text style ={{color: '#00FFFF', fontSize: 18}}> {Speed}</Text>
                 </View>
                 
               </View>

@@ -8,7 +8,7 @@ export default class RowHome extends React.Component {
     return (
       <View style = { styles.row }>
 
-        <TouchableOpacity style = { styles.col } onPress={() => navigation.navigate('Camera')}>           
+        <TouchableOpacity style = { styles.col } onPress={() => navigation.navigate('New')}>           
           <View style = { styles.bgIcon }>
             <Image style = { styles.icon } source={require('../images/new.png')} />
           </View>

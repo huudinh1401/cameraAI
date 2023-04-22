@@ -1,40 +1,40 @@
 import React, {Component} from 'react';
 import { StyleSheet,
   View,
-  Text,
-  ImageBackground,
-  Image,
-  Dimensions
+  Dimensions, 
  } from 'react-native';
 import WeatherPhanThiet from '../components/weatherPhanThiet';
-import WeatherHCm from '../components/weatherHCM';
+import WeatherHCM from '../components/weatherHCM';
 import WeatherHaNoi from '../components/weatherHaNoi';
 import WeatherDaLat from '../components/weatherDaLat';
+import WeatherDaNang from '../components/weatherDaNang';
 
 import Swiper from 'react-native-swiper';
 
 
 
-  const windowheight = Dimensions.get('window').height;
+const windowheight = Dimensions.get('window').height;
 
-export default class WeatherScreen extends React.Component {
+export default class WeatherScreen extends React.Component { 
   render() {
     return (
       <View style = { styles.mainView }>
-        <Swiper autoplay={true} autoplayTimeout={8} autoplayDirection={true} style={styles.wrapper}>
+        
+        <Swiper autoplay={true} autoplayTimeout={3} autoplayDirection={true} style={styles.wrapper}>
 
           <WeatherPhanThiet/>
 
-          <WeatherHCm/>
+          <WeatherHCM/>
 
           <WeatherHaNoi/>
 
+          <WeatherDaNang/>
+
           <WeatherDaLat/>
-        
+
         </Swiper>
-        
-      </View>
-      
+
+      </View>  
     );
   }
 }

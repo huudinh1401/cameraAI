@@ -5,6 +5,7 @@ import loginScreen from "./screens/loginScreen";
 import infoScreen from "./screens/InfoScreen";
 import cameraScreen from "./screens/cameraScreen";
 import WeatherScreen from "./screens/weatherScreen";
+import NewScreen from "./screens/newScreen";
 
 
 const appNavigator = createStackNavigator(
@@ -23,8 +24,17 @@ const appNavigator = createStackNavigator(
         title: 'Thời Tiết',
         headerTitleStyle: {
           textAlign: 'center',
-          flexGrow:1,
-          alignSelf:'center',
+          paddingRight: 30,
+        }
+      }
+    },
+    New:{
+      screen: NewScreen,
+      navigationOptions: {
+        title: 'Tin Tức',
+        headerTitleStyle: {
+          textAlign: 'center',
+          paddingRight: 30,
         }
       }
     },
@@ -64,7 +74,7 @@ const appNavigator = createStackNavigator(
     }
   },
   {
-    initialRouteName: 'Login',
+    initialRouteName: 'Home',
     defaultNavigationOptions: {
       headerStyle: { backgroundColor: '#CC3300' },
       headerTintColor: '#fff',

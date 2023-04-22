@@ -124,8 +124,5 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: 'grey',
   },
-  image: {
-    width: 20,
-    height: 20,
-  },
+  
 });
