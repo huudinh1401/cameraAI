@@ -65,7 +65,7 @@ export default class WeatherPhanThiet extends React.Component {
                   <View style ={{alignItems:'center', marginTop: 15}}>
                     <View style = {{flexDirection: 'row'}}>
                       <Image style = {{height: 90, width: 90}} src = {'https://openweathermap.org/img/wn/'+ this.state.Icon}/>
-                      <Text style ={{color: '#00FFFF', fontSize: 60, marginLeft: 30}}> {this.state.currentTemp} </Text>
+                      <Text style ={{color: '#00FFFF', fontSize: 60, marginLeft: 10}}> {this.state.currentTemp} </Text>
                     </View>
 
                     <View>

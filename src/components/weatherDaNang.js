@@ -66,7 +66,7 @@ export default class WeatherDaNang extends React.Component {
               <View style ={{alignItems:'center', marginTop: 15}}>
                 <View style = {{flexDirection: 'row'}}>
                   <Image style = {{height: 90, width: 90}} src= {'https://openweathermap.org/img/wn/' + Icon} />
-                  <Text style ={{color: '#880000', fontSize: 60, marginLeft: 30}}> {currentTemp} </Text>
+                  <Text style ={{color: '#880000', fontSize: 60, marginLeft: 10}}> {currentTemp} </Text>
                 </View>
                 <View>
                   <View style ={{flexDirection:'row'}}>

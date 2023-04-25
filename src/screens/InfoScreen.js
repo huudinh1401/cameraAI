@@ -55,6 +55,11 @@ export default class infoScreen extends React.Component {
                 <Text style = { styles.text }>Hỗ trợ:    0868.686.868 - 0686.868.686</Text>
             </TouchableOpacity>
 
+            <TouchableOpacity style = { styles.miniInfo } onPress={() => navigation.navigate('Login')}>
+                <Image style = { styles.image } source={require('../images/logout.png')} />  
+                <Text style = { styles.text }>Đăng xuất</Text>
+            </TouchableOpacity>
+
             <View style = { styles.miniInfo }>
                 <Image style = { styles.image } source={require('../images/info.png')} />  
                 <Text style = { styles.text }>Phiên bản</Text>

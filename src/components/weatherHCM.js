@@ -61,7 +61,7 @@ export default class WeatherHCM extends React.Component {
               <View style ={{alignItems:'center', backgroundColor: 'rgba(0,0,255, 0.5)', marginHorizontal: 20, borderRadius: 20, padding: 30}}>
                   <Text style ={{color: 'white', fontSize: 26}}>Thành phố  Hồ Chí Minh</Text>
                   <Text style = {{color:'limegreen', fontSize: 20}}>{currentDate}</Text>
-                  <Text style ={{color:'yellow', fontSize: 24, marginTop: 30}}>{Description}</Text>
+                  <Text style ={{color:'yellow', fontSize: 24, marginTop: 10}}>{Description}</Text>
 
                   <View style ={{alignItems:'center', marginTop: 15}}>
                     <View style = {{flexDirection: 'row'}}>

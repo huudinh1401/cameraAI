@@ -17,7 +17,7 @@ export default class notifyScreen extends React.Component {
     return (
       <View style = { styles.mainView }>
           <View style = { styles.notify }>
-            <Text>Bạn hiện chưa có thông báo mới!</Text>
+            <Text style = {{paddingTop: 20}}>Bạn hiện chưa có thông báo mới!</Text>
             <View style = {{justifyContent: 'center', alignContent: 'center', flex: 1}}>
               <BouncingPreloader
                 icons={icons}

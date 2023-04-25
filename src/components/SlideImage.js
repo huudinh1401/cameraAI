@@ -7,26 +7,21 @@ export default class SlideImage extends React.Component {
   render() {
     return (
       <View >
-        <Swiper autoplay={true} autoplayTimeout={5} autoplayDirection={false} style={styles.wrapper}>
+        <Swiper autoplay={true} autoplayTimeout={5} autoplayDirection={false} >
+            <Image style = { styles.bgImg } source={require('../images/daongdia.jpg')} />
             <Image style = { styles.bgImg } source={require('../images/PhanThiet.jpg')} />
-            <Image style = { styles.bgImg } source={require('../images/PhanThiet.png')} />
-            <Image style = { styles.bgImg } source={require('../images/PhanThiet.jpg')} />
-            <Image style = { styles.bgImg } source={require('../images/PhanThiet.png')} />
+            <Image style = { styles.bgImg } source={require('../images/SlidePhanThiet1.jpg')} />
+            <Image style = { styles.bgImg } source={require('../images/thapnuoc.jpg')} />
         </Swiper>
       </View>
     );
   }
 }
 const styles = StyleSheet.create({
-    wrapper: {
-        height: 125,
-    },
     bgImg: {
-        borderTopLeftRadius: 5,
-        borderTopRightRadius: 5,
-        borderBottomLeftRadius: 5,
-        borderBottomRightRadius: 5,
-        height: 100,
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20,
+        height: 125,
         width: '100%',
     },
 });
