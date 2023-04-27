@@ -20,7 +20,7 @@ export default class WeatherScreen extends React.Component {
     return (
       <View style = { styles.mainView }>
         
-        <Swiper autoplay={true} autoplayTimeout={3} autoplayDirection={true} style={styles.wrapper}>
+        <Swiper autoplay={true} autoplayTimeout={7} autoplayDirection={true} style={styles.wrapper}>
 
           <WeatherPhanThiet/>
 
