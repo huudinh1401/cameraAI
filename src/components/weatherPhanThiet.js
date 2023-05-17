@@ -52,7 +52,7 @@ export default class WeatherPhanThiet extends React.Component {
   }
   render() {
     return (
-        <ImageBackground source={require('../images/phanthiet.jpg')} style = {styles.image}>
+        <ImageBackground source={require('../images/ptt.jpg')} style = {styles.image}>
           {
             this.state.isLoading ?  (<ActivityIndicator size="large" color="#0000ff" />) :
             (<>
