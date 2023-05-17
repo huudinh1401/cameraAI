@@ -64,9 +64,9 @@ export default class WeatherHCM extends React.Component {
                   <Text style ={{color:'yellow', fontSize: 24, marginTop: 10}}>{Description}</Text>
 
                   <View style ={{alignItems:'center', marginTop: 15}}>
-                    <View style = {{flexDirection: 'row'}}>
-                      <Image style = {{height: 90, width: 90}} src= {'https://openweathermap.org/img/wn/' + Icon} />
-                      <Text style ={{color: '#880000', fontSize: 60, marginLeft: 30}}>{ currentTemp} </Text>
+                    <View style = {{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                      <Image style = {{height: 80, width: 80}} src= {'https://openweathermap.org/img/wn/' + Icon} />
+                      <Text style ={{color: '#880000', fontSize: 60, marginLeft: 5}}>{ currentTemp} </Text>
                     </View>
                     <View>
                       <View style ={{flexDirection:'row'}}>

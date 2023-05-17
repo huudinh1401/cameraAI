@@ -5,6 +5,7 @@ export default class FooterNotify extends React.Component {
   render() {
     const { navigation } = this.props;
     return (
+      <View style ={styles.container}>
       <View style = { styles.bgFooter }>
         <View style = { styles.iconfooterChoose }>
         <View style = { styles.iconfooterIn }>
@@ -18,12 +19,12 @@ export default class FooterNotify extends React.Component {
           
         </View>
 
-        <View style = { styles.iconfooter }>
+        {/* <View style = { styles.iconfooter }>
           <Icon
             name='heart-outline'
             type='ionicon' />
           <Text style = { styles.text }>abc</Text>
-        </View>
+        </View> */}
 
         <View style = { styles.iconfooter }>
           <TouchableOpacity onPress={() => navigation.navigate('Home')}>
@@ -35,12 +36,12 @@ export default class FooterNotify extends React.Component {
             
         </View>
 
-        <View style = { styles.iconfooter }>
+        {/* <View style = { styles.iconfooter }>
           <Icon
             name='heart-outline'
             type='ionicon' />
           <Text style = { styles.text }>xyz</Text>
-        </View>
+        </View> */}
 
         <View style = { styles.iconfooter }>
           <TouchableOpacity onPress={() => navigation.navigate('Info')}>
@@ -52,16 +53,22 @@ export default class FooterNotify extends React.Component {
         </View>
         
       </View>
-      
+      </View>
     );
   }
 }
 const styles = StyleSheet.create({
+  container:{
+    backgroundColor: '#DDDDDD', 
+    height: 80, 
+    borderTopRightRadius: 10, 
+    borderTopLeftRadius: 10,
+
+  },
     bgFooter: {
         backgroundColor: '#DDDDDD',
         height: 60,
         position: 'absolute',
-        bottom: -10,
         left: 0,
         right: 0,
         flexDirection: 'row',

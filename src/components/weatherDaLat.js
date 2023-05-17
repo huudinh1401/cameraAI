@@ -67,9 +67,11 @@ export default class WeatherDaLat extends React.Component {
                 <Text style ={{color:'yellow', fontSize: 24, marginTop: 30}}>{Description}</Text>
 
                 <View style ={{alignItems:'center', marginTop: 15}}>
-                  <View style = {{flexDirection: 'row'}}>
-                    <Image style = {{height: 90, width: 90}} src= {'https://openweathermap.org/img/wn/'+ Icon} />
-                    <Text style ={{color: '#006600', fontSize: 60, marginLeft: 10}}> {currentTemp} </Text>
+                  <View style = {{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                    <View>
+                      <Image style = {{height: 80, width: 80}} src= {'https://openweathermap.org/img/wn/'+ Icon} />
+                    </View>
+                    <Text style ={{color: '#00FFFF', fontSize: 60, marginLeft: 5}}> {currentTemp} </Text>
                   </View>
                   <View>
                     <View style ={{flexDirection:'row'}}>

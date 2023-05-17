@@ -5,6 +5,7 @@ export default class Footer extends React.Component {
   render() {
     const { navigation } = this.props;
     return (
+      <View style={{backgroundColor: '#DDDDDD', height: 80, borderTopRightRadius: 10, borderTopLeftRadius: 10,}}>
       <View style = { styles.bgFooter }>
         <View style = { styles.iconfooter }>
             <TouchableOpacity onPress={() => navigation.navigate('Notify')}>
@@ -15,12 +16,12 @@ export default class Footer extends React.Component {
             </TouchableOpacity>
         </View>
 
-        <View style = { styles.iconfooter }>
+        {/* <View style = { styles.iconfooter }>
           <Icon
             name='heart-outline'
             type='ionicon' />
           <Text style = { styles.text }>abc</Text>
-        </View>
+        </View> */}
 
         <View style = { styles.iconfooterChoose }>
           <View style = { styles.iconfooterIn }>
@@ -34,12 +35,12 @@ export default class Footer extends React.Component {
             
         </View>
 
-        <View style = { styles.iconfooter }>
+        {/* <View style = { styles.iconfooter }>
           <Icon
             name='heart-outline'
             type='ionicon' />
           <Text style = { styles.text }>xyz</Text>
-        </View>
+        </View> */}
 
         <View style = { styles.iconfooter }>
           <TouchableOpacity onPress={() => navigation.navigate('Info')}>
@@ -52,30 +53,28 @@ export default class Footer extends React.Component {
         </View>
         
       </View>
+      </View>
       
     );
   }
 }
 const styles = StyleSheet.create({
     bgFooter: {
-        backgroundColor: '#DDDDDD',
         height: 60,
         position: 'absolute',
-        bottom: -10,
         left: 0,
         right: 0,
         flexDirection: 'row',
         flex: 0.1,
         alignItems:'center',
-        borderTopRightRadius: 10,
-        borderTopLeftRadius: 10,
+        marginBottom: 20,
     },
     iconfooter: {
       alignItems: 'center',
       flex: 1,
     },
     iconfooterIn: {
-      backgroundColor: '#fff',
+      backgroundColor: 'seashell',
       alignItems: 'center',
       borderRadius: 35,
     },

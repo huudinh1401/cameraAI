@@ -12,7 +12,9 @@ const appNavigator = createStackNavigator(
   {
     Home: {
       screen: homeScreen,
-      navigationOptions: { headerShown: false }
+      navigationOptions: { 
+        headerShown: false,
+        headerBackTitle: false }
     },
     Login: {
       screen: loginScreen,
@@ -22,9 +24,9 @@ const appNavigator = createStackNavigator(
       screen: WeatherScreen,
       navigationOptions: {
         title: 'Thời Tiết',
+        headerBackTitleVisible: false,
         headerTitleStyle: {
           textAlign: 'center',
-          paddingRight: 30,
         }
       }
     },
@@ -32,9 +34,9 @@ const appNavigator = createStackNavigator(
       screen: NewScreen,
       navigationOptions: {
         title: 'Tin Tức',
+        headerBackTitleVisible: false,
         headerTitleStyle: {
           textAlign: 'center',
-          paddingRight: 30,
         }
       }
     },
@@ -43,10 +45,9 @@ const appNavigator = createStackNavigator(
       screen: cameraScreen,
       navigationOptions: {
         title: 'Camera An Ninh',
+        headerBackTitleVisible: false,
         headerTitleStyle: {
           textAlign: 'center',
-          flexGrow:1,
-          alignSelf:'center',
         }
       }
     },
@@ -54,10 +55,9 @@ const appNavigator = createStackNavigator(
       screen: notifyScreen,
       navigationOptions: {
         title: 'Thông Báo',
+        headerBackTitleVisible: false,
         headerTitleStyle: {
           textAlign: 'center',
-          flexGrow:1,
-          alignSelf:'center',
         }
       }
     },
@@ -65,10 +65,9 @@ const appNavigator = createStackNavigator(
       screen: infoScreen,
       navigationOptions: {
         title: 'Thông Tin Ứng Dụng',
+        headerBackTitleVisible: false,
         headerTitleStyle: {
           textAlign: 'center',
-          flexGrow:1,
-          alignSelf:'center',
         }
       }
     }

@@ -7,17 +7,17 @@ import {
     Image, 
     View
 } from 'react-native';
-import { VLCPlayer } from 'react-native-vlc-media-player';
-import ItemCam from '../components/itemCam';
+import ItemCamera from '../components/itemCamera';
 import Note from '../components/note';
 
 
 const windowWidth = Dimensions.get('window').width;
 const width1 = windowWidth/2 -2;
 const width2 = windowWidth -2;
-const url1 = 'rtsp://admin:Admin123456@hoaphu.zapto.org:555/Streaming/channels/101'; 
+const url = 'rtsp://admin:Admin123456@hoaphu.zapto.org:555/Streaming/channels/101'; 
 
 export default class cameraScreen extends React.Component {
+  
     
   render() {
     return (
@@ -27,27 +27,22 @@ export default class cameraScreen extends React.Component {
 
                     <View style={{flexDirection: 'row',flex: 1}}>
                         {/* Cam 1*/}
-                        <ItemCam url = { url1 } widthItem = {width1}/>
+                        <ItemCamera url = { url } widthItem = {width1}/>
 
                         {/* Cam 2*/}
-                        <ItemCam/>
+                        <ItemCamera url = { '' } widthItem = {width1}/>
                     </View>
 
+                    {/* Cam 3*/}
                     <View style={{flexDirection: 'row',flex: 1}}>
-                        {/* cam 3 */}
-                        <ItemCam/>
-
-                        {/* Cam 4*/}
-                        <ItemCam/>
+                        <ItemCamera url = { url } widthItem = {width2}/>
                     </View>
 
-                    {/* Cam 5*/}
+                    {/* Cam 4 */}
                     <View style={{flexDirection: 'row',flex: 1}}>
-
-                        {/* Cam 5*/}
-                        <ItemCam url = { url1 } widthItem = {width2}/>
+                        <ItemCamera url = {''} widthItem = {width2}/>
                     </View>
-                    {/*end row 3*/}
+
                 </View>
                 
                 <Note/>

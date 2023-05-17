@@ -17,12 +17,16 @@ export default class Header extends React.Component {
 }
 const styles = StyleSheet.create({
     bgHeader: {
-        elevation: 10,
-        height: 150,
+        backgroundColor: 'beige',
+        height: 170,
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20,
         shadowColor: '#00000',
         shadowOffset:{width: 0, height:5},
+        shadowRadius: 2,
         shadowOpacity: 0.2,
         position: 'relative',
         flexDirection: 'row',
+
     },
 });

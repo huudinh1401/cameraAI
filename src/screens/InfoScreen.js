@@ -15,7 +15,7 @@ export default class infoScreen extends React.Component {
     return (
       <View style = { styles.mainView }>
         <View style = {{ alignItems: 'center'}}>
-            <Image style = { styles.logo } source={require('../images/logo.png')} /> 
+            <Image style = { styles.logo } source={require('../images/NL.jpg')} /> 
         </View>
         
         {/* Danh sach thoong tin ung dung */}
@@ -68,9 +68,10 @@ export default class infoScreen extends React.Component {
                 </View>
             </View>
         </View>
-
-        <Text style = { styles.textFooter }>© Bản quyền thuộc Bộ Công An tỉnh Bình Thuận</Text>
-        <Text style = { styles.textFooterAdd }>Công Ty TNHH Nguyên Luân</Text>
+        <View style = {{flex: 1}}>
+          <Text style = { styles.textFooter }>© Bản quyền thuộc Bộ phận IT - ABC</Text>
+          <Text style = { styles.textFooterAdd }>Công Ty TNHH Nguyên Luân</Text>
+        </View>
 
         <FooterInfo
           navigation = {navigation}
@@ -83,12 +84,11 @@ export default class infoScreen extends React.Component {
 const styles = StyleSheet.create({
   mainView: {
     flex: 1,
-    flexDirection: 'column',
   },
   logo: {
     marginTop: 10,
-    width: 80,
-    height: 80,
+    width: 100,
+    height: 100,
   },
   info: {
     marginTop: 15,
@@ -99,15 +99,17 @@ const styles = StyleSheet.create({
   },
   miniInfoTop: {
     paddingHorizontal: 8,
-    paddingVertical: 10,
+    paddingVertical: 15,
     flexDirection: 'row',
+    alignItems: 'center'
   },
   miniInfo: {
     paddingHorizontal: 8,
-    paddingVertical: 10,
+    paddingVertical: 15,
     flexDirection: 'row',
     borderTopColor: 'grey',
     borderTopWidth: 0.3,
+    alignItems:'center'
   },
   image: {
     width: 20,

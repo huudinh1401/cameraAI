@@ -1,5 +1,15 @@
 import React, {Component} from 'react';
-import {ScrollView, Text, StyleSheet, View, ImageBackground, SafeAreaView, Image} from 'react-native';
+import {
+  ScrollView, 
+  Text, 
+  StyleSheet,
+  View, 
+  ImageBackground, 
+  SafeAreaView,
+  Platform, 
+  Image, 
+  StatusBar,
+} from 'react-native';
 import Header from '../components/Header.js';
 import RowHome from '../components/rowHome.js';
 import RowHomeMid from '../components/rowHomeMid.js';
@@ -9,20 +19,24 @@ export default class homeScreen extends React.Component {
   render() {
     const { navigation } = this.props;
     return (
-      <SafeAreaView style = {{flex: 1}}>
+      <View style = {{flex: 1}}>
         <ImageBackground source={require('../images/HinhNenHome.jpeg')} style = {styles.image}>
+        <StatusBar barStyle={'light-content'}/>
           <View >
               <Header/>
           </View>
-          <View style = {{ backgroundColor: 'beige' ,height: 60, marginTop: -40, marginHorizontal: 30, borderRadius: 5, alignItems: 'center', justifyContent: 'center', flexDirection: 'row'}}>
-            <Image style = {{width:40, height: 40}} source={require('../images/logo.png')} />
-            <Text style = {{paddingLeft: 20, fontSize: 20, color: '#CC0000'}}>Camera An Ninh - AI</Text>
+          <View style = {[
+            { backgroundColor: 'orange' ,height: 60, marginTop: -15, marginHorizontal: 50, borderRadius: 5, alignItems: 'center', justifyContent: 'center', flexDirection: 'row'},
+            Platform.select({ ios: { zIndex: 10 }, android: { zIndex: 10 } }),
+          ]}>
+            <Image style = {{width:45, height: 45}} source={require('../images/NL.jpg')} />
+            <Text style = {{paddingLeft: 10, fontSize: 20, color: '#fff', fontWeight: 'bold'}}>Camera An Ninh - AI</Text>
           </View>
-          <View style = {{flex: 1, marginHorizontal: 10, backgroundColor: 'rgba(245,245,220, 0.2)', borderTopLeftRadius: 8, borderTopRightRadius: 8, marginTop: -10}}>
-            <View style ={{flexDirection:'row', marginTop: 30,  paddingLeft: 25, alignItems:'center'}}>
+          <View style = {{flex: 1, marginHorizontal: 10, backgroundColor: 'rgba(245,245,220, 0.5)', borderTopLeftRadius: 8, borderTopRightRadius: 8, marginTop: -15,}}>
+            <View style ={{flexDirection:'row', marginTop: 30,  paddingLeft: 20, alignItems:'center'}}>
               <Image style = {{width:25, height: 25, }} source={require('../images/service.png')}></Image>
-              <Text style = {{ fontSize: 14, color: '#660000', fontFamily: 'serif', paddingLeft: 10, fontStyle: 'italic'}}>
-              Chuyên nghiệp - Chính xác - Công bằng 
+              <Text style = {{ fontSize: 16, color: '#660000', paddingLeft: 10, fontStyle: 'italic'}}>
+                Chuyên nghiệp - Chính xác - Công bằng 
               </Text>
             </View>
             
@@ -30,24 +44,7 @@ export default class homeScreen extends React.Component {
               
                   <RowHome navigation = {navigation}/>
                   <RowHomeMid/>
-                  <RowHome navigation = {navigation}/>
-                  <RowHomeMid/>
-                  <RowHome navigation = {navigation}/>
-                  <RowHomeMid/>
-                  <RowHome navigation = {navigation}/>
-                  <RowHomeMid/>
-                  <RowHome navigation = {navigation}/>
-                  <RowHomeMid/>
-                  <RowHome navigation = {navigation}/>
-                  <RowHomeMid/>
-                  <RowHome navigation = {navigation}/>
-                  <RowHomeMid/>
-                  <RowHome navigation = {navigation}/>
-                  <RowHomeMid/>
-                  <RowHome navigation = {navigation}/>
-                  <RowHomeMid/>
-                  <RowHome navigation = {navigation}/>
-                  <RowHomeMid/>
+                  
                   <View style = {{height: 100}}></View>
             </ScrollView>
           </View>
@@ -56,7 +53,7 @@ export default class homeScreen extends React.Component {
             navigation = {navigation}
           />
       </ImageBackground>
-      </SafeAreaView>
+      </View>
     );
   }
 }

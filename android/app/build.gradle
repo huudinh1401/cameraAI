@@ -130,7 +130,28 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
-
+    tasks.whenTaskAdded((tas -> {
+    // when task is 'mergeLocalDebugNativeLibs' or 'mergeLocalReleaseNativeLibs'
+        if (tas.name.contains("merge") && tas.name.contains("NativeLibs")) {
+            tasks.named(tas.name) {it
+                doFirst {
+                    java.nio.file.Path notNeededDirectory = it.externalLibNativeLibs
+                            .getFiles()
+                            .stream()
+                            // for React Native 0.71, the file value now contains "jetified-react-android" instead of "jetified-react-native"
+                            .filter(file -> file.toString().contains("jetified-react-android"))
+                            .findAny()
+                            .orElse(null)
+                            .toPath();
+                    java.nio.file.Files.walk(notNeededDirectory).forEach(file -> {
+                        if (file.toString().contains("libc++_shared.so")) {
+                            java.nio.file.Files.delete(file);
+                        }
+                    });
+                }
+            }
+        }
+    }))
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
         variant.outputs.each { output ->

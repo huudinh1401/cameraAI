@@ -6351,9 +6351,10 @@ react-native-vector-icons@^9.2.0, react-native-vector-icons@>7.0.0:
     prop-types "^15.7.2"
     yargs "^16.1.1"
 
-"react-native-vlc-media-player@github:razorRun/react-native-vlc-player":
-  version "1.0.53"
-  resolved "git+ssh://git@github.com/razorRun/react-native-vlc-player.git#24fd7dc16a8609898313925704f970b4df2d24f7"
+react-native-vlc-media-player@^1.0.54:
+  version "1.0.54"
+  resolved "https://registry.npmjs.org/react-native-vlc-media-player/-/react-native-vlc-media-player-1.0.54.tgz"
+  integrity sha512-8HOL0F1Z+8WkfnLvxf2ln0w3tJSWip5SAzOY62spUVeVKWL+wH4GHWKLjm7gQY8WlywEGu2ioQqHQrcQSfqjQA==
   dependencies:
     react-native-slider "^0.11.0"
     react-native-vector-icons "^9.2.0"

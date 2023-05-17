@@ -63,9 +63,9 @@ export default class WeatherHaNoi extends React.Component {
                   <Text style ={{color:'yellow', fontSize: 24, marginTop: 30}}>{this.state.Description}</Text>
 
                   <View style ={{alignItems:'center', marginTop: 15}}>
-                    <View style = {{flexDirection: 'row'}}>
-                      <Image style = {{height: 90, width: 90}} src = {'https://openweathermap.org/img/wn/'+ this.state.Icon} />
-                      <Text style ={{color: '#00FFFF', fontSize: 60, marginLeft: 10}}> {this.state.currentTemp} </Text>
+                    <View style = {{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                      <Image style = {{height: 80, width: 80}} src = {'https://openweathermap.org/img/wn/'+ this.state.Icon} />
+                      <Text style ={{color: '#00FFFF', fontSize: 60, marginLeft: 5}}> {this.state.currentTemp} </Text>
                     </View>
                     
                     <View>

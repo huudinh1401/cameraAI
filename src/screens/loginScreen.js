@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   StatusBar,
   Alert,
+  SafeAreaView
 } from 'react-native';
 
 import { Icon } from 'react-native-elements';
@@ -35,13 +36,16 @@ export default class loginScreen extends React.Component {
   }
   render (){
     return (
-      <View style = { styles.mainView }>
+      <View style = {{flex: 1,}}>
         <ImageBackground source={require('../images/imageLogin.jpg')} style = {styles.image}>
           <StatusBar barStyle={'light-content'}/>
           <KeyboardAvoidingView behavior='padding' style = { styles.mainView }>
               <View style = { styles.titleContainer }>
+                <View >
                   <Text style = {styles.textTitle}>Camera An Ninh - AI</Text>
                   <Text style = {styles.text}>Thông Tin Đăng Nhập</Text>
+                </View>
+                  
                   <View style = {styles.infoContainer}>
 
                     {/* Text input nhap tai khoan */} 
@@ -50,11 +54,12 @@ export default class loginScreen extends React.Component {
                           name='person-circle'
                           type='ionicon'
                       />
-                      <TextInput style = {styles.input}
+                      <TextInput style = {{paddingHorizontal: 15, width: 250}}
                         placeholder= 'Nhập tên tài khoản'
                         placeholderTextColor= {'grey'}
                         returnKeyType='next'
                         autoCorrect={false}
+                        autoCapitalize= 'none'
                         onSubmitEditing={()=>this.refs.txtPassword.focus()}
                         onChangeText={id => this.setState({ id })}
                         value={this.state.id}
@@ -67,11 +72,12 @@ export default class loginScreen extends React.Component {
                             name='key'
                             type='ionicon'
                       />
-                      <TextInput style = {styles.input}
+                      <TextInput style = {{paddingHorizontal: 15, width: 220}}
                         placeholder= 'Nhập mật khẩu'
                         placeholderTextColor= {'grey'}
                         returnKeyType='go'
                         secureTextEntry = {this.state.hidepassword}
+                        autoCapitalize= 'none'
                         autoCorrect={false}
                         ref={'txtPassword'}
                         onChangeText={password => this.setState({ password })}
@@ -95,14 +101,7 @@ export default class loginScreen extends React.Component {
                     <TouchableOpacity 
                       style = {styles.buttonLogin} 
                       onPress={this.handleLogin}>
-                      <Text style = {styles.textButtonLogin}>Đăng nhập</Text>
-                    </TouchableOpacity>
-
-                    {/* Button Dang ky */}
-                    <TouchableOpacity 
-                      style = {styles.buttonRegister} 
-                      onPress={() => Alert.alert("Thông báo!","Tính năng này tạm đóng!")}>
-                      <Text style = {styles.textButtonRegister}>Đăng ký</Text>
+                      <Text style = {styles.textButtonLogin}>Đăng Nhập</Text>
                     </TouchableOpacity>
 
                   </View>
@@ -117,13 +116,12 @@ export default class loginScreen extends React.Component {
 const styles = StyleSheet.create({
   mainView: {
     flex: 1,
-    flexDirection: 'column',
-    
   },
   image:{
     flex: 1,
     resizeMode: "cover",
-    justifyContent: "center"
+    justifyContent: "center",
+    flexDirection: 'column',
   },
   titleContainer: {
     flex: 1,
@@ -132,13 +130,14 @@ const styles = StyleSheet.create({
   },
   textTitle: {
     color: '#FF0000',
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
     textAlign: 'center'
   },
   text: {
     color: '#66FF00',
-    fontSize: 14,
+    fontSize: 20,
+    fontWeight: 'bold',
     textAlign: 'center'
   },
   infoContainer:{
@@ -159,37 +158,21 @@ const styles = StyleSheet.create({
     height: 40,
     width: 300
   },
-  input: {
-    paddingHorizontal: 15,
-  },
   buttonLogin: {
     marginTop: 15,
-    backgroundColor: '#006600',
+    backgroundColor: '#0099FF',
     paddingVertical: 8,
-    marginHorizontal: 100,
+    marginHorizontal: 80,
     borderRadius: 20,
     borderColor: 'white',
     borderWidth:0.5,
-    height: 40
+    height: 45,
+    justifyContent: 'center'
   },
   textButtonLogin: {
     color: 'white',
-    fontSize: 15,
+    fontSize: 18,
     textAlign: 'center',
   },
-  buttonRegister: {
-    marginTop: 10,
-    backgroundColor: '#993366',
-    paddingVertical: 8,
-    marginHorizontal: 100,
-    borderRadius: 20,
-    borderColor: 'white',
-    borderWidth:0.5,
-    height: 40
-  },
-  textButtonRegister: {
-    color: 'white',
-    fontSize: 15,
-    textAlign: 'center',
-  },
+ 
 });

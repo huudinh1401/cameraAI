@@ -31,7 +31,7 @@
     "react-native-slider": "^0.11.0",
     "react-native-swiper": "^1.6.0-nightly.5",
     "react-native-vector-icons": "^9.2.0",
-    "react-native-vlc-media-player": "github:razorRun/react-native-vlc-player",
+    "react-native-vlc-media-player": "^1.0.54",
     "react-native-webview": "^12.0.2",
     "react-navigation": "^4.4.4",
     "react-navigation-stack": "^2.10.4",
