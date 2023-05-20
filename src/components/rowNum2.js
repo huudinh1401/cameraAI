@@ -1,31 +1,51 @@
 import React, {Component} from 'react';
-import { Text, StyleSheet, View, Image } from 'react-native';
+import { 
+  Text, 
+  StyleSheet, 
+  View, 
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 
-export default class RowHomeMid extends React.Component {
+export default class RowNum2 extends React.Component {
   render() {
+    const { navigation } = this.props;
     return (
       <View style = { styles.row }>
 
-        <View style = { styles.col }>
+        <TouchableOpacity 
+          style = { styles.col }
+          onPress={() => navigation.navigate('New')}
+        >
           <View style = { styles.bgIcon }>
-            <Image style = { styles.icon } source={require('../images/chart.png')} />
+            <Image style = { styles.icon } source={require('../images/error.png')} />
           </View>
-          <Text style = { styles.text } >Biểu đồ</Text>
-        </View>
+          <View style={{paddingVertical: 10}}>
+            <Text style = { styles.text } >Vi phạm</Text>
+          </View>
+        </TouchableOpacity>
           
-        <View style = { styles.col }>
+        <TouchableOpacity   
+          style = { styles.col }
+        >
           <View style = { styles.bgIcon }>
             <Image style = { styles.icon } source={require('../images/map.png')} />
           </View>
-          <Text style = { styles.text } >Bản đồ </Text>
-        </View>
+          <View style={{paddingVertical: 10}}>
+            <Text style = { styles.text } >Bản đồ </Text>
+          </View>
+        </TouchableOpacity>
 
-        <View style = { styles.col }>
+        <TouchableOpacity 
+          style = { styles.col }
+        >
           <View style = { styles.bgIcon }>
             <Image style = { styles.icon } source={require('../images/note.png')} />
           </View>
-          <Text style = { styles.text } >Ghi chú</Text>
-        </View>
+          <View style={{paddingVertical: 10}}>
+            <Text style = { styles.text } >Ghi chú</Text>
+          </View>
+        </TouchableOpacity>
         
       </View>
       
@@ -34,9 +54,8 @@ export default class RowHomeMid extends React.Component {
 }
 const styles = StyleSheet.create({
     row: {
-        paddingTop: -50,
         flexDirection: 'row',
-        height: 100,
+        height: 120,
     },
     col: {
         justifyContent: 'center',

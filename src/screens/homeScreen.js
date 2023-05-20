@@ -4,15 +4,14 @@ import {
   Text, 
   StyleSheet,
   View, 
-  ImageBackground, 
-  SafeAreaView,
+  ImageBackground,
   Platform, 
   Image, 
   StatusBar,
 } from 'react-native';
 import Header from '../components/Header.js';
-import RowHome from '../components/rowHome.js';
-import RowHomeMid from '../components/rowHomeMid.js';
+import RowNum1 from '../components/rowNum1.js';
+import RowNum2 from '../components/rowNum2.js';
 import Footer from '../components/footer.js';
 
 export default class homeScreen extends React.Component {
@@ -42,8 +41,8 @@ export default class homeScreen extends React.Component {
             
             <ScrollView style = {styles.viewScroll}>
               
-                  <RowHome navigation = {navigation}/>
-                  <RowHomeMid/>
+                  <RowNum1 navigation = {navigation}/>
+                  <RowNum2 navigation = {navigation}/>
                   
                   <View style = {{height: 100}}></View>
             </ScrollView>

@@ -17,31 +17,110 @@ const width2 = windowWidth -2;
 const url = 'rtsp://admin:Admin123456@hoaphu.zapto.org:555/Streaming/channels/101'; 
 
 export default class cameraScreen extends React.Component {
-  
-    
+  constructor(props) {
+    super(props);
+    this.state = {
+      RTSP1: '1',
+      RTSP2: '2',
+      RTSP3: '3',
+    }
+  }
+
+  _onPressChangeCam = (rtsp) => {
+    this.props.navigation.navigate('DsCam',{rtsp}) 
+  }
   render() {
+    const { navigation } = this.props;
+    const { RTSP1, RTSP2, RTSP3 } = this.state;
+    const Rtsp1 = this.props.navigation.getParam ( 'rtsp1', 'No_Name');
+    const Rtsp2 = this.props.navigation.getParam ( 'rtsp2', 'No_Name');
+    const Rtsp3 = this.props.navigation.getParam ( 'rtsp3', 'No_Name');
     return (
         <View style = { styles.mainView }>
             <ScrollView style = { styles.Scroll }>
                 <View style = { styles.viewCam }>
-
+        {/* Cam 1*/}
                     <View style={{flexDirection: 'row',flex: 1}}>
-                        {/* Cam 1*/}
-                        <ItemCamera url = { url } widthItem = {width1}/>
-
-                        {/* Cam 2*/}
-                        <ItemCamera url = { '' } widthItem = {width1}/>
+                        <ItemCamera url = { Rtsp1 } widthItem = {width2} navigation = {navigation}/>
                     </View>
 
-                    {/* Cam 3*/}
+                    {/* button change, full*/}
+                    <View style={{height: 40, marginRight: 1, flexDirection: 'row', flex: 1}}>
+                        <TouchableOpacity
+                            style ={{alignItems:'center', justifyContent: 'center', flex: 1, marginLeft: 15}}
+                            onPress={() => navigation.navigate('DsCam', {RTSP1})}
+                        >
+                            <Image style = { styles.image } source={require('../images/change.png')} /> 
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style ={{alignItems:'center', justifyContent: 'center', flex: 1, marginRight: 15}}
+                        >
+                            <Image style = { styles.image } source={require('../images/fullscreen.png')} /> 
+                        </TouchableOpacity>
+                    </View>
+                    {/* end button change, full*/}
+
+                        {/* <View>
+                          <ItemCamera url = { Rtsp2 } widthItem = {width1} navigation = {navigation}/>
+
+                          
+                          <View style={{height: 40, marginRight: 1, flexDirection: 'row', flex: 1}}>
+                              <TouchableOpacity
+                                  style ={{alignItems:'center', justifyContent: 'center', flex: 1, marginLeft: 15}}
+                                  onPress={() => navigation.navigate('DsCam',{RTSP2})}
+                              >
+                                  <Image style = { styles.image } source={require('../images/change.png')} /> 
+                              </TouchableOpacity>
+                              <TouchableOpacity
+                                  style ={{alignItems:'center', justifyContent: 'center', flex: 1, marginRight: 15}}
+                              >
+                                  <Image style = { styles.image } source={require('../images/fullscreen.png')} /> 
+                              </TouchableOpacity>
+                          </View>
+                        </View>  */}
+                    
+
+ {/* Cam 2*/}
                     <View style={{flexDirection: 'row',flex: 1}}>
-                        <ItemCamera url = { url } widthItem = {width2}/>
+                        <ItemCamera url = { Rtsp2 } widthItem = {width2} navigation = {navigation}/>
                     </View>
 
-                    {/* Cam 4 */}
-                    <View style={{flexDirection: 'row',flex: 1}}>
-                        <ItemCamera url = {''} widthItem = {width2}/>
+                    {/* button change, full*/}
+                    <View style={{height: 40, marginRight: 1, flexDirection: 'row', flex: 1}}>
+                        <TouchableOpacity
+                            style ={{alignItems:'center', justifyContent: 'center', flex: 1, marginLeft: 15}}
+                            onPress={() => navigation.navigate('DsCam', {RTSP2})}
+                        >
+                            <Image style = { styles.image } source={require('../images/change.png')} /> 
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style ={{alignItems:'center', justifyContent: 'center', flex: 1, marginRight: 15}}
+                        >
+                            <Image style = { styles.image } source={require('../images/fullscreen.png')} /> 
+                        </TouchableOpacity>
                     </View>
+                    {/* end button change, full*/}
+
+  {/* Cam 3 */}
+                    <View style={{flexDirection: 'row',flex: 1}}>
+                        <ItemCamera url = {Rtsp3} widthItem = {width2} navigation = {navigation}/>
+                    </View>
+
+                    {/* button change, full*/}
+                    <View style={{height: 40, marginRight: 1, flexDirection: 'row', flex: 1}}>
+                        <TouchableOpacity
+                            style ={{alignItems:'center', justifyContent: 'center', flex: 1, marginLeft: 15}}
+                            onPress={() => navigation.navigate('DsCam',{RTSP3})}
+                        >
+                            <Image style = { styles.image } source={require('../images/change.png')} /> 
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style ={{alignItems:'center', justifyContent: 'center', flex: 1, marginRight: 15}}
+                        >
+                            <Image style = { styles.image } source={require('../images/fullscreen.png')} /> 
+                        </TouchableOpacity>
+                    </View>
+                    {/* end button change, full*/}
 
                 </View>
                 

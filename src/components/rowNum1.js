@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import { Text, StyleSheet, View, Image, TouchableOpacity } from 'react-native';
-import cameraScreen from '../screens/cameraScreen';
 
-export default class RowHome extends React.Component {
+export default class RowNum1 extends React.Component {
   render() {
     const { navigation } = this.props;
     return (
@@ -12,21 +11,27 @@ export default class RowHome extends React.Component {
           <View style = { styles.bgIcon }>
             <Image style = { styles.icon } source={require('../images/new.png')} />
           </View>
-          <Text style = { styles.text } >Tin tức</Text>
+          <View style={{paddingVertical: 10}}>
+            <Text style = { styles.text } >Tin tức</Text>
+          </View>
         </TouchableOpacity>
 
         <TouchableOpacity style = { styles.col } onPress={() => navigation.navigate('Camera')}>
           <View style = { styles.bgIcon }>
             <Image style = { styles.icon } source={require('../images/camera.png')} />
           </View>
-          <Text style = { styles.text } >Camera an ninh</Text>
+          <View style={{paddingVertical: 10}}>
+            <Text style = { styles.text } >Camera an ninh</Text>
+          </View>
         </TouchableOpacity>
 
         <TouchableOpacity style = { styles.col } onPress={() => navigation.navigate('Weather')}>
           <View style = { styles.bgIcon }>
             <Image style = { styles.icon } source={require('../images/weather.png')} />
           </View>
-          <Text style = { styles.text } >Thời tiết</Text>
+          <View style={{paddingVertical: 10}}>
+            <Text style = { styles.text } >Thời tiết</Text>
+          </View>
         </TouchableOpacity>
         
       </View>
@@ -36,9 +41,8 @@ export default class RowHome extends React.Component {
 }
 const styles = StyleSheet.create({
     row: {
-        paddingTop: -50,
         flexDirection: 'row',
-        height: 100,
+        height: 120,
     },
     col: {
         justifyContent: 'center',

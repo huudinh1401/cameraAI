@@ -15,6 +15,7 @@ const windowWidth = Dimensions.get('window').width;
 export default class ItemCamera extends React.Component {
   render() {
     const { url, widthItem } = this.props;
+    
     return (
         <View style={{flex: 1}}>
             <View style={{backgroundColor: 'grey', height: windowWidth/2, marginRight: 1}}>
@@ -22,24 +23,11 @@ export default class ItemCamera extends React.Component {
                     //ref={'Cam1'}
                     style={{height:windowWidth/2, width: widthItem}}
                     videoAspectRatio="16:9"
+                    autoplay={true}
                     //Orientation = {true}
                     source={{ uri: url }}
                 />
-            </View>
-            {/* button change, full*/}
-            <View style={{height: 40, marginRight: 1, flexDirection: 'row', flex: 1}}>
-                <TouchableOpacity
-                    style ={{alignItems:'center', justifyContent: 'center', flex: 1, marginLeft: 15}}
-                >
-                    <Image style = { styles.image } source={require('../images/change.png')} /> 
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style ={{alignItems:'center', justifyContent: 'center', flex: 1, marginRight: 15}}
-                >
-                    <Image style = { styles.image } source={require('../images/fullscreen.png')} /> 
-                </TouchableOpacity>
-            </View>
-            {/* end button change, full*/}
+            </View>  
     </View>
 
     );

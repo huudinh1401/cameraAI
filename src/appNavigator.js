@@ -6,6 +6,7 @@ import infoScreen from "./screens/InfoScreen";
 import cameraScreen from "./screens/cameraScreen";
 import WeatherScreen from "./screens/weatherScreen";
 import NewScreen from "./screens/newScreen";
+import DsCamera from "./screens/listCamera";
 
 
 const appNavigator = createStackNavigator(
@@ -65,6 +66,16 @@ const appNavigator = createStackNavigator(
       screen: infoScreen,
       navigationOptions: {
         title: 'Thông Tin Ứng Dụng',
+        headerBackTitleVisible: false,
+        headerTitleStyle: {
+          textAlign: 'center',
+        }
+      }
+    },
+    DsCam: {
+      screen: DsCamera,
+      navigationOptions: {
+        title: 'Danh Sách Camera',
         headerBackTitleVisible: false,
         headerTitleStyle: {
           textAlign: 'center',

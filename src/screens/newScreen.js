@@ -4,7 +4,7 @@ import { StyleSheet,
   Image
  } from 'react-native';
 import { WebView } from 'react-native-webview';
-import {EatBeanLoader} from 'react-native-indicator'
+import {EatBeanLoader} from 'react-native-indicator';
 
 export default class NewScreen extends React.Component {
   componentDidMount() {
@@ -39,7 +39,7 @@ export default class NewScreen extends React.Component {
             />
             </>)
           }
-            
+          
         </View>
     );
   }
