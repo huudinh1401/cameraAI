@@ -26,10 +26,10 @@ export default class ItemArea extends React.Component {
       const json = await response.json();
       this.setState({ arrCam: json });
       const {arrCam}=this.state;
-      const {idKV}=this.props;
+      const {idNVR}=this.props;
       for (var i = 0; i < arrCam.length; i++)
       {
-        if (arrCam[i].ID_Area == idKV){
+        if (arrCam[i].Nvr == idNVR){
           if (arrCam[i].RTSP !== null){
             this.setState({arrCamKV: 
               this.state.arrCamKV.concat([{

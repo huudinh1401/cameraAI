@@ -15,13 +15,13 @@ export default class RowNum2 extends React.Component {
 
         <TouchableOpacity 
           style = { styles.col }
-          onPress={() => navigation.navigate('New')}
+          onPress={() => navigation.navigate('DsSuKien')}
         >
           <View style = { styles.bgIcon }>
             <Image style = { styles.icon } source={require('../images/error.png')} />
           </View>
           <View style={{paddingVertical: 10}}>
-            <Text style = { styles.text } >Vi phạm</Text>
+            <Text style = { styles.text } >Sự kiện</Text>
           </View>
         </TouchableOpacity>
           

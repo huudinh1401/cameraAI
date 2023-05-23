@@ -9,7 +9,7 @@ import { StyleSheet,
  } from 'react-native';
 import ItemArea from '../components/itemArea';
 
-const url = 'http://192.168.1.47/dataCamera/dsKhuVuc.php';
+const url = 'http://localhost/dataCamera/listArea.php';
 
 export default class DsCamera extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ export default class DsCamera extends React.Component {
       tenKV: '',
       tenCam: '',
       rtsp:'',
-      areaID: '',
+      nvrID: '',
     }
   }
   componentDidMount() {
@@ -36,10 +36,10 @@ export default class DsCamera extends React.Component {
       console.log(error);
     } 
   }
-  _onPressShow = (id) => {
+  _onPressShow = (id, idnvr) => {
     this.setState({ idChoose: id });
     this.setState({ isShow: !this.state.isShow });
-    this.setState({ areaID: id });
+    this.setState({ nvrID: idnvr });
   }
   renderSeparator = () => {
     return (
@@ -68,11 +68,11 @@ export default class DsCamera extends React.Component {
           renderItem={({item}) =>
           <View>
             <TouchableOpacity
-            onPress={() => this._onPressShow(item.key)}
+            onPress={() => this._onPressShow(item.key, item.Nvr_id)}
             >
               <View style ={{flexDirection: 'row', height: 60, marginHorizontal: "5%", justifyContent: 'center'}}>
                 <View style ={{flex: 1, justifyContent:'center', paddingLeft: 5}}>
-                  <Text style = {styles.text}>{item.Name}</Text>
+                  <Text style = {styles.text}>{item.AreaName}</Text>
                 </View>
                 {
                   this.state.idChoose === item.key ?
@@ -97,7 +97,7 @@ export default class DsCamera extends React.Component {
             {
               this.state.idChoose === item.key ?
               (
-                this.state.isShow ? <ItemArea idKV = {this.state.areaID} navigation = {navigation}/> : null
+                this.state.isShow ? <ItemArea idNVR = {this.state.nvrID} navigation = {navigation}/> : null
               ) : null
             }
           </View>

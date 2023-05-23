@@ -7,6 +7,8 @@ import cameraScreen from "./screens/cameraScreen";
 import WeatherScreen from "./screens/weatherScreen";
 import NewScreen from "./screens/newScreen";
 import DsCamera from "./screens/listCamera";
+import ListEvent from "./screens/listEvent";
+import ChiTietDoiTuong from "./screens/chiTietDoiTuong";
 
 
 const appNavigator = createStackNavigator(
@@ -81,7 +83,28 @@ const appNavigator = createStackNavigator(
           textAlign: 'center',
         }
       }
+    },
+    DsSuKien: {
+      screen: ListEvent,
+      navigationOptions: {
+        title: 'Danh Sách Sự Kiện',
+        headerBackTitleVisible: false,
+        headerTitleStyle: {
+          textAlign: 'center',
+        }
+      }
+    },
+    ChiTietDT: {
+      screen: ChiTietDoiTuong,
+      navigationOptions: {
+        title: 'Chi Tiết Đối Tượng',
+        headerBackTitleVisible: false,
+        headerTitleStyle: {
+          textAlign: 'center',
+        }
+      }
     }
+
   },
   {
     initialRouteName: 'Home',
