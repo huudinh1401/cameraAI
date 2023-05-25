@@ -26,7 +26,7 @@ export default class NewScreen extends React.Component {
             this.state.isLoading ?  
             ( <>
                 <View style = {{alignItems: 'center'}}>
-                <Image style = {{height: 150, width: 150, marginBottom: 30}} source={require('../images/logo.png')} />
+                  <Image style = {{height: 150, width: 150, marginBottom: 30}} source={require('../images/logo.png')} />
                   <EatBeanLoader />
                 </View>
 

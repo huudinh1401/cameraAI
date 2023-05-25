@@ -5,36 +5,36 @@ import {
     View, 
     TouchableOpacity, 
     FlatList,
-    Alert,
-    Dimensions
+    Alert
 } from 'react-native';
 import { Icon } from 'react-native-elements'
 import TitleEvent from './titileEvent';
 
-const url = 'http://192.168.1.104/dataCamera/listEventAllPage.php?page=';
-const windowWidth = Dimensions.get('window').width;
+const url = 'http://192.168.1.104/dataCamera/listEventBsx.php?page=';
 
-export default class AllEvent extends React.Component {
+export default class BsxEvent extends React.Component {
     componentDidMount() {
         this.getArrEvent()
         setInterval(() => {
             fetch(url+1)
             .then((response)=>response.json())
-            .then(  (responseJson)=>{this.setState( { arrEventAll : responseJson, refresh: false} );  })
+            .then(  (responseJson)=>{this.setState( { arrEventBsx : responseJson, refresh: false} );  })
         .catch((e)=>{});
         }, 5000);
     }
+
     constructor(props) {
         super(props);
         this.state = {
-            arrEventAll:[], refresh: false, page: 1
+            arrEventBsx:[],
+            refresh: false, page: 1
         }
     }
     async getArrEvent() {
         try {
             const response = await fetch(url+1);
             const json = await response.json();
-            this.setState({  arrEventAll: json, refresh: false });
+            this.setState({ arrEventBsx: json, refresh: false });
         } catch (error) { Alert.alert('Lỗi!','Không có kết nối mạng...\nVui lòng thử lại!')} 
     }
     _onPressChiTiet = (id) =>{
@@ -51,14 +51,13 @@ export default class AllEvent extends React.Component {
         .then((responseJson)=>{
             if(responseJson.length !=0){
                 this.setState({
-                    arrEventAll : this.state.arrEventAll.concat(responseJson),
+                    arrEventBsx : this.state.arrEventBsx.concat(responseJson),
                     page : this.state.page+1,
                 });
             } 
         })
         .catch((e)=>{});
     } 
-
     renderSeparator = () => {
         return ( <View style={{height: 0.5, width: "100%", backgroundColor: "gray"}}/>);
     };
@@ -66,11 +65,9 @@ export default class AllEvent extends React.Component {
         const { navigation } = this.props;
         return (
         <View style = { styles.container }>
-            
-            <TitleEvent col1={'Đối tượng '} col2={'Loại sự kiện'} col3={'Vị trí'} col4={'Thời gian'}/>
-            
+            <TitleEvent col1={'Đối tượng '} col2={'Camera'} col3={'Vị trí'} col4={'Thời gian'}/>
             <FlatList
-                data={this.state.arrEventAll}
+                data={this.state.arrEventBsx}
                 keyExtractor={(item, index) => index}
                 ItemSeparatorComponent={this.renderSeparator}
                 initialNumToRender={50}
@@ -82,8 +79,9 @@ export default class AllEvent extends React.Component {
                 onEndReached={()=>{this._onEndReached()}}
 
                 renderItem={({item, index}) =>
-                <View key={index}>
-                    <TouchableOpacity   
+                <View>
+                    <TouchableOpacity
+                        key={index}
                         onPress={() => this._onPressChiTiet(item.id)}
                     >
                         <View style ={{
@@ -96,7 +94,7 @@ export default class AllEvent extends React.Component {
                                     </Text>
                                 </View>
                                 <View style={{flex: 3.5, borderLeftWidth: 0.5, borderLeftColor: 'gray', justifyContent: 'center'}}>
-                                    <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 14, textAlign: 'center'}}>{item.LoaiSuKien}</Text>
+                                    <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 14, textAlign: 'center'}}>{item.Camera}</Text>
                                 </View>
                                 <View style={{flex: 2.7, borderLeftWidth: 0.5, borderLeftColor: 'gray', justifyContent: 'center'}}>
                                     <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 14, textAlign: 'center'}}>{item.ViTri}</Text>
@@ -117,6 +115,7 @@ export default class AllEvent extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+
     },
     textTitle:{
         color: 'black',
@@ -124,5 +123,4 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold'
     },
-
 });

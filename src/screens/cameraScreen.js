@@ -14,7 +14,6 @@ import Note from '../components/note';
 const windowWidth = Dimensions.get('window').width;
 const width1 = windowWidth/2 -2;
 const width2 = windowWidth -2;
-const url = 'rtsp://admin:Admin123456@hoaphu.zapto.org:555/Streaming/channels/101'; 
 
 export default class cameraScreen extends React.Component {
   constructor(props) {
@@ -41,7 +40,7 @@ export default class cameraScreen extends React.Component {
                 <View style = { styles.viewCam }>
         {/* Cam 1*/}
                     <View style={{flexDirection: 'row',flex: 1}}>
-                        <ItemCamera url = { Rtsp1 } widthItem = {width2} navigation = {navigation}/>
+                        <ItemCamera url = { 'rtsp://admin:Admin@123@kdcbenloi.zapto.org:555/enr/live/1/1' } widthItem = {width2} navigation = {navigation}/>
                     </View>
 
                     {/* button change, full*/}
@@ -82,7 +81,7 @@ export default class cameraScreen extends React.Component {
 
  {/* Cam 2*/}
                     <View style={{flexDirection: 'row',flex: 1}}>
-                        <ItemCamera url = { Rtsp2 } widthItem = {width2} navigation = {navigation}/>
+                        <ItemCamera url = { 'rtsp://admin:Admin123456@hoaphu.zapto.org:555/Streaming/channels/101' } widthItem = {width2} navigation = {navigation}/>
                     </View>
 
                     {/* button change, full*/}

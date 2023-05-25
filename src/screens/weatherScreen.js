@@ -41,7 +41,7 @@ export default class WeatherScreen extends React.Component {
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: windowheight,
+    height: windowheight - 200,
   },
   mainView: {
     backgroundColor: '#fff',

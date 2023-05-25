@@ -4,10 +4,11 @@ import { StyleSheet,
   Text,
   FlatList,
   TouchableOpacity,
-  Image
+  Image,
+  Alert
  } from 'react-native';
 
-const urlCam = 'http://192.168.1.47/dataCamera/dsCam.php';
+const urlCam = 'http://192.168.1.40/dataCamera/dsCam.php';
 
 export default class ItemArea extends React.Component {
   constructor(props) {
@@ -33,27 +34,20 @@ export default class ItemArea extends React.Component {
           if (arrCam[i].RTSP !== null){
             this.setState({arrCamKV: 
               this.state.arrCamKV.concat([{
-                key: arrCam[i].key,
-                name: arrCam[i].CamName,
-                rtsp: arrCam[i].RTSP,
+                key: arrCam[i].key, name: arrCam[i].CamName, rtsp: arrCam[i].RTSP,
               }])
             })
           }
           else {
             this.setState({arrCamKV: 
               this.state.arrCamKV.concat([{
-                key: arrCam[i].key,
-                name: arrCam[i].CamName,
-                rtsp: 'No_Link',
+                key: arrCam[i].key, name: arrCam[i].CamName, rtsp: 'No_Link',
               }])
             })
           }
         }
       }
-      //console.log(this.state.arrCamKV);
-    } catch (error) {
-      console.log(error);
-    } 
+    } catch (error) {Alert.alert('Lỗi!','Không có kết nối mạng...\nVui lòng thử lại!')} 
   }
   _onPressGetRTSP = (rtsp) => {
     const Rtsp1 = this.props.navigation.getParam ( 'RTSP1', 'No_Name');

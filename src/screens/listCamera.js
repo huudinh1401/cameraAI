@@ -9,7 +9,7 @@ import { StyleSheet,
  } from 'react-native';
 import ItemArea from '../components/itemArea';
 
-const url = 'http://localhost/dataCamera/listArea.php';
+const url = 'http://192.168.1.40/dataCamera/listArea.php';
 
 export default class DsCamera extends React.Component {
   constructor(props) {
@@ -32,9 +32,7 @@ export default class DsCamera extends React.Component {
       const response = await fetch(url);
       const json = await response.json();
       this.setState({ arrArea: json });
-    } catch (error) {
-      console.log(error);
-    } 
+    } catch (error) {Alert.alert('Lỗi!','Không có kết nối mạng...\nVui lòng thử lại!')} 
   }
   _onPressShow = (id, idnvr) => {
     this.setState({ idChoose: id });
@@ -63,9 +61,9 @@ export default class DsCamera extends React.Component {
 
           </View>
           <FlatList
-          data={this.state.arrArea}
-          ItemSeparatorComponent={this.renderSeparator}
-          renderItem={({item}) =>
+            data={this.state.arrArea}
+            ItemSeparatorComponent={this.renderSeparator}
+            renderItem={({item}) =>
           <View>
             <TouchableOpacity
             onPress={() => this._onPressShow(item.key, item.Nvr_id)}
@@ -96,9 +94,7 @@ export default class DsCamera extends React.Component {
             </TouchableOpacity>
             {
               this.state.idChoose === item.key ?
-              (
-                this.state.isShow ? <ItemArea idNVR = {this.state.nvrID} navigation = {navigation}/> : null
-              ) : null
+              (this.state.isShow ? <ItemArea idNVR = {this.state.nvrID} navigation = {navigation}/> : null) : null
             }
           </View>
           }

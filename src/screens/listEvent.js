@@ -7,6 +7,8 @@ import { StyleSheet,
  } from 'react-native';
 import { Icon } from 'react-native-elements';
 import AllEvent from '../components/events/allEvent';
+import GhiChuCanhBao from '../components/events/ghiChu';
+import BsxEvent from '../components/events/bsxEvent';
 
 export default class ListEvent extends React.Component {
 //   componentDidMount() {
@@ -22,6 +24,7 @@ export default class ListEvent extends React.Component {
       eventBSX: false,
       eventFace: false,
       eventDD: false,
+      isShowGhiChu: false
     }
   }
 
@@ -39,12 +42,16 @@ export default class ListEvent extends React.Component {
         this.setState({eventAll: false, eventBSX: false, eventFace: false, eventDD: true})
     }
   }
+  _onPressGhiChu = ()=>{
+    this.setState({isShowGhiChu: !this.state.isShowGhiChu})
+  }
   render() {
     const { navigation } = this.props;
     const backgroundEventAll = this.state.eventAll ? 'yellow' : 'blanchedalmond';
     const backgroundEventBSX = this.state.eventBSX ? 'yellow' : 'blanchedalmond';
     const backgroundEventFace = this.state.eventFace ? 'yellow' : 'blanchedalmond';
     const backgroundEventDD = this.state.eventDD ? 'yellow' : 'blanchedalmond';
+    const iconEye = this.state.isShowGhiChu ? 'eye-off' : 'eye';
     return (
         <View style = { styles.mainView }>
             <StatusBar barStyle={'light-content'}/>
@@ -57,14 +64,7 @@ export default class ListEvent extends React.Component {
                         Tất cả sự kiện
                     </Text>
                 </TouchableOpacity>
-                <View style={{flex: 1.5, alignItems: 'center'}}>
-                    <TouchableOpacity>
-                        <Icon
-                            name='search'
-                            type='ionicon'
-                        />
-                    </TouchableOpacity>
-                </View>
+                
 
             </View>
             <View style={{flexDirection: 'row', height: 50, width: '100%', backgroundColor:'#fff', borderBottomColor: 'gray', borderBottomWidth: 0.5}}>
@@ -99,8 +99,37 @@ export default class ListEvent extends React.Component {
                 </View>
                 
             </View>
-
-            <AllEvent navigation={navigation}/>
+            <View style={{flexDirection:'row', height: 45, alignItems:'center'}}>
+                <View style={{flex: 8}}/>
+                <View style={{flex: 1, alignItems: 'center'}}>
+                    <TouchableOpacity>
+                        <Icon
+                            name='search'
+                            type='ionicon'
+                        />
+                    </TouchableOpacity>
+                </View>
+                <View style={{flex: 1, alignItems: 'center', marginRight: 10}}>
+                    <TouchableOpacity
+                        style = {{justifyContent: 'center', flex: 2}}
+                        onPress={()=>this._onPressGhiChu()}
+                    >
+                        <Icon name={iconEye} type='ionicon' /> 
+                    </TouchableOpacity>
+                </View>
+            </View>
+            {
+                this.state.isShowGhiChu ? <GhiChuCanhBao/>:null
+            }
+            {
+                this.state.eventAll ? <AllEvent navigation={navigation}/>
+                : this.state.eventBSX ? <BsxEvent navigation={navigation}/>
+                :
+                    <View style={{paddingTop: 30, alignItems: 'center'}}>
+                        <Text style={{color: 'blue', fontSize: 20}}>Tính năng hiện đang phát triển</Text>
+                    </View>
+            }
+            
         </View>
     );
   }
