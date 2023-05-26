@@ -16,9 +16,6 @@ const url = 'https://api.openweathermap.org/data/2.5/weather?lang=vi&units=metri
 export default class WeatherPhanThiet extends React.Component {
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({isLoading: false});
-    }, 1000)
     this.getThoiTiet()
   }
 
@@ -46,6 +43,7 @@ export default class WeatherPhanThiet extends React.Component {
       this.setState({ Icon: json.weather[0].icon+'.png'});
       this.setState({ Humidity: json.main.humidity+' %'});
       this.setState({ Speed: json.wind.speed +' m/s'});
+      this.setState({ isLoading: false});
     } catch (error) {
       console.log(error);
     } 

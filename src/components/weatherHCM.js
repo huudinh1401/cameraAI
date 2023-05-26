@@ -17,16 +17,12 @@ import { StyleSheet,
 export default class WeatherHCM extends React.Component {
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({isLoading: false});
-    }, 1000)
     this.getThoiTiet()
   }
 
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true,
       currentDate: date + ' - ' + month + ' - ' + year,
       currentTemp: '',
       Description: '',

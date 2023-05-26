@@ -11,7 +11,7 @@ import { Icon } from 'react-native-elements';
 import { WebView } from 'react-native-webview';
 import {LinesLoader} from 'react-native-indicator';
 
-const url = 'http://192.168.1.104/dataCamera/listEventAll.php';
+const url = 'http://192.168.1.51/dataCamera/listEventAll.php';
 
 export default class ChiTietDoiTuong extends React.Component {
     componentDidMount() {
@@ -165,9 +165,9 @@ export default class ChiTietDoiTuong extends React.Component {
                                 />
                             }
                             {/* <WebView
-                                style={{ width: '95%', height: 250, borderRadius: 10, resizeMode:'stretch' }}
+                                style={{ width: '1%', height: 1, borderRadius: 10, resizeMode:'stretch' }}
                                 source={{ uri: imageTongQuan }}
-                            /> */}
+                            />  */}
                         </View>
                         
                     </View>

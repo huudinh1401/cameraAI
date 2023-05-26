@@ -8,8 +8,6 @@ const icons = [
   "https://www.shareicon.net/data/256x256/2016/05/04/759908_food_512x512.png",
   "https://www.shareicon.net/data/256x256/2016/05/04/759956_food_512x512.png",
   "https://www.shareicon.net/data/256x256/2016/05/04/759954_food_512x512.png",
-  "https://www.shareicon.net/data/256x256/2016/05/04/759906_food_512x512.png",
-  "https://www.shareicon.net/data/256x256/2016/05/04/759921_food_512x512.png"
 ];
 export default class notifyScreen extends React.Component {
   render() {

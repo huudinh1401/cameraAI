@@ -9,7 +9,7 @@ import { StyleSheet,
  } from 'react-native';
 import ItemArea from '../components/itemArea';
 
-const url = 'http://192.168.1.40/dataCamera/listArea.php';
+const url = 'http://192.168.1.51/dataCamera/listArea.php';
 
 export default class DsCamera extends React.Component {
   constructor(props) {

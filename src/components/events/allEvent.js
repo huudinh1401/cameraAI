@@ -8,10 +8,11 @@ import {
     Alert,
     Dimensions
 } from 'react-native';
-import { Icon } from 'react-native-elements'
-import TitleEvent from './titileEvent';
 
-const url = 'http://192.168.1.104/dataCamera/listEventAllPage.php?page=';
+import TitleEvent from './titileEvent';
+import IconBar from './iconBar';
+
+const url = 'http://192.168.1.51/dataCamera/listEventAllPage.php?page=';
 const windowWidth = Dimensions.get('window').width;
 
 export default class AllEvent extends React.Component {
@@ -66,7 +67,7 @@ export default class AllEvent extends React.Component {
         const { navigation } = this.props;
         return (
         <View style = { styles.container }>
-            
+            <IconBar navigation={navigation}/>
             <TitleEvent col1={'Đối tượng '} col2={'Loại sự kiện'} col3={'Vị trí'} col4={'Thời gian'}/>
             
             <FlatList

@@ -7,10 +7,10 @@ import {
     FlatList,
     Alert
 } from 'react-native';
-import { Icon } from 'react-native-elements'
+import IconBar from './iconBar';
 import TitleEvent from './titileEvent';
 
-const url = 'http://192.168.1.104/dataCamera/listEventBsx.php?page=';
+const url = 'http://192.168.1.51/dataCamera/listEventBsx.php?page=';
 
 export default class BsxEvent extends React.Component {
     componentDidMount() {
@@ -65,6 +65,7 @@ export default class BsxEvent extends React.Component {
         const { navigation } = this.props;
         return (
         <View style = { styles.container }>
+            <IconBar navigation={navigation}/>
             <TitleEvent col1={'Đối tượng '} col2={'Camera'} col3={'Vị trí'} col4={'Thời gian'}/>
             <FlatList
                 data={this.state.arrEventBsx}
