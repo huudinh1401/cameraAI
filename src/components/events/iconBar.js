@@ -24,7 +24,7 @@ export default class IconBar extends React.Component {
     }
     render() {
         const { navigation } = this.props;
-        const iconEye = this.state.isShowGhiChu ? 'eye-off' : 'eye';
+        const iconEye = this.state.isShowGhiChu ? 'eye-off-outline' : 'eye-outline';
         return (
             <View>
                 <View style={{flexDirection:'row', height: 45, alignItems:'center'}}>
@@ -41,10 +41,10 @@ export default class IconBar extends React.Component {
                     </View>
                     <View style={{flex: 1, alignItems: 'center'}}>
                         <TouchableOpacity
-                            onPress={()=>navigation.navigate('TimDoiTuong')}
+                            onPress={()=>navigation.navigate('LocDoiTuong')}
                         >
                             <Icon
-                                name='funnel'
+                                name='funnel-outline'
                                 type='ionicon'
                             />
                         </TouchableOpacity>

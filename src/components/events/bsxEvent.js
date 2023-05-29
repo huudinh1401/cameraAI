@@ -7,10 +7,12 @@ import {
     FlatList,
     Alert
 } from 'react-native';
+import { Icon } from 'react-native-elements';
+
 import IconBar from './iconBar';
 import TitleEvent from './titileEvent';
 
-const url = 'http://192.168.1.51/dataCamera/listEventBsx.php?page=';
+const url = 'http://192.168.1.47/dataCamera/listEventBsx.php?page=';
 
 export default class BsxEvent extends React.Component {
     componentDidMount() {
@@ -69,6 +71,7 @@ export default class BsxEvent extends React.Component {
             <TitleEvent col1={'Đối tượng '} col2={'Camera'} col3={'Vị trí'} col4={'Thời gian'}/>
             <FlatList
                 data={this.state.arrEventBsx}
+                ref='listBsxEvent'
                 keyExtractor={(item, index) => index}
                 ItemSeparatorComponent={this.renderSeparator}
                 initialNumToRender={50}
@@ -108,6 +111,18 @@ export default class BsxEvent extends React.Component {
                     </TouchableOpacity>
                 </View>}
             />
+            <View style={{flexDirection: 'row', zIndex: 999, marginTop: -150, marginBottom: 40, marginRight: 10 }}>
+                <View style={{flex: 9}}/>
+                <TouchableOpacity
+                    style={{flex: 1, width: 50, height:50, backgroundColor: '#cfe2ff', justifyContent: 'center', alignItems:'center', borderRadius: 10}}
+                    onPress={()=>this.refs.listBsxEvent.scrollToOffset({ animated: true, offset: 0 })}
+                >
+                    <Icon
+                        name='arrow-up'
+                        type='ionicon'
+                    />
+                </TouchableOpacity>
+            </View>
         </View>
         
         );

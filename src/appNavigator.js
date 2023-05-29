@@ -10,6 +10,7 @@ import DsCamera from "./screens/listCamera";
 import ListEvent from "./screens/listEvent";
 import ChiTietDoiTuong from "./screens/chiTietDoiTuong";
 import SearchEvent from "./components/events/searchEvent";
+import FilterEvent from "./components/events/filterEvent";
 
 
 const appNavigator = createStackNavigator(
@@ -109,6 +110,16 @@ const appNavigator = createStackNavigator(
       screen: SearchEvent,
       navigationOptions: {
         title: 'Tìm kiếm đối tượng',
+        headerBackTitleVisible: false,
+        headerTitleStyle: {
+          textAlign: 'center',
+        }
+      }
+    },
+    LocDoiTuong: {
+      screen: FilterEvent,
+      navigationOptions: {
+        title: 'Bộ lọc đối tượng',
         headerBackTitleVisible: false,
         headerTitleStyle: {
           textAlign: 'center',

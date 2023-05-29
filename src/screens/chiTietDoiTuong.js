@@ -11,7 +11,7 @@ import { Icon } from 'react-native-elements';
 import { WebView } from 'react-native-webview';
 import {LinesLoader} from 'react-native-indicator';
 
-const url = 'http://192.168.1.51/dataCamera/listEventAll.php';
+const url = 'http://192.168.1.47/dataCamera/listEventAll.php';
 
 export default class ChiTietDoiTuong extends React.Component {
     componentDidMount() {
