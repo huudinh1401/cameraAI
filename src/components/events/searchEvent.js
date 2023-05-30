@@ -19,7 +19,7 @@ const SearchEvent = ({navigation}) => {
     const [masterDataSource, setMasterDataSource] = useState([]);
 
   useEffect(() => {
-    fetch('http://192.168.1.43/dataCamera/listEventAll.php')
+    fetch('http://192.168.1.47/dataCamera/listEventAll.php')
         .then((response) => response.json())
         .then((responseJson) => {
             setFilteredDataSource(responseJson);

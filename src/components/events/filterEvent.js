@@ -1,13 +1,12 @@
 import React, {useState, useEffect} from 'react';
 
 import {
-  SafeAreaView, Text, StyleSheet, Image,
+  SafeAreaView, Text, StyleSheet,
   View, FlatList, TextInput, TouchableOpacity
 } from 'react-native';
 import { Icon } from 'react-native-elements';
 
 import TitleEvent from './titileEvent';
-import AllEvent from './allEvent';
 
 const urlCam = 'http://192.168.1.47/dataCamera/dsCam.php';
 const urlEvent = 'http://192.168.1.47/dataCamera/listEventAll.php';
@@ -51,6 +50,10 @@ const FilterEvent = ({navigation}) => {
             })
             .catch((error) => {console.error(error)} );
 
+        getDataAllEvent()
+    }, []);
+
+    const getDataAllEvent = () =>{
         fetch(urlEvent)
             .then((response) => response.json())
             .then((responseJson) => {
@@ -58,18 +61,14 @@ const FilterEvent = ({navigation}) => {
                 setMasterAllEvent(responseJson);
             })
             .catch((error) => {console.error(error)} );
-        //searchDoiTuong()
-    }, []);
-
+    }
     const searchCamera = (text) => {
         if (text) {
             const newData = masterDataSource.filter(
                 function (item) {
-                const itemData = item.CamName
-                    ? item.CamName.toUpperCase()
-                    : ''.toUpperCase();
-                const textData = text.toUpperCase();
-                return itemData.indexOf(textData) > -1;
+                    const itemData = item.CamName? item.CamName.toUpperCase(): ''.toUpperCase();
+                    const textData = text.toUpperCase();
+                    return itemData.indexOf(textData) > -1;
             });
             setFilteredDataSource(newData);
             setSearchCam(text);
@@ -80,7 +79,7 @@ const FilterEvent = ({navigation}) => {
         } else {
             setFilteredDataSource(masterDataSource);
             setSearchCam(text);
-            setShowSearchCam(true);
+            setShowSearchCam(false);
             setShowSearchLoaiSK(false);
             setShowSearchPhanLoai(false);
             setShowComFilter(false)
@@ -88,48 +87,95 @@ const FilterEvent = ({navigation}) => {
     };
 
     const searchDoiTuong = () => {
-        if (searchCam !== '') {
-            const newData = allEvent.filter(
-                function (item) {
-                    const itemData = item.Camera
-                    const textData = searchCam;
-                    return itemData.indexOf(textData) > -1;
-            });
-                setAllEvent(newData);
+        let i = [];
+        // *** Loc danh sach theo 4 yeu cau
+        if (searchCam && searchTime && searchLoaiSK && idPhanLoaiSearch) {
+            i = masterAllEvent.filter(
+                (e) => e.Camera.indexOf(searchCam) >-1 && e.ThoiGian.indexOf(searchTime)>-1 && e.LoaiSuKien === searchLoaiSK && e.CanhBao===idPhanLoaiSearch
+            );
         }
 
-        if (searchLoaiSK !=='') {
-            const newData = allEvent.filter(
-                function (item) {
-                    const itemData = item.LoaiSuKien
-                    const textData = searchLoaiSK;
-                    return itemData.indexOf(textData) > -1;
-            });
-                setAllEvent(newData);
+        // *** Loc danh sach theo 3 yeu cau
+        if (!searchCam && searchTime && searchLoaiSK && idPhanLoaiSearch) {
+            i = masterAllEvent.filter(
+                (e) => e.ThoiGian.indexOf(searchTime)>-1 && e.LoaiSuKien === searchLoaiSK && e.CanhBao===idPhanLoaiSearch
+            );
+        }
+        if (searchCam && !searchTime && searchLoaiSK && idPhanLoaiSearch) {
+            i = masterAllEvent.filter(
+                (e) => e.Camera.indexOf(searchCam) >-1 && e.LoaiSuKien === searchLoaiSK && e.CanhBao===idPhanLoaiSearch
+            );
+        }
+        if (searchCam && searchTime && !searchLoaiSK && idPhanLoaiSearch) {
+            i = masterAllEvent.filter(
+                (e) => e.Camera.indexOf(searchCam) >-1 && e.ThoiGian.indexOf(searchTime)>-1 && e.CanhBao===idPhanLoaiSearch
+            );
+        }
+        if (searchCam && searchTime && searchLoaiSK && !idPhanLoaiSearch) {
+            i = masterAllEvent.filter(
+                (e) => e.Camera.indexOf(searchCam) >-1 && e.ThoiGian.indexOf(searchTime)>-1 && e.LoaiSuKien === searchLoaiSK 
+            );
         }
 
-        if (searchPhanLoai !=='') {
-            const newData = allEvent.filter(
-                function (item) {
-                    const itemData = item.CanhBao
-                    const textData = idPhanLoaiSearch;
-                    return itemData.indexOf(textData) > -1;
-            });
-                setAllEvent(newData);
+        // *** Loc danh sach theo 2 yeu cau
+        if (searchCam && searchTime && !searchLoaiSK && !idPhanLoaiSearch) {
+            i = masterAllEvent.filter(
+                (e) => e.Camera.indexOf(searchCam) >-1 && e.ThoiGian.indexOf(searchTime)>-1
+            );
         }
-        if (searchTime !== '') {
-            const newData = allEvent.filter(
-                function (item) {
-                    const itemData = item.ThoiGian
-                    const textData = searchTime;
-                    return itemData.indexOf(textData) > -1;
-            });
-            setAllEvent(newData);
+        if (searchCam && !searchTime && searchLoaiSK && !idPhanLoaiSearch) {
+            i = masterAllEvent.filter(
+                (e) => e.Camera.indexOf(searchCam) >-1 && e.LoaiSuKien === searchLoaiSK
+            );
         }
-        else setAllEvent('o')
+        if (searchCam && !searchTime && !searchLoaiSK && idPhanLoaiSearch) {
+            i = masterAllEvent.filter(
+                (e) => e.Camera.indexOf(searchCam) >-1 && e.CanhBao===idPhanLoaiSearch
+            );
+        }
+
+        if (!searchCam && searchTime && searchLoaiSK && !idPhanLoaiSearch) {
+            i = masterAllEvent.filter(
+                (e) => e.ThoiGian.indexOf(searchTime)>-1 && e.LoaiSuKien === searchLoaiSK 
+            );
+        }
+        if (!searchCam && searchTime && !searchLoaiSK && idPhanLoaiSearch) {
+            i = masterAllEvent.filter(
+                (e) => e.ThoiGian.indexOf(searchTime)>-1 && e.CanhBao===idPhanLoaiSearch
+            );
+        }
+        
+        if (!searchCam && !searchTime && searchLoaiSK && idPhanLoaiSearch) {
+            i = masterAllEvent.filter(
+                (e) => e.LoaiSuKien === searchLoaiSK  && e.CanhBao===idPhanLoaiSearch
+            );
+        }
+
+        // *** Loc danh sach theo tung yeu cau
+        if (searchCam && !searchTime && !searchLoaiSK && !idPhanLoaiSearch) {
+            i = masterAllEvent.filter(
+                (e) => e.Camera.indexOf(searchCam) >-1
+            );
+        }
+        if (!searchCam && searchTime && !searchLoaiSK && !idPhanLoaiSearch) {
+            i = masterAllEvent.filter(
+                (e) => e.ThoiGian.indexOf(searchTime) >-1
+            );
+        }
+        if (!searchCam && !searchTime && searchLoaiSK && !idPhanLoaiSearch) {
+            i = masterAllEvent.filter(
+                (e) => e.LoaiSuKien === searchLoaiSK
+            );
+        }
+        if (!searchCam && !searchTime && !searchLoaiSK && idPhanLoaiSearch) {
+            i = masterAllEvent.filter(
+                (e) => e.CanhBao===idPhanLoaiSearch
+            );
+        }
+        
+        setAllEvent(i)
         
     };
-
     
     const ItemView = ({item}) => {
         return (
@@ -139,9 +185,9 @@ const FilterEvent = ({navigation}) => {
                     style={{flex:7.5, paddingLeft: 20, backgroundColor: '#EEEEEE', marginLeft: 3, borderBottomWidth: 0.5, borderColor: 'gray'}}
                     onPress={() => _onPressGetCamName(item.CamName)}
                 >
-                <View style ={{height: 45, justifyContent: 'center', }}>
-                    <Text style = {{color: 'blue', fontSize: 14}}> {item.CamName} </Text>
-                </View>
+                    <View style ={{height: 45, justifyContent: 'center', }}>
+                        <Text style = {{color: 'blue', fontSize: 14}}> {item.CamName} </Text>
+                    </View>
                 </TouchableOpacity> 
             </View>
         );
@@ -154,9 +200,9 @@ const FilterEvent = ({navigation}) => {
                     style={{flex:7.5, paddingLeft: 20, backgroundColor: '#EEEEEE', marginLeft: 3, borderBottomWidth: 0.5, borderColor: 'gray'}}
                     onPress={() => _onPressGetLoaiSK(item.tensk)}
                 >
-                <View style ={{height: 45, justifyContent: 'center', }}>
-                    <Text style = {{color: 'blue', fontSize: 14}}> {item.tensk} </Text>
-                </View>
+                    <View style ={{height: 45, justifyContent: 'center', }}>
+                        <Text style = {{color: 'blue', fontSize: 14}}> {item.tensk} </Text>
+                    </View>
                 </TouchableOpacity> 
             </View>
         );
@@ -208,7 +254,7 @@ const FilterEvent = ({navigation}) => {
     };
     
     // onPress search theo Loai Su Kien
-    const _onPressGetLoaiSK = (name, id) =>{
+    const _onPressGetLoaiSK = (name) =>{
         setSearchLoaiSK(name)
         setShowSearchLoaiSK(false)
     };
@@ -240,14 +286,18 @@ const FilterEvent = ({navigation}) => {
         setSearchPhanLoai('')
         setIdPhanLoaiSearch('')
         setShowComFilter(false)
+        setShowSearchCam(false)
         setAllEvent(masterAllEvent)
+        getDataAllEvent()
     };
 
     const _onPressSearch = () =>{ 
         setShowComFilter(true)
         searchDoiTuong()
+        setShowSearchCam(false)
+        setShowSearchLoaiSK(false)
+        setShowSearchPhanLoai(false)
         
-        //Alert.alert('TB','loai sk: '+ searchLoaiSK)
     };
 
     const ItemSeparatorView = () => {
@@ -255,8 +305,15 @@ const FilterEvent = ({navigation}) => {
     };
     const _onPressChiTiet = (id) =>{ navigation.navigate('ChiTietDT',{id}) };
 
+    const disableButton = (searchCam ==='' && searchTime ==='' && searchLoaiSK ==='' && searchPhanLoai === '') ? true :  false;
+    const colorbutton =  disableButton ? 'gray' : '#00CCFF';
+    const isAllEvent = allEvent.length > 0 ? true : false;
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+        <View style={{alignItems: 'center', marginVertical: 15}}>
+            <Text style={{fontSize: 18, color: 'red', fontWeight: 'bold'}}>Lưu Ý</Text>
+            <Text style={{fontSize: 16, color: 'blue'}}>Luôn làm mới bộ lọc trước khi lọc dữ liệu kế tiếp!</Text>
+        </View>
         <View >
             {/* InputText Camera */}
             <View style={{flexDirection:'row', marginHorizontal: 5}}>
@@ -341,8 +398,9 @@ const FilterEvent = ({navigation}) => {
             {/* Button Tim kiem va Lam Moi */}
             <View style={{flexDirection:'row', marginHorizontal: 5, justifyContent: 'space-between', marginTop: 10}}>
                 <View style={{flex: 2.5}}/>
-                <TouchableOpacity 
-                    style={{flex:7.5/2, backgroundColor:'#00CCFF', height: 45, justifyContent:'center', marginHorizontal: 15, borderRadius: 10}}
+                <TouchableOpacity
+                    disabled={disableButton}
+                    style={{flex:7.5/2, backgroundColor: colorbutton, height: 45, justifyContent:'center', marginHorizontal: 15, borderRadius: 10}}
                     onPress={() => _onPressSearch()}
                 >
                     <Text style={{fontSize: 20, color:'white', textAlign: 'center'}}>Tìm kiếm</Text>
@@ -387,19 +445,27 @@ const FilterEvent = ({navigation}) => {
                 </View> : null
             }
             {
-                showComFilter ?
-                
-                <View style={{marginTop: 10}}>
-                    <TitleEvent col1={'Đối tượng '} col2={'Camera'} col3={'Vị trí'} col4={'Thời gian'}/>
-                    <FlatList
-                        data={allEvent}
-                        keyExtractor={(item, index) => index.toString()}
-                        ItemSeparatorComponent={ItemSeparatorView}
-                        renderItem={ItemViewAllEvent}
-                    />
-                </View> 
-                : 
-                null
+                showComFilter ? 
+                (
+                    isAllEvent ?
+                    <View style={{marginTop: 10}}>
+                        <TitleEvent col1={'Đối tượng '} col2={'Camera'} col3={'Vị trí'} col4={'Thời gian'}/>
+                        <FlatList
+                            data={allEvent}
+                            keyExtractor={(item, index) => index.toString()}
+                            ItemSeparatorComponent={ItemSeparatorView}
+                            renderItem={ItemViewAllEvent}
+                        />
+                    </View> 
+                    :
+                    <View style={{marginTop: 10}}>
+                        <TitleEvent col1={'Đối tượng '} col2={'Camera'} col3={'Vị trí'} col4={'Thời gian'}/>
+                        <View style={{height: 45, alignItems: 'center', justifyContent:'center'}}>
+                            <Text style={{fontSize: 18}}>Không tìm thấy!</Text>
+                        </View>
+                        
+                    </View>
+                ) : null
             }
                 
         </View>
