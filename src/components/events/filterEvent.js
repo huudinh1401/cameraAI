@@ -5,11 +5,12 @@ import {
   View, FlatList, TextInput, TouchableOpacity
 } from 'react-native';
 import { Icon } from 'react-native-elements';
+import {Calendar} from 'react-native-calendars';
 
 import TitleEvent from './titileEvent';
 
-const urlCam = 'http://192.168.1.47/dataCamera/dsCam.php';
-const urlEvent = 'http://192.168.1.47/dataCamera/listEventAll.php';
+const urlCam = 'http://192.168.1.58/dataCamera/dsCam.php';
+const urlEvent = 'http://192.168.1.58/dataCamera/listEventAll.php';
 const arrLoaiSK = [
     {key: '1', tensk: 'Nhận diện khuôn mặt'},
     {key: '2', tensk: 'Nhận diện biển số xe'},
@@ -32,6 +33,7 @@ const FilterEvent = ({navigation}) => {
     const [showSearchPhanLoai, setShowSearchPhanLoai] = useState(false);
 
     const [searchTime, setSearchTime] = useState('');
+    const [showSearchTime, setShowSearchTime] = useState(false);
 
     const [showComFilter, setShowComFilter] = useState(false);
     
@@ -41,7 +43,19 @@ const FilterEvent = ({navigation}) => {
     const [allEvent, setAllEvent] = useState([]);
     const [masterAllEvent, setMasterAllEvent] = useState([]);
 
+    const [currentDate, setCurrentDate] = useState('');
+
     useEffect(() => {
+        const date = new Date().getDate(); //Current Date
+        const month = new Date().getMonth() + 1; //Current Month
+        const year = new Date().getFullYear(); //Current Year
+        setCurrentDate(year + '-' + month + '-' + date);
+        getDataCamera()
+        getDataAllEvent()
+    }, []);
+
+    // *** Fetch data danh sach Camnera
+    const getDataCamera = () =>{
         fetch(urlCam)
             .then((response) => response.json())
             .then((responseJson) => {
@@ -49,10 +63,9 @@ const FilterEvent = ({navigation}) => {
                 setMasterDataSource(responseJson);
             })
             .catch((error) => {console.error(error)} );
+    }
 
-        getDataAllEvent()
-    }, []);
-
+     // *** Fetch data danh sach Tat ca Event
     const getDataAllEvent = () =>{
         fetch(urlEvent)
             .then((response) => response.json())
@@ -215,9 +228,9 @@ const FilterEvent = ({navigation}) => {
                     style={{flex:7.5, paddingLeft: 20, backgroundColor: '#EEEEEE', marginLeft: 3, borderBottomWidth: 0.5, borderColor: 'gray'}}
                     onPress={() => _onPressGetPhanLoai(item.phanLoai, item.key)}
                 >
-                <View style ={{height: 45, justifyContent: 'center', }}>
-                    <Text style = {{color: 'blue', fontSize: 14}}> {item.phanLoai} </Text>
-                </View>
+                    <View style ={{height: 45, justifyContent: 'center', }}>
+                        <Text style = {{color: 'blue', fontSize: 14}}> {item.phanLoai} </Text>
+                    </View>
                 </TouchableOpacity> 
             </View>
         );
@@ -252,7 +265,19 @@ const FilterEvent = ({navigation}) => {
         setShowSearchCam(false)
         setShowComFilter(false)
     };
-    
+
+    // onPress search theo Time
+    const _onPressGetTime = (name) =>{
+        setSearchTime(name)
+        setShowSearchTime(false)
+    };
+    const _onPressSetShowTime = () =>{
+        setShowSearchCam(false)
+        setShowSearchTime(!showSearchTime)
+        setShowSearchLoaiSK(false) 
+        setShowSearchPhanLoai(false)
+        setShowComFilter(false)
+    }
     // onPress search theo Loai Su Kien
     const _onPressGetLoaiSK = (name) =>{
         setSearchLoaiSK(name)
@@ -260,6 +285,7 @@ const FilterEvent = ({navigation}) => {
     };
     const _onPressSetShowLoaiSK = () =>{
         setShowSearchCam(false)
+        setShowSearchTime(false)
         setShowSearchLoaiSK(!showSearchLoaiSK) 
         setShowSearchPhanLoai(false)
         setShowComFilter(false)
@@ -274,6 +300,7 @@ const FilterEvent = ({navigation}) => {
     };
     const _onPressSetShowPhanLoai = () =>{
         setShowSearchCam(false)
+        setShowSearchTime(false)
         setShowSearchLoaiSK(false) 
         setShowSearchPhanLoai(!showSearchPhanLoai)
         setShowComFilter(false)
@@ -295,6 +322,7 @@ const FilterEvent = ({navigation}) => {
         setShowComFilter(true)
         searchDoiTuong()
         setShowSearchCam(false)
+        setShowSearchTime(false)
         setShowSearchLoaiSK(false)
         setShowSearchPhanLoai(false)
         
@@ -335,14 +363,24 @@ const FilterEvent = ({navigation}) => {
                 <View style={{justifyContent:'center', flex: 2.5}}>
                     <Text style={{fontSize: 16, color:'black'}}>Thời gian:</Text>
                 </View>
-                <TextInput
+                <TouchableOpacity 
                     style={styles.textInputStyle}
-                    onChangeText={(text) => setSearchTime(text)}
-                    value={searchTime}
-                    underlineColorAndroid="transparent"
-                    placeholder="Nhập thời gian...(yyyy-mm-dd)"
-                    placeholderTextColor={'gray'}
-                />
+                    onPress={()=>_onPressSetShowTime()}
+                >
+                    <TextInput
+                        style={{justifyContent: 'center', alignItems: 'center', flex: 4, color:'black'}}
+                        editable={false}
+                        onChangeText={(text) => setSearchTime(text)}
+                        value={searchTime}
+                        underlineColorAndroid="transparent"
+                    />
+                    <View style={{flex: 1, justifyContent:'center'}}>
+                        <Icon
+                            name='calendar-outline'
+                            type='ionicon'
+                        />
+                    </View>
+                </TouchableOpacity> 
             </View>
 
             {/* InputText Loai Su kien*/}
@@ -355,7 +393,7 @@ const FilterEvent = ({navigation}) => {
                     onPress={()=>_onPressSetShowLoaiSK()}
                 >
                     <TextInput
-                        style={{justifyContent: 'center', alignItems: 'center', flex: 4}}
+                        style={{justifyContent: 'center', alignItems: 'center', flex: 4, color:'black'}}
                         editable={false}
                         onChangeText={(text) => setSearchLoaiSK(text)}
                         value={searchLoaiSK}
@@ -372,7 +410,7 @@ const FilterEvent = ({navigation}) => {
 
             {/* InputText Phan Loai*/}
             <View style={{flexDirection:'row', marginHorizontal: 5}}>
-                <View style={{justifyContent:'center', flex: 2.5}}>
+                <View style={{justifyContent:'center', flex: 2.5, }}>
                     <Text style={{fontSize: 16, color:'black'}}>Phân loại:</Text>
                 </View>
                 <TouchableOpacity
@@ -380,7 +418,7 @@ const FilterEvent = ({navigation}) => {
                     onPress={()=>_onPressSetShowPhanLoai()}
                 >
                     <TextInput
-                        style={{justifyContent: 'center', alignItems: 'center', flex: 4}}
+                        style={{justifyContent: 'center', alignItems: 'center', flex: 4, color:'black'}}
                         editable={false}
                         onChangeText={(text) => setSearchPhanLoai(text)}
                         value={searchPhanLoai}
@@ -422,6 +460,20 @@ const FilterEvent = ({navigation}) => {
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={ItemView}
                     />
+                </View> : null
+            }
+            {
+                showSearchTime ?
+                <View style={{ flexDirection: 'row', marginRight: 5}}>
+                    <View style={{ flex: 2.5}}/>
+                    <View style={{ flex: 7.5, marginLeft: -3}}>
+                        <Calendar
+                            style={{ marginTop:-145, borderWidth: 1, borderColor: 'gray', height: 360}}
+                            theme={{ calendarBackground: 'beige', textSectionTitleColor: 'blue', todayTextColor: 'red', dayTextColor: 'black'}}
+                            current={currentDate}
+                            onDayPress={day =>_onPressGetTime(day.dateString)}
+                        />
+                    </View>
                 </View> : null
             }
             {

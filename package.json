@@ -21,6 +21,7 @@
     "react": "18.2.0",
     "react-native": "0.71.6",
     "react-native-bouncing-preloaders": "^1.0.0",
+    "react-native-calendars": "^1.1298.0",
     "react-native-elements": "^3.4.3",
     "react-native-gesture-handler": "^2.9.0",
     "react-native-hide-show-password-input": "^1.2.0",

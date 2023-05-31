@@ -8,7 +8,7 @@ import { StyleSheet,
   Alert
  } from 'react-native';
 
-const urlCam = 'http://192.168.1.51/dataCamera/dsCam.php';
+const urlCam = 'http://192.168.1.58/dataCamera/dsCam.php';
 
 export default class ItemArea extends React.Component {
   constructor(props) {

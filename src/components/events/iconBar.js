@@ -9,10 +9,6 @@ import {
 
 
 export default class IconBar extends React.Component {
-    componentDidMount() {
-        
-    }
-
     constructor(props) {
         super(props);
         this.state = {
