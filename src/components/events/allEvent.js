@@ -12,7 +12,7 @@ import { Icon } from 'react-native-elements';
 import TitleEvent from './titileEvent';
 import IconBar from './iconBar';
 
-const url = 'http://192.168.1.58/dataCamera/listEventAllPage.php?page=';
+const url = 'http://192.168.1.30/dataCamera/listEventAllPage.php?page=';
 const windowWidth = Dimensions.get('window').width;
 
 export default class AllEvent extends React.Component {

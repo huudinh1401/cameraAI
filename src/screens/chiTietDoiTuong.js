@@ -6,12 +6,17 @@ import {
   Image, 
   Alert,
   ScrollView,
+  Dimensions,
+  Modal,
+  TouchableOpacity
 } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { Button, Icon } from 'react-native-elements';
 import { WebView } from 'react-native-webview';
 import {LinesLoader} from 'react-native-indicator';
+import ImageZoom from 'react-native-image-pan-zoom';
 
-const url = 'http://192.168.1.58/dataCamera/listEventAll.php';
+const url = 'http://192.168.1.30/dataCamera/listEventAll.php';
+const widthImage=Dimensions.get('window').width;
 
 export default class ChiTietDoiTuong extends React.Component {
     componentDidMount() {
@@ -26,6 +31,8 @@ export default class ChiTietDoiTuong extends React.Component {
             note:'', doiTuong: '', time: '', location:'',
             image:'', loaiSK:'', cam:'', imageTongQuan:'',
             alert: '',
+            modalVisible: false
+            
         }
     }
     async getChiTietDoiTuong() {
@@ -50,6 +57,7 @@ export default class ChiTietDoiTuong extends React.Component {
   render() {
     const { navigation } = this.props;
     const {note, image, doiTuong, loaiSK, time, location, cam, imageTongQuan} = this.state;
+    const {modalVisible} = this.state;
     const colorText = this.state.alert == 0 ? 'green' : 'red';
     return (
         <View style={styles.container}> 
@@ -155,15 +163,49 @@ export default class ChiTietDoiTuong extends React.Component {
                         <View style={{alignItems:'center', marginTop: 15}}>
                             {
                                 imageTongQuan !== '' ? 
+                                <TouchableOpacity
+                                    style={{height: 260, width:'100%', alignItems:'center'}}
+                                    onPress={() => this.setState({modalVisible: true})}
+                                >
+                                    <Image 
+                                        style = {{width: '99%', height: 250, borderRadius: 10, resizeMode:'stretch'}} 
+                                        source={{uri: imageTongQuan}} 
+                                    />
+                                </TouchableOpacity>
+                                : 
                                 <Image 
-                                    style = {{width: '95%', height: 200, borderRadius: 10, resizeMode:'stretch'}} 
-                                    source={{uri: imageTongQuan,}} 
-                                /> : 
-                                <Image 
-                                    style = {{width: '95%', height: 250, borderRadius: 10, resizeMode:'stretch'}} 
+                                    style = {{width: '96%', height: 250, borderRadius: 10, resizeMode:'stretch'}} 
                                     source={require('../images/noImage.jpeg')} 
                                 />
                             }
+                            <Modal
+                                visible={modalVisible}
+                                transparent={true}
+                                onRequestClose={() => { this.setState({modalVisible: !modalVisible}); }}
+                            >   
+                                <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor:'black'}}>
+                                    <TouchableOpacity
+                                        style={{
+                                            width: 30, height: 30, backgroundColor:'white', marginBottom: -150, 
+                                            zIndex: 10, borderRadius: 15, alignItems:'center', justifyContent:'center'
+                                        }}
+                                        onPress={() => { this.setState({modalVisible: !modalVisible}); }}
+                                    >
+                                        <Text style={{fontSize: 18}}>X</Text>
+                                    </TouchableOpacity>
+                                    <ImageZoom
+                                        cropWidth={Dimensions.get('window').width}
+                                        cropHeight={Dimensions.get('window').height}
+                                        imageWidth={widthImage}
+                                        imageHeight={260}
+                                    >
+                                        <Image 
+                                            style = {{width: '100%', height: 260, borderRadius: 10, resizeMode:'cover'}} 
+                                            source={{uri: imageTongQuan}} 
+                                        />
+                                    </ImageZoom>
+                                </View>
+                            </Modal>
                             <WebView
                                 style={{ width: '1%', height: 1, borderRadius: 10, resizeMode:'stretch' }}
                                 source={{ uri: imageTongQuan }}

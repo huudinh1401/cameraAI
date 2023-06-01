@@ -9,8 +9,8 @@ import {Calendar} from 'react-native-calendars';
 
 import TitleEvent from './titileEvent';
 
-const urlCam = 'http://192.168.1.58/dataCamera/dsCam.php';
-const urlEvent = 'http://192.168.1.58/dataCamera/listEventAll.php';
+const urlCam = 'http://192.168.1.29/dataCamera/dsCam.php';
+const urlEvent = 'http://192.168.1.29/dataCamera/listEventAll.php';
 const arrLoaiSK = [
     {key: '1', tensk: 'Nhận diện khuôn mặt'},
     {key: '2', tensk: 'Nhận diện biển số xe'},

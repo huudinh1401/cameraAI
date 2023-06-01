@@ -6260,6 +6260,11 @@ react-native-hide-show-password-input@^1.2.0:
     react-native-material-textfield "github:vishaljadav24/react-native-material-textfield"
     react-native-vector-icons "^7.1.0"
 
+react-native-image-pan-zoom@^2.1.12:
+  version "2.1.12"
+  resolved "https://registry.npmjs.org/react-native-image-pan-zoom/-/react-native-image-pan-zoom-2.1.12.tgz"
+  integrity sha512-BF66XeP6dzuANsPmmFsJshM2Jyh/Mo1t8FsGc1L9Q9/sVP8MJULDabB1hms+eAoqgtyhMr5BuXV3E1hJ5U5H6Q==
+
 react-native-indicator@^1.2.2:
   version "1.2.2"
   resolved "https://registry.npmjs.org/react-native-indicator/-/react-native-indicator-1.2.2.tgz"
