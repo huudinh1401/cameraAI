@@ -18,10 +18,10 @@ export default class ItemCamera extends React.Component {
     
     return (
         <View style={{flex: 1}}>
-            <View style={{backgroundColor: 'grey', height: windowWidth/2, marginRight: 1}}>
+            <View style={{backgroundColor: 'grey', height: windowWidth/2+30, width: '100%', marginRight: 1, alignItems: 'center'}}>
                 <VLCPlayer
                     //ref={'Cam1'}
-                    style={{height:windowWidth/2, width: widthItem}}
+                    style={{height:windowWidth/2+30, width: widthItem}}
                     videoAspectRatio="16:9"
                     autoplay={true}
                     //Orientation = {true}

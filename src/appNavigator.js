@@ -11,6 +11,7 @@ import ListEvent from "./screens/listEvent";
 import ChiTietDoiTuong from "./screens/chiTietDoiTuong";
 import SearchEvent from "./components/events/searchEvent";
 import FilterEvent from "./components/events/filterEvent";
+import MapCamera from "./screens/mapCamera";
 
 
 const appNavigator = createStackNavigator(
@@ -120,6 +121,16 @@ const appNavigator = createStackNavigator(
       screen: FilterEvent,
       navigationOptions: {
         title: 'Bộ lọc đối tượng',
+        headerBackTitleVisible: false,
+        headerTitleStyle: {
+          textAlign: 'center',
+        }
+      }
+    },
+    Map: {
+      screen: MapCamera,
+      navigationOptions: {
+        title: 'Bản đồ Camera',
         headerBackTitleVisible: false,
         headerTitleStyle: {
           textAlign: 'center',

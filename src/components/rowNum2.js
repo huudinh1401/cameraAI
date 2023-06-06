@@ -27,6 +27,7 @@ export default class RowNum2 extends React.Component {
           
         <TouchableOpacity   
           style = { styles.col }
+          onPress={() => navigation.navigate('Map')}
         >
           <View style = { styles.bgIcon }>
             <Image style = { styles.icon } source={require('../images/map.png')} />
