@@ -3,12 +3,19 @@ import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 export default class FooterNotify extends React.Component {
   render() {
-    const { navigation } = this.props;
+    const { navigation, numberNoti } = this.props;
     return (
       <View style ={styles.container}>
       <View style = { styles.bgFooter }>
         <View style = { styles.iconfooterChoose }>
         <View style = { styles.iconfooterIn }>
+              <View 
+                style={{
+                  backgroundColor:'red', width: 18, height: 18, borderRadius: 9, zIndex: 10, 
+                  position: "absolute", right: 17, top: 12, justifyContent: 'center', alignItems:'center'
+              }}>
+                  <Text style={{color:'white', fontSize: 12}}>{numberNoti}</Text>
+              </View>
               <Icon
                 reverse
                 name='notifications-outline'

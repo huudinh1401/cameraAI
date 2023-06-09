@@ -3,12 +3,19 @@ import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 export default class Footer extends React.Component {
   render() {
-    const { navigation } = this.props;
+    const { navigation, numberNoti } = this.props;
     return (
       <View style={{backgroundColor: '#DDDDDD', height: 80, borderTopRightRadius: 10, borderTopLeftRadius: 10,}}>
       <View style = { styles.bgFooter }>
         <View style = { styles.iconfooter }>
             <TouchableOpacity onPress={() => navigation.navigate('Notify')}>
+              <View 
+                style={{
+                  backgroundColor:'red', width: 18, height: 18, borderRadius: 9, zIndex: 10, 
+                  position: "absolute", right: 7, top: -7, justifyContent: 'center', alignItems:'center'
+              }}>
+                  <Text style={{color:'white', fontSize: 12}}>{numberNoti}</Text>
+              </View>
               <Icon
                   name='notifications-outline'
                   type='ionicon' />

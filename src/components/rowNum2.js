@@ -39,12 +39,13 @@ export default class RowNum2 extends React.Component {
 
         <TouchableOpacity 
           style = { styles.col }
+          onPress={() => navigation.navigate('Black')}
         >
           <View style = { styles.bgIcon }>
             <Image style = { styles.icon } source={require('../images/note.png')} />
           </View>
           <View style={{paddingVertical: 10}}>
-            <Text style = { styles.text } >Ghi chú</Text>
+            <Text style = { styles.text } >Black List</Text>
           </View>
         </TouchableOpacity>
         

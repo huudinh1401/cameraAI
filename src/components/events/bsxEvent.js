@@ -12,7 +12,7 @@ import { Icon } from 'react-native-elements';
 import IconBar from './iconBar';
 import TitleEvent from './titileEvent';
 
-const url = 'http://192.168.1.29/dataCamera/listEventBsx.php?page=';
+const url = 'http://192.168.1.52/dataCamera/listEventBsx.php?page=';
 
 export default class BsxEvent extends React.Component {
     componentDidMount() {

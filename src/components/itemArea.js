@@ -8,7 +8,7 @@ import { StyleSheet,
   Alert
  } from 'react-native';
 
-const urlCam = 'http://192.168.1.58/dataCamera/dsCam.php';
+const urlCam = 'http://192.168.1.52/dataCamera/dsCam.php';
 
 export default class ItemArea extends React.Component {
   constructor(props) {
@@ -49,18 +49,18 @@ export default class ItemArea extends React.Component {
       }
     } catch (error) {Alert.alert('Lỗi!','Không có kết nối mạng...\nVui lòng thử lại!')} 
   }
-  _onPressGetRTSP = (rtsp) => {
+  _onPressGetRTSP = (rtsp, name) => {
     const Rtsp1 = this.props.navigation.getParam ( 'RTSP1', 'No_Name');
     const Rtsp2 = this.props.navigation.getParam ( 'RTSP2', 'No_Name');
     const Rtsp3 = this.props.navigation.getParam ( 'RTSP3', 'No_Name');
     if (Rtsp1 === '1'){
-      this.props.navigation.navigate('Camera',{rtsp1: rtsp}) 
+      this.props.navigation.navigate('Camera',{rtsp1: rtsp, camName1: name}) 
     }
     if (Rtsp2 === '2'){
-      this.props.navigation.navigate('Camera',{rtsp2: rtsp}) 
+      this.props.navigation.navigate('Camera',{rtsp2: rtsp, camName2: name}) 
     }
     if (Rtsp3 === '3'){
-      this.props.navigation.navigate('Camera',{rtsp3: rtsp}) 
+      this.props.navigation.navigate('Camera',{rtsp3: rtsp, camName3: name}) 
     }
   }
   render() {
@@ -73,7 +73,7 @@ export default class ItemArea extends React.Component {
           renderItem={({item}) =>
           <View>
             <TouchableOpacity
-              onPress={() => this._onPressGetRTSP(item.rtsp)}
+              onPress={() => this._onPressGetRTSP(item.rtsp, item.name)}
             >
               <View style ={{flexDirection: 'row', height: 40, borderColor: 'gray', borderTopWidth: 1, marginHorizontal: "5%", justifyContent: 'center', backgroundColor: 'gainsboro' }}>
                 <View style ={{flex: 1, alignItems:'center', paddingLeft: 10, flexDirection: 'row'}}>

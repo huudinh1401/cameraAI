@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   ScrollView, 
   Text, 
@@ -14,9 +14,21 @@ import RowNum1 from '../components/rowNum1.js';
 import RowNum2 from '../components/rowNum2.js';
 import Footer from '../components/footer.js';
 
-export default class homeScreen extends React.Component {
-  render() {
-    const { navigation } = this.props;
+const urlNoti = 'http://192.168.1.52/dataCamera/dsThongBao.php';
+const homeScreen = ({navigation}) => {
+  const [numberNoti, setNumberNoti] = useState('');
+  const [dataNoti, setDataNoti] = useState([]);
+
+  useEffect(() => {
+    fetch(urlNoti)
+    .then((response) => response.json())
+    .then((responseJson) => {
+      setDataNoti(responseJson)
+      setNumberNoti(responseJson.length);
+    })
+    .catch((error) => {console.error(error)} );
+  }, [dataNoti]);   
+
     return (
       <View style = {{flex: 1}}>
         <ImageBackground source={require('../images/HinhNenHome.jpeg')} style = {styles.image}>
@@ -35,7 +47,7 @@ export default class homeScreen extends React.Component {
             <View style ={{flexDirection:'row', marginTop: 30,  paddingLeft: 20, alignItems:'center'}}>
               <Image style = {{width:25, height: 25, }} source={require('../images/service.png')}></Image>
               <Text style = {{ fontSize: 16, color: '#660000', paddingLeft: 10, fontStyle: 'italic'}}>
-                Chuyên nghiệp - Chính xác - Công bằng 
+                Chuyên nghiệp - Chính xác - Hiện đại
               </Text>
             </View>
             
@@ -48,15 +60,13 @@ export default class homeScreen extends React.Component {
             </ScrollView>
           </View>
           
-          <Footer
-            navigation = {navigation}
-          />
+          <Footer  navigation = {navigation} numberNoti = {numberNoti}/>
       </ImageBackground>
       </View>
     );
-  }
 }
 
+export default homeScreen;
 const styles = StyleSheet.create({
   image:{
     flex: 1,

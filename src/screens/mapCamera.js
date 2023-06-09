@@ -10,9 +10,6 @@ import { Icon } from 'react-native-elements';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import { VLCPlayer } from 'react-native-vlc-media-player'
 
-import ItemCamera from '../components/itemCamera';
-
-const heightMap = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
 const MapCamera = ({navigation}) => {
@@ -155,7 +152,7 @@ const MapCamera = ({navigation}) => {
                 visible={modalVisible}
                 supportedOrientations={['landscape-right']}
                 transparent={true}
-                onRequestClose={() => { this.setState({modalVisible: !modalVisible}); }}
+                onRequestClose={() => { setModalVisible(!modalVisible) }}
             >
                 <View style={{flex: 1, justifyContent: 'center', backgroundColor:'black', height:'100%', width:'100%'}}>
                     <View style={{width: '100%', position: "absolute", top: 20, zIndex: 10, flexDirection:'row'}}>

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import { 
     StyleSheet, 
     View,
@@ -9,9 +9,20 @@ import {
 import { Icon } from 'react-native-elements';
 import FooterInfo from '../components/footerInfo';
 
-export default class infoScreen extends React.Component {
-  render() {
-    const { navigation } = this.props;
+const urlNoti = 'http://192.168.1.52/dataCamera/dsThongBao.php';
+const infoScreen = ({navigation}) => {
+  const [numberNoti, setNumberNoti] = useState('');
+  const [dataNoti, setDataNoti] = useState([]);
+
+  useEffect(() => {
+    fetch(urlNoti)
+    .then((response) => response.json())
+    .then((responseJson) => {
+      setDataNoti(responseJson)
+      setNumberNoti(responseJson.length);
+    })
+    .catch((error) => {console.error(error)} );
+  }, [dataNoti]);  
     return (
       <View style = { styles.mainView }>
         <View style = {{ alignItems: 'center'}}>
@@ -55,7 +66,7 @@ export default class infoScreen extends React.Component {
                 <Text style = { styles.text }>Hỗ trợ:    0868.686.868 - 0686.868.686</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style = { styles.miniInfo } onPress={() => navigation.navigate('Login')}>
+            <TouchableOpacity style = { styles.miniInfo } onPress={() => navigation.popToTop()}>
                 <Image style = { styles.image } source={require('../images/logout.png')} />  
                 <Text style = { styles.text }>Đăng xuất</Text>
             </TouchableOpacity>
@@ -75,11 +86,13 @@ export default class infoScreen extends React.Component {
 
         <FooterInfo
           navigation = {navigation}
+          numberNoti = {numberNoti}
         />
       </View>
     );
-  }
 }
+
+export default infoScreen;
 
 const styles = StyleSheet.create({
   mainView: {

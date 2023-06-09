@@ -12,7 +12,9 @@ import ChiTietDoiTuong from "./screens/chiTietDoiTuong";
 import SearchEvent from "./components/events/searchEvent";
 import FilterEvent from "./components/events/filterEvent";
 import MapCamera from "./screens/mapCamera";
-
+import BlackList from "./screens/blackList";
+import HistoryItemBlackList from "./screens/historyItemBlackList";
+import DetailBlackListItem from "./screens/detailBlackItem";
 
 const appNavigator = createStackNavigator(
   {
@@ -31,9 +33,7 @@ const appNavigator = createStackNavigator(
       navigationOptions: {
         title: 'Thời Tiết',
         headerBackTitleVisible: false,
-        headerTitleStyle: {
-          textAlign: 'center',
-        }
+        headerTitleStyle: { textAlign: 'center', }
       }
     },
     New:{
@@ -41,9 +41,7 @@ const appNavigator = createStackNavigator(
       navigationOptions: {
         title: 'Tin Tức',
         headerBackTitleVisible: false,
-        headerTitleStyle: {
-          textAlign: 'center',
-        }
+        headerTitleStyle: { textAlign: 'center', }
       }
     },
   
@@ -52,9 +50,7 @@ const appNavigator = createStackNavigator(
       navigationOptions: {
         title: 'Camera An Ninh',
         headerBackTitleVisible: false,
-        headerTitleStyle: {
-          textAlign: 'center',
-        }
+        headerTitleStyle: { textAlign: 'center', }
       }
     },
     Notify: {
@@ -62,9 +58,7 @@ const appNavigator = createStackNavigator(
       navigationOptions: {
         title: 'Thông Báo',
         headerBackTitleVisible: false,
-        headerTitleStyle: {
-          textAlign: 'center',
-        }
+        headerTitleStyle: { textAlign: 'center', }
       }
     },
     Info: {
@@ -72,9 +66,7 @@ const appNavigator = createStackNavigator(
       navigationOptions: {
         title: 'Thông Tin Ứng Dụng',
         headerBackTitleVisible: false,
-        headerTitleStyle: {
-          textAlign: 'center',
-        }
+        headerTitleStyle: { textAlign: 'center', }
       }
     },
     DsCam: {
@@ -82,9 +74,7 @@ const appNavigator = createStackNavigator(
       navigationOptions: {
         title: 'Danh Sách Camera',
         headerBackTitleVisible: false,
-        headerTitleStyle: {
-          textAlign: 'center',
-        }
+        headerTitleStyle: { textAlign: 'center', }
       }
     },
     DsSuKien: {
@@ -92,9 +82,7 @@ const appNavigator = createStackNavigator(
       navigationOptions: {
         title: 'Danh Sách Sự Kiện',
         headerBackTitleVisible: false,
-        headerTitleStyle: {
-          textAlign: 'center',
-        }
+        headerTitleStyle: { textAlign: 'center', }
       }
     },
     ChiTietDT: {
@@ -102,9 +90,7 @@ const appNavigator = createStackNavigator(
       navigationOptions: {
         title: 'Chi Tiết Đối Tượng',
         headerBackTitleVisible: false,
-        headerTitleStyle: {
-          textAlign: 'center',
-        }
+        headerTitleStyle: { textAlign: 'center', }
       }
     },
     TimDoiTuong: {
@@ -112,9 +98,7 @@ const appNavigator = createStackNavigator(
       navigationOptions: {
         title: 'Tìm kiếm đối tượng',
         headerBackTitleVisible: false,
-        headerTitleStyle: {
-          textAlign: 'center',
-        }
+        headerTitleStyle: { textAlign: 'center', }
       }
     },
     LocDoiTuong: {
@@ -122,9 +106,7 @@ const appNavigator = createStackNavigator(
       navigationOptions: {
         title: 'Bộ lọc đối tượng',
         headerBackTitleVisible: false,
-        headerTitleStyle: {
-          textAlign: 'center',
-        }
+        headerTitleStyle: { textAlign: 'center', }
       }
     },
     Map: {
@@ -132,15 +114,29 @@ const appNavigator = createStackNavigator(
       navigationOptions: {
         title: 'Bản đồ Camera',
         headerBackTitleVisible: false,
-        headerTitleStyle: {
-          textAlign: 'center',
-        }
+        headerTitleStyle: { textAlign: 'center', }
       }
+    },
+    Black: {
+      screen: BlackList,
+      navigationOptions: {
+        title: 'Danh sách đối tượng cảnh báo',
+        headerBackTitleVisible: false,
+        headerTitleStyle: { textAlign: 'center', }
+      }
+    },
+    HisItemBlack: {
+      screen: HistoryItemBlackList,
+      navigationOptions: { headerShown: false, headerBackTitle: false }
+    },
+    DetailBlackList: {
+      screen: DetailBlackListItem,
+      navigationOptions: { headerShown: false, headerBackTitle: false }
     }
 
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Login',
     defaultNavigationOptions: {
       headerStyle: { backgroundColor: '#CC3300' },
       headerTintColor: '#fff',
