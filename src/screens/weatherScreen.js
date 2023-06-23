@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet,
-  View,
-  Dimensions, 
- } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import WeatherPhanThiet from '../components/weatherPhanThiet';
 import WeatherHCM from '../components/weatherHCM';
 import WeatherHaNoi from '../components/weatherHaNoi';
@@ -10,10 +7,6 @@ import WeatherDaLat from '../components/weatherDaLat';
 import WeatherDaNang from '../components/weatherDaNang';
 
 import Swiper from 'react-native-swiper';
-
-
-
-const windowheight = Dimensions.get('window').height;
 
 export default class WeatherScreen extends React.Component { 
   render() {
@@ -41,7 +34,7 @@ export default class WeatherScreen extends React.Component {
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: windowheight - 200,
+    height: '100%',
   },
   mainView: {
     backgroundColor: '#fff',

@@ -9,13 +9,16 @@ export default class FooterNotify extends React.Component {
       <View style = { styles.bgFooter }>
         <View style = { styles.iconfooterChoose }>
         <View style = { styles.iconfooterIn }>
-              <View 
-                style={{
-                  backgroundColor:'red', width: 18, height: 18, borderRadius: 9, zIndex: 10, 
-                  position: "absolute", right: 17, top: 12, justifyContent: 'center', alignItems:'center'
-              }}>
-                  <Text style={{color:'white', fontSize: 12}}>{numberNoti}</Text>
-              </View>
+              {
+                numberNoti !== 0 ?
+                <View 
+                  style={{
+                    backgroundColor:'red', width: 18, height: 18, borderRadius: 9, zIndex: 10, 
+                    position: "absolute", right: 18, top: 12, justifyContent: 'center', alignItems:'center'
+                }}>
+                    <Text style={{color:'white', fontSize: 12}}>{numberNoti}</Text>
+                </View> : null
+              }
               <Icon
                 reverse
                 name='notifications-outline'
@@ -101,5 +104,6 @@ const styles = StyleSheet.create({
 
     text: {
       fontSize: 10,
+      color:'black'
     },
 });

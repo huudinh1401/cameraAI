@@ -23,7 +23,7 @@ export default class IconBar extends React.Component {
         const iconEye = this.state.isShowGhiChu ? 'eye-off-outline' : 'eye-outline';
         return (
             <View>
-                <View style={{flexDirection:'row', height: 45, alignItems:'center'}}>
+                <View style={{flexDirection:'row', height: 40, alignItems:'center'}}>
                     <View style={{flex: 8}}/>
                     <View style={{flex: 1, alignItems: 'center'}}>
                         <TouchableOpacity

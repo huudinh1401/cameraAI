@@ -21,7 +21,7 @@ export default class NewScreen extends React.Component {
   }
   render() {
     return (
-        <View style = { styles.mainView }>
+        <View style = { styles.mainView } renderToHardwareTextureAndroid={true}>
           {
             this.state.isLoading ?  
             ( <>

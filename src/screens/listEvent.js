@@ -55,7 +55,7 @@ export default class ListEvent extends React.Component {
                     style={{flex: 8.5, alignItems: 'center'}}
                     onPress = { () => this._onPressEvent(1)}
                 >
-                    <Text style={{fontSize: 18, color: 'black'}}>
+                    <Text style={{fontSize: 16, color: 'black'}}>
                         Tất cả sự kiện
                     </Text>
                 </TouchableOpacity>
@@ -67,7 +67,7 @@ export default class ListEvent extends React.Component {
                     <TouchableOpacity
                         onPress = { () => this._onPressEvent(2)}
                     >
-                        <Text style={{fontSize: 16, textAlign: 'center', color: 'black'}}>
+                        <Text style={{fontSize: 12, textAlign: 'center', color: 'black'}}>
                             Nhận diện biển số xe
                         </Text>
                     </TouchableOpacity>
@@ -77,7 +77,7 @@ export default class ListEvent extends React.Component {
                     <TouchableOpacity
                         onPress = { () => this._onPressEvent(3)}
                     >
-                        <Text style={{fontSize: 16, textAlign: 'center', color: 'black'}}>
+                        <Text style={{fontSize: 12, textAlign: 'center', color: 'black'}}>
                             Nhận diện khuôn mặt
                         </Text>
                     </TouchableOpacity>
@@ -87,7 +87,7 @@ export default class ListEvent extends React.Component {
                     <TouchableOpacity
                         onPress = { () => this._onPressEvent(4)}
                     >
-                        <Text style={{fontSize: 16, textAlign: 'center', color: 'black'}}>
+                        <Text style={{fontSize: 12, textAlign: 'center', color: 'black'}}>
                             Nhận diện đám đông
                         </Text>
                     </TouchableOpacity>
@@ -100,7 +100,7 @@ export default class ListEvent extends React.Component {
                 : this.state.eventBSX ? <BsxEvent navigation={navigation}/>
                 :
                     <View style={{paddingTop: 30, alignItems: 'center'}}>
-                        <Text style={{color: 'blue', fontSize: 20}}>Tính năng hiện đang trong quá trình phát triển</Text>
+                        <Text style={{color: 'blue', fontSize: 16}}>Tính năng hiện đang trong quá trình phát triển</Text>
                     </View>
             }
             

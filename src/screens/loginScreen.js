@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import { 
   StyleSheet, 
   View, Text, 
@@ -13,28 +13,37 @@ import {
 
 import { Icon } from 'react-native-elements';
 
-const userID = 'admin';
-const userPass = 'admin';
-
-export default class loginScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hidepassword: true,
-      id: '',
-      password: ''
-    }
+const LoginScreen =({navigation}) =>{
+  const [hidepassword, setHidepassword] = useState(true);
+  const [id, setId] = useState('');
+  const [password, setPassword] = useState('');
+  // useEffect(() => {
+  // }, []);
+  
+  const setPasswordVisibility = () => {
+    setHidepassword(!hidepassword)
   }
-  setPasswordVisibility = () => {
-    this.setState({hidepassword: !this.state.hidepassword});
+  const handleLogin = () => {
+    fetch('https://odoo.nguyenluanbinhthuan.com/dataCamera/login.php', {
+      method: "POST",
+      headers:{
+        "Accept":"application/json",
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        "ID": id,
+        "PASS": password,
+      })
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if(responseJson.login === 'true')
+          navigation.navigate('Home')
+          //navigation.navigate('Home', Alert.alert("Thông báo!","Đăng nhập thành công!"))
+        else  Alert.alert("Thông báo!","ID hoặc Mật Khẩu không đúng!\nVui lòng thử lại!")
+      })
+      .catch((error) => { console.error(error) });
   }
-  handleLogin = () => {
-    const { id, password } = this.state
-    if (id === userID && password === userPass)
-      this.props.navigation.navigate('Home', Alert.alert("Thông báo!","Đăng nhập thành công!"))
-    else  Alert.alert("Thông báo!","ID hoặc Mật Khẩu không đúng, vui lòng thử lại!")
-  }
-  render (){
     return (
       <View style = {{flex: 1,}}>
         <ImageBackground source={require('../images/imageLogin.jpg')} style = {styles.image}>
@@ -50,46 +59,38 @@ export default class loginScreen extends React.Component {
 
                     {/* Text input nhap tai khoan */} 
                     <View style = {styles.viewID}>
-                      <Icon
-                          name='person-circle'
-                          type='ionicon'
-                      />
-                      <TextInput style = {{paddingHorizontal: 15, width: 250}}
+                      <Icon name='person-circle' type='ionicon' />
+                      <TextInput style = {{paddingHorizontal: 15, width: 250, height:40, color: 'black', fontSize: 11, marginTop: 5}}
                         placeholder= 'Nhập tên tài khoản'
                         placeholderTextColor= {'grey'}
                         returnKeyType='next'
                         autoCorrect={false}
                         autoCapitalize= 'none'
-                        onSubmitEditing={()=>this.refs.txtPassword.focus()}
-                        onChangeText={id => this.setState({ id })}
-                        value={this.state.id}
+                        onChangeText={(text) => setId(text)}
+                        value={id}
                       />
                     </View>
 
                     {/* Text input nhap mat khau */}
                     <View style = {styles.viewID}>
-                      <Icon
-                            name='key'
-                            type='ionicon'
-                      />
-                      <TextInput style = {{paddingHorizontal: 15, width: 220}}
+                      <Icon name='key' type='ionicon' />
+                      <TextInput style = {{paddingHorizontal: 15, width: 220,height:40, color: 'black',fontSize: 11, marginTop: 5}}
                         placeholder= 'Nhập mật khẩu'
                         placeholderTextColor= {'grey'}
                         returnKeyType='go'
-                        secureTextEntry = {this.state.hidepassword}
+                        secureTextEntry = {hidepassword}
                         autoCapitalize= 'none'
                         autoCorrect={false}
-                        ref={'txtPassword'}
-                        onChangeText={password => this.setState({ password })}
-                        value={this.state.password}
+                        onChangeText={(text) => setPassword(text)}
+                        value={password}
                       />
 
                       {/* Button an, hien mat khau */}
                       <TouchableOpacity 
                         style = {{position: 'absolute', right: 3}} 
-                        onPress={this.setPasswordVisibility}>
+                        onPress={()=>setPasswordVisibility()}>
                         {
-                          !this.state.hidepassword ? 
+                          !hidepassword ? 
                           <Icon name='eye-outline' type='ionicon' /> 
                           : 
                           <Icon name='eye-off-outline' type='ionicon' /> 
@@ -100,19 +101,17 @@ export default class loginScreen extends React.Component {
                     {/* Button Dang Nhap */}
                     <TouchableOpacity 
                       style = {styles.buttonLogin} 
-                      onPress={this.handleLogin}>
+                      onPress={()=>handleLogin()}>
                       <Text style = {styles.textButtonLogin}>Đăng Nhập</Text>
                     </TouchableOpacity>
-
                   </View>
               </View>
           </KeyboardAvoidingView>
         </ImageBackground>
       </View>
     );
-  }
 }
-
+export default LoginScreen;
 const styles = StyleSheet.create({
   mainView: {
     flex: 1,
@@ -144,7 +143,6 @@ const styles = StyleSheet.create({
     height: 80,
     padding: 15,
     marginTop: 20
-    
   },
   viewID:{
     alignItems: 'center',
@@ -155,7 +153,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginBottom: 10,
     marginHorizontal: 30,
-    height: 40,
+    height: 45,
     width: 300
   },
   buttonLogin: {
@@ -174,5 +172,5 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
   },
- 
+
 });

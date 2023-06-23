@@ -14,8 +14,8 @@ import RowNum1 from '../components/rowNum1.js';
 import RowNum2 from '../components/rowNum2.js';
 import Footer from '../components/footer.js';
 
-const urlNoti = 'http://192.168.1.52/dataCamera/dsThongBao.php';
-const homeScreen = ({navigation}) => {
+const urlNoti = 'https://odoo.nguyenluanbinhthuan.com/dataCamera/dsThongBao.php';
+const HomeScreen = ({navigation}) => {
   const [numberNoti, setNumberNoti] = useState('');
   const [dataNoti, setDataNoti] = useState([]);
 
@@ -46,7 +46,7 @@ const homeScreen = ({navigation}) => {
           <View style = {{flex: 1, marginHorizontal: 10, backgroundColor: 'rgba(245,245,220, 0.5)', borderTopLeftRadius: 8, borderTopRightRadius: 8, marginTop: -15,}}>
             <View style ={{flexDirection:'row', marginTop: 30,  paddingLeft: 20, alignItems:'center'}}>
               <Image style = {{width:25, height: 25, }} source={require('../images/service.png')}></Image>
-              <Text style = {{ fontSize: 16, color: '#660000', paddingLeft: 10, fontStyle: 'italic'}}>
+              <Text style = {{ fontSize: 14, color: '#660000', paddingLeft: 10, fontStyle: 'italic'}}>
                 Chuyên nghiệp - Chính xác - Hiện đại
               </Text>
             </View>
@@ -66,7 +66,7 @@ const homeScreen = ({navigation}) => {
     );
 }
 
-export default homeScreen;
+export default HomeScreen;
 const styles = StyleSheet.create({
   image:{
     flex: 1,

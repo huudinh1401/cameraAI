@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
       height: 40,      
     },
     text: {
-      fontSize: 15,
+      fontSize: 12,
       fontStyle: 'italic',
       color: 'purple',
     },

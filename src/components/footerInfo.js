@@ -10,13 +10,16 @@ export default class FooterInfo extends React.Component {
       <View style = { styles.bgFooter }>
         <View style = { styles.iconfooter }>
             <TouchableOpacity onPress={() => navigation.navigate('Notify')}>
-              <View 
-                style={{
-                  backgroundColor:'red', width: 18, height: 18, borderRadius: 9, zIndex: 10, 
-                  position: "absolute", right: 7, top: -7, justifyContent: 'center', alignItems:'center'
-              }}>
-                  <Text style={{color:'white', fontSize: 12}}>{numberNoti}</Text>
-              </View>
+            {
+                numberNoti !== 0 ?
+                <View 
+                  style={{
+                    backgroundColor:'red', width: 18, height: 18, borderRadius: 9, zIndex: 10, 
+                    position: "absolute", right: 7, top: -7, justifyContent: 'center', alignItems:'center'
+                }}>
+                    <Text style={{color:'white', fontSize: 12}}>{numberNoti}</Text>
+                </View> : null
+              }
               <Icon
                   name='notifications-outline'
                   type='ionicon'
@@ -100,5 +103,6 @@ const styles = StyleSheet.create({
 
     text: {
       fontSize: 10,
+      color:'black'
     },
 });

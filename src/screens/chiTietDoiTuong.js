@@ -1,173 +1,177 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
   StyleSheet,
   Image, 
-  Alert,
   ScrollView,
   Dimensions,
   Modal,
+  StatusBar,
   TouchableOpacity,
+  SafeAreaView,
 } from 'react-native';
-import { Button, Icon } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 import { WebView } from 'react-native-webview';
 import {LinesLoader} from 'react-native-indicator';
 import ImageZoom from 'react-native-image-pan-zoom';
 
-const url = 'http://192.168.1.52/dataCamera/listEventAll.php';
+//const url = 'https://odoo.nguyenluanbinhthuan.com/dataCamera/listEventAll.php';
+const url = 'https://odoo.nguyenluanbinhthuan.com/dataCamera/listEventAll.php';
 const widthImage=Dimensions.get('window').width;
 
-export default class ChiTietDoiTuong extends React.Component {
-    componentDidMount() {
-        this.getChiTietDoiTuong()
-    }
+const ChiTietDoiTuong = ({navigation, id}) => {
+    //const {id} = route.params;
+    const [isLoading, setIsLoading] = useState(true);
+    const [note, setNote] = useState('');
+    const [doiTuong, setDoiTuong] = useState('');
+    const [image, setImage] = useState('');
+    const [loaiSK, setLoaiSK] = useState('');
+    const [time, setTime] = useState('');
+    const [location, setLocation] = useState('');
+    const [cam, setCam] = useState('');
+    const [imageTongQuan, setImageTongQuan] = useState('');
+    const [alert, setAlert] = useState('');
+    const [modalVisible, setModalVisible] = useState(false);
+    useEffect(() => {
+        fetch(url, {
+            method: "POST",
+            headers:{
+              "Accept":"application/json",
+              "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+              "id": id
+            })
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                setNote(responseJson[0].ChuY);
+                setDoiTuong(responseJson[0].DoiTuong);
+                setImage(responseJson[0].Hinh);
+                setTime(responseJson[0].ThoiGian);
+                setLoaiSK(responseJson[0].LoaiSuKien);
+                setLocation(responseJson[0].ViTri);
+                setCam(responseJson[0].Camera);
+                setImageTongQuan(responseJson[0].HinhTongQuan);
+                setAlert(responseJson[0].CanhBao);
+                setIsLoading(false)
+            })
+            .catch((error) => { console.error(error); });
+        }, []);
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            isLoading: true,
-            arrEventAll:[],
-            note:'', doiTuong: '', time: '', location:'',
-            image:'', loaiSK:'', cam:'', imageTongQuan:'',
-            alert: '',
-            modalVisible: false
-        }
-    }
-    async getChiTietDoiTuong() {
-        try {
-            const response = await fetch(url);
-            const json = await response.json();
-            this.setState({ arrEventAll: json });
-            const {arrEventAll} = this.state;
-            const id = this.props.navigation.getParam ( 'id', 'No_Name');
-            for (var i = 0; i < arrEventAll.length; i++){
-                if (arrEventAll[i].id === id){
-                    this.setState({note: arrEventAll[i].ChuY, doiTuong: arrEventAll[i].DoiTuong});
-                    this.setState({image: arrEventAll[i].Hinh, loaiSK: arrEventAll[i].LoaiSuKien});
-                    this.setState({time: arrEventAll[i].ThoiGian, location: arrEventAll[i].ViTri});
-                    this.setState({cam: arrEventAll[i].Camera, imageTongQuan: arrEventAll[i].HinhTongQuan});
-                    this.setState({alert: arrEventAll[i].CanhBao});
-                    this.setState({isLoading: false});
-                }
-            }
-        } catch (error) {Alert.alert('Lỗi!','Không có kết nối mạng...\nVui lòng thử lại!')} 
-    }
-  render() {
-    const { navigation } = this.props;
-    const {note, image, doiTuong, loaiSK, time, location, cam, imageTongQuan} = this.state;
-    const {modalVisible} = this.state;
-    const colorText = this.state.alert == 0 ? 'green' : 'red';
+    const colorText = alert == 0 ? 'green' : 'red';
     return (
-        <View style={styles.container}> 
+        <View style={styles.container}>
+            
             {
-                this.state.isLoading ? 
-                <View style = {{alignItems: 'center', marginTop: 150}}>
-                  <Image style = {{height: 150, width: 150, marginBottom: 30}} source={require('../images/cam_ko_nen.jpg')} />
+                isLoading ? 
+                <View style = {{alignItems: 'center', justifyContent: 'center', backgroundColor: 'beige', height: 500}}>
+                  <Image style = {{height: 150, width: 150, marginBottom: 30, marginTop:-100}} source={require('../images/cam_ko_nen.jpg')} />
                   <LinesLoader />
                 </View>
                 :
-                <ScrollView >
-                    <View style={{alignItems: 'center', marginVertical: 15}}>
-                        <Text style={{color: colorText, fontSize: 20, fontWeight: 'bold'}}>{note}</Text>
+                <View style={{backgroundColor: 'beige', flex: 1, paddingTop: 10}}>
+                    <View style={{alignItems: 'center', marginVertical: 10}}>
+                        <Text style={{color: colorText, fontSize: 13, fontWeight: 'bold'}}>{note}</Text>
                     </View>
-                    <View style={{marginTop: 5}}>
-                        <View style={{marginVertical: 10, marginLeft: 5, flexDirection: 'row', alignItems: 'center'}}>
+                    <View style={{marginTop: 10}}>
+                        <View style={{marginLeft: 5, flexDirection: 'row', alignItems: 'center'}}>
                             <View>
                                 <Icon name={'image-outline'} type='ionicon' /> 
                             </View>
                             <View style={{marginLeft: 5}}>
-                                <Text style={{color: 'black', fontSize: 18, fontWeight: 'bold'}}>Hình ảnh:</Text>
+                                <Text style={{color: 'black', fontSize: 14, fontWeight: 'bold'}}>Hình ảnh:</Text>
                             </View>
                         </View>
-                        <View style={{alignItems:'center', height: 165, justifyContent: 'center'}}>
+                        <View style={{alignItems:'center', height: 120, justifyContent: 'center'}}>
                             {
                                 image === '' ?
                                 <Image 
-                                    style = {{width: 250, height: 160, borderRadius: 10, resizeMode:"stretch"}} 
+                                    style = {{width: 180, height: 110, borderRadius: 10, resizeMode:"stretch"}} 
                                     source={require('../images/noImage.jpeg')} 
                                 />
                                 :
                                 <Image 
-                                    style = {{width: 370, height: 120, borderRadius: 10, resizeMode:"stretch"}} 
+                                    style = {{width: '98%', height: 115, borderRadius: 10, resizeMode:"stretch"}} 
                                     source={{uri: image,}} 
                                 />
                             }
                         </View>
                     </View>
-                    <View style = {{flexDirection: 'row', marginTop: 20, marginLeft: 5, alignItems:'center'}}>
+                    <View style = {{flexDirection: 'row', marginLeft: 5, alignItems:'center'}}>
                         <View>
                             <Icon name={'man-outline'} type='ionicon' /> 
                         </View>
                         <View style={{marginLeft: 5}}>
-                            <Text style={{color: 'black', fontSize: 18, fontWeight: 'bold'}}>Đối tượng:</Text>
+                            <Text style={{color: 'black', fontSize: 14, fontWeight: 'bold'}}>Đối tượng:</Text>
                         </View>
                         <View style={{marginLeft: 5, paddingLeft: 10, }}>
-                            <Text style={{color: 'blue', fontSize: 18}}>{doiTuong}</Text>
+                            <Text style={{color: 'blue', fontSize: 14}}>{doiTuong}</Text>
                         </View>
                     </View>
-                    <View style = {{flexDirection: 'row', marginTop: 15, marginLeft: 5, alignItems:'center'}}>
+                    <View style = {{flexDirection: 'row', marginTop: 5, marginLeft: 5, alignItems:'center'}}>
                         <View>
                             <Icon name={'checkmark-done-outline'} type='ionicon' /> 
                         </View>
                         <View style={{ marginLeft: 5}}>
-                            <Text style={{color: 'black', fontSize: 18, fontWeight: 'bold'}}>Loại sự kiện:</Text>
+                            <Text style={{color: 'black', fontSize: 14, fontWeight: 'bold'}}>Loại sự kiện:</Text>
                         </View>
                         <View style={{marginLeft: 5, paddingLeft: 10}}>
-                            <Text style={{color: 'blue', fontSize: 18}}>{loaiSK}</Text>
+                            <Text style={{color: 'blue', fontSize: 14}}>{loaiSK}</Text>
                         </View>
                     </View>
-                    <View style = {{flexDirection: 'row', marginTop: 15, alignItems: 'center', marginLeft: 5}}>
+                    <View style = {{flexDirection: 'row', marginTop: 5, alignItems: 'center', marginLeft: 5}}>
                         <View>
                                 <Icon name={'hourglass-outline'} type='ionicon' /> 
                         </View>
                         <View style={{ marginLeft: 5}}>
-                            <Text style={{color: 'black', fontSize: 18, fontWeight: 'bold'}}>Thời gian:</Text>
+                            <Text style={{color: 'black', fontSize: 14, fontWeight: 'bold'}}>Thời gian:</Text>
                         </View>
                         <View style={{marginLeft: 5, paddingLeft: 10}}>
-                            <Text style={{color: 'blue', fontSize: 18}}>{time}</Text>
+                            <Text style={{color: 'blue', fontSize: 14}}>{time}</Text>
                         </View>
                     </View>
-                    <View style = {{flexDirection: 'row', marginTop: 15, alignItems:'center', marginLeft: 5}}>
+                    <View style = {{flexDirection: 'row', marginTop: 5, alignItems:'center', marginLeft: 5}}>
                         <View>
                                 <Icon name={'videocam-outline'} type='ionicon' /> 
                         </View>
                         <View style={{ marginLeft: 5}}>
-                            <Text style={{color: 'black', fontSize: 18, fontWeight: 'bold'}}>Camera:</Text>
+                            <Text style={{color: 'black', fontSize: 14, fontWeight: 'bold'}}>Camera:</Text>
                         </View>
                         <View style={{marginLeft: 5, paddingLeft: 10}}>
-                            <Text style={{color: 'blue', fontSize: 18}}>{cam}</Text>
+                            <Text style={{color: 'blue', fontSize: 14}}>{cam}</Text>
                         </View>
                     </View>
-                    <View style = {{flexDirection: 'row', marginTop: 15, alignItems: 'center', marginLeft: 5}}>
+                    <View style = {{flexDirection: 'row', marginTop: 5, alignItems: 'center', marginLeft: 5}}>
                         <View>
                             <Icon name={'location-outline'} type='ionicon' /> 
                         </View>
                         <View style={{ marginLeft: 5}}>
-                            <Text style={{color: 'black', fontSize: 18, fontWeight: 'bold'}}>Vị trí:</Text>
+                            <Text style={{color: 'black', fontSize: 14, fontWeight: 'bold'}}>Vị trí:</Text>
                         </View>
                         <View style={{marginLeft: 5, paddingLeft: 10}}>
-                            <Text style={{color: 'blue', fontSize: 18}}>{location}</Text>
+                            <Text style={{color: 'blue', fontSize: 14}}>{location}</Text>
                         </View>
                     </View>
-                    <View style = {{marginTop: 20}}>
+                    <View style = {{marginTop: 5}}>
                         <View style={{ marginLeft: 5, alignItems:'center', flexDirection: 'row'}}>
                             <View>
                                 <Icon name={'image-outline'} type='ionicon' /> 
                             </View>
                             <View style={{ marginLeft: 5}}>
-                                <Text style={{color: 'black', fontSize: 18, fontWeight: 'bold'}}>Hình ảnh tổng quan:</Text>
+                                <Text style={{color: 'black', fontSize: 14, fontWeight: 'bold'}}>Hình ảnh tổng quan:</Text>
                             </View>
                         </View>
-                        <View style={{alignItems:'center', marginTop: 15}}>
+                        <View style={{alignItems:'center', marginTop: 5}}>
                             {
                                 imageTongQuan !== '' ? 
                                 <TouchableOpacity
                                     style={{height: 260, width:'100%', alignItems:'center'}}
-                                    onPress={() => this.setState({modalVisible: true})}
+                                    onPress={() => setModalVisible(true)}
                                 >
                                     <Image 
-                                        style = {{width: '99%', height: 250, borderRadius: 10, resizeMode:'stretch'}} 
+                                        style = {{width: '98%', height: 180, borderRadius: 10, resizeMode:'stretch'}} 
                                         source={{uri: imageTongQuan}} 
                                     />
                                 </TouchableOpacity>
@@ -180,7 +184,7 @@ export default class ChiTietDoiTuong extends React.Component {
                             <Modal
                                 visible={modalVisible}
                                 transparent={true}
-                                onRequestClose={() => { this.setState({modalVisible: !modalVisible}); }}
+                                onRequestClose={() => { setModalVisible(!modalVisible); }}
                             >   
                                 <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor:'black'}}>
                                     <TouchableOpacity
@@ -188,9 +192,9 @@ export default class ChiTietDoiTuong extends React.Component {
                                             width: 30, height: 30, backgroundColor:'white', marginBottom: -150, 
                                             zIndex: 10, borderRadius: 15, alignItems:'center', justifyContent:'center'
                                         }}
-                                        onPress={() => { this.setState({modalVisible: !modalVisible}); }}
+                                        onPress={() => {setModalVisible(!modalVisible); }}
                                     >
-                                        <Text style={{fontSize: 18}}>X</Text>
+                                        <Text style={{fontSize: 16, color: 'black'}}>X</Text>
                                     </TouchableOpacity>
                                     <ImageZoom
                                         cropWidth={Dimensions.get('window').width}
@@ -199,34 +203,47 @@ export default class ChiTietDoiTuong extends React.Component {
                                         imageHeight={260}
                                     >
                                         <Image 
-                                            style = {{width: '100%', height: 260, borderRadius: 10, resizeMode:'cover'}} 
+                                            style = {{width: '100%', height: 260, borderRadius: 10, resizeMode:'stretch'}} 
                                             source={{uri: imageTongQuan}} 
                                         />
                                     </ImageZoom>
                                 </View>
                             </Modal>
-                            <WebView
-                                style={{ width: '1%', height: 1, borderRadius: 10, resizeMode:'stretch' }}
-                                source={{ uri: imageTongQuan }}
-                            /> 
+                            <View renderToHardwareTextureAndroid={true}>
+                                <WebView
+                                    style={{ width: '5%', height: 20, borderRadius: 10}}
+                                    source={{ uri: imageTongQuan }}
+                                />
+                            </View>
                         </View>
                         
                     </View>
-                    <View style={{paddingBottom: 100}}/>
-                </ScrollView>
+                    <View style={{height: 300}}>
+                            <Text>dasfdasfasf</Text>
+                            <Text>dasfdasfasf</Text>
+                            <Text>dasfdasfasf</Text>
+                            <Text>dasfdasfasf</Text>
+                            <Text>dasfdasfasf</Text>
+                            <Text>dasfdasfasf</Text>
+                            <Text>dasfdasfasf</Text>
+
+                         </View>
+                </View>
             }
         
         </View>
     );
-  }
 }
+export default ChiTietDoiTuong;
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: 'beige',
-        margin: 10,
-        borderRadius: 10,
-        paddingTop: 10
-
+        backgroundColor:'beige',
+    },
+    textTitle:{
+        color: 'black',
+        fontSize: 14,
+        textAlign: 'center',
+        fontWeight: 'bold'
     },
 });

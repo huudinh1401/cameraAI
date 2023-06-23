@@ -54,15 +54,15 @@ export default class WeatherHCM extends React.Component {
         {
           this.state.isLoading ?  (<ActivityIndicator size="large" color="#0000ff" />) :
           (<>
-              <View style ={{alignItems:'center', backgroundColor: 'rgba(0,0,255, 0.5)', marginHorizontal: 20, borderRadius: 20, padding: 30}}>
-                  <Text style ={{color: 'white', fontSize: 26}}>Thành phố  Hồ Chí Minh</Text>
-                  <Text style = {{color:'limegreen', fontSize: 20}}>{currentDate}</Text>
-                  <Text style ={{color:'yellow', fontSize: 24, marginTop: 10}}>{Description}</Text>
+              <View style ={{ backgroundColor: 'rgba(0,0,255, 0.5)', marginHorizontal: 20, borderRadius: 20, padding: 30, marginTop: -200, alignItems:'center'}}>
+                  <Text style ={{color: 'white', fontSize: 22}}>Thành phố  Hồ Chí Minh</Text>
+                  <Text style = {{color:'limegreen', fontSize: 18}}>{currentDate}</Text>
+                  <Text style ={{color:'yellow', fontSize: 22, marginTop: 10}}>{Description}</Text>
 
                   <View style ={{alignItems:'center', marginTop: 15}}>
                     <View style = {{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                       <Image style = {{height: 80, width: 80}} src= {'https://openweathermap.org/img/wn/' + Icon} />
-                      <Text style ={{color: '#880000', fontSize: 60, marginLeft: 5}}>{ currentTemp} </Text>
+                      <Text style ={{color: 'yellow', fontSize: 40, marginLeft: 5}}>{ currentTemp} </Text>
                     </View>
                     <View>
                       <View style ={{flexDirection:'row'}}>

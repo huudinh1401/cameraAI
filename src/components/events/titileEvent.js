@@ -16,10 +16,10 @@ export default class TitleEvent extends React.Component {
             <View style={{flex: 3.5, justifyContent: 'center', borderLeftWidth: 0.5, borderColor: 'black'}}>
                 <Text style = {styles.textTitle}>{col2}</Text>
             </View>
-            <View style={{flex: 2.7, justifyContent: 'center', borderLeftWidth: 0.5, borderColor: 'black'}}>
+            <View style={{flex: 2.5, justifyContent: 'center', borderLeftWidth: 0.5, borderColor: 'black'}}>
                 <Text style = {styles.textTitle}>{col3}</Text>
             </View>
-            <View style={{flex: 2, justifyContent: 'center', borderLeftWidth: 0.5, borderColor: 'black'}}>
+            <View style={{flex: 2.2, justifyContent: 'center', borderLeftWidth: 0.5, borderColor: 'black'}}>
                 <Text style = {styles.textTitle}>{col4}</Text>
             </View>
 

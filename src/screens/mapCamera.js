@@ -24,12 +24,12 @@ const MapCamera = ({navigation}) => {
     const [coordinate, setCoordinate] = useState([]); modalVisible
     const [modalVisible, setModalVisible] = useState(false);
     useEffect(() => {
-        fetch('http://192.168.1.52/dataCamera/dsCam.php')
+        fetch('https://odoo.nguyenluanbinhthuan.com/dataCamera/dsCam.php')
             .then((response) => response.json())
             .then((responseJson) => { setDataDsCam(responseJson); setMasterDsCam(responseJson); })
             .catch((error) => { console.error(error) });
 
-        fetch('http://192.168.1.52/dataCamera/dsCoordinate.php')
+        fetch('https://odoo.nguyenluanbinhthuan.com/dataCamera/dsCoordinate.php')
             .then((response) => response.json())
             .then((responseJson) => {  setCoordinate(responseJson); })
             .catch((error) => { console.error(error) });
@@ -203,6 +203,7 @@ const styles = StyleSheet.create({
     textInputStyle: {
         flex: 9,
         height: 40,
+        color: 'black'
     },
 });
 

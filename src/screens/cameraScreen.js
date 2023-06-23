@@ -17,7 +17,7 @@ const windowWidth = Dimensions.get('window').width;
 const width1 = windowWidth/2 -2;
 const width2 = windowWidth -2;
 
-export default class cameraScreen extends React.Component {
+export default class CameraScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,23 +39,24 @@ export default class cameraScreen extends React.Component {
   }
 
   render() {
-    const { navigation } = this.props;
+    const { navigation, route} = this.props;
+    const { rtsp1, camName1, rtsp2, camName2, rtsp3, camName3} = route.params;
     const { RTSP1, RTSP2, RTSP3, modalVisible } = this.state;
-    const Rtsp1 = this.props.navigation.getParam ( 'rtsp1', 'No_Name');
-    const name1 = this.props.navigation.getParam ( 'camName1', 'No_Name');
+    // const Rtsp1 = this.props.navigation.getParam ( 'rtsp1', 'No_Name');
+    // const name1 = this.props.navigation.getParam ( 'camName1', 'No_Name');
 
-    const Rtsp2 = this.props.navigation.getParam ( 'rtsp2', 'No_Name');
-    const name2 = this.props.navigation.getParam ( 'camName2', 'No_Name');
+    // const Rtsp2 = this.props.navigation.getParam ( 'rtsp2', 'No_Name');
+    // const name2 = this.props.navigation.getParam ( 'camName2', 'No_Name');
 
-    const Rtsp3 = this.props.navigation.getParam ( 'rtsp3', 'No_Name');
-    const name3 = this.props.navigation.getParam ( 'camName3', 'No_Name');
+    // const Rtsp3 = this.props.navigation.getParam ( 'rtsp3', 'No_Name');
+    // const name3 = this.props.navigation.getParam ( 'camName3', 'No_Name');
     return (
         <View style = { styles.mainView }>
             <ScrollView style = { styles.Scroll }>
                 <View style = { styles.viewCam }>
         {/* Cam 1*/}
                     <View style={{flexDirection: 'row',flex: 1}}>
-                        <ItemCamera url = { Rtsp1 } widthItem = {width2} navigation = {navigation}/>
+                        <ItemCamera url = { 'rtsp://admin:Admin123456@hoaphu.zapto.org:555/Streaming/channels/101' } widthItem = {width2} navigation = {navigation}/>
                     </View>
 
                     {/* button change, full*/}
@@ -68,7 +69,7 @@ export default class cameraScreen extends React.Component {
                         </TouchableOpacity>
                         <TouchableOpacity
                             style ={{alignItems:'center', justifyContent: 'center', flex: 1, marginRight: 15}}
-                            onPress={() => this._onPressFullCame(Rtsp1, name1)}
+                            onPress={() => this._onPressFullCame(rtsp1, camName1)}
                         >
                             <Image style = { styles.image } source={require('../images/fullscreen.png')} /> 
                         </TouchableOpacity>
@@ -97,10 +98,9 @@ export default class cameraScreen extends React.Component {
 
  {/* Cam 2*/}
                     <View style={{flexDirection: 'row',flex: 1}}>
-                        <ItemCamera url = {Rtsp2} widthItem = {width2} navigation = {navigation}/>
+                        <ItemCamera url = {rtsp2} widthItem = {width2} navigation = {navigation}/>
                     </View>
 
-                    {/* button change, full*/}
                     <View style={{height: 40, marginRight: 1, flexDirection: 'row', flex: 1}}>
                         <TouchableOpacity
                             style ={{alignItems:'center', justifyContent: 'center', flex: 1, marginLeft: 15}}
@@ -110,19 +110,17 @@ export default class cameraScreen extends React.Component {
                         </TouchableOpacity>
                         <TouchableOpacity
                             style ={{alignItems:'center', justifyContent: 'center', flex: 1, marginRight: 15}}
-                            onPress={() => this._onPressFullCame(Rtsp2, name2)}
+                            onPress={() => this._onPressFullCame(rtsp2, camName2)}
                         >
                             <Image style = { styles.image } source={require('../images/fullscreen.png')} /> 
                         </TouchableOpacity>
                     </View>
-                    {/* end button change, full*/}
 
   {/* Cam 3 */}
                     <View style={{flexDirection: 'row',flex: 1}}>
-                        <ItemCamera url = {Rtsp3} widthItem = {width2} navigation = {navigation}/>
+                        <ItemCamera url = {rtsp3} widthItem = {width2} navigation = {navigation}/>
                     </View>
 
-                    {/* button change, full*/}
                     <View style={{height: 40, marginRight: 1, flexDirection: 'row', flex: 1}}>
                         <TouchableOpacity
                             style ={{alignItems:'center', justifyContent: 'center', flex: 1, marginLeft: 15}}
@@ -132,12 +130,11 @@ export default class cameraScreen extends React.Component {
                         </TouchableOpacity>
                         <TouchableOpacity
                             style ={{alignItems:'center', justifyContent: 'center', flex: 1, marginRight: 15}}
-                            onPress={() => this._onPressFullCame(Rtsp3, name3)}
+                            onPress={() => this._onPressFullCame(rtsp3, camName3)}
                         >
                             <Image style = { styles.image } source={require('../images/fullscreen.png')} /> 
                         </TouchableOpacity>
                     </View>
-                    {/* end button change, full*/}
                 </View>
                 <Modal
                     visible={modalVisible}

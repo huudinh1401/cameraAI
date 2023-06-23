@@ -7,19 +7,23 @@ import {
   View,
   FlatList,
   TextInput,
-  Alert,
+  Image,
+  StatusBar,
   TouchableOpacity
 } from 'react-native';
 
 import TitleEvent from './titileEvent';
+import ChiTietDoiTuong from '../../screens/chiTietDoiTuong';
 
 const SearchEvent = ({navigation}) => {
     const [search, setSearch] = useState('');
+    const [showDetail, setShowDetail] = useState(false);
+    const [showSearch, setShowSearch] = useState(false);
+    const [id, setId] = useState('');
     const [filteredDataSource, setFilteredDataSource] = useState([]);
     const [masterDataSource, setMasterDataSource] = useState([]);
-
   useEffect(() => {
-    fetch('http://192.168.1.52/dataCamera/listEventAll.php')
+    fetch('https://odoo.nguyenluanbinhthuan.com/dataCamera/AllEventNoImage.php')
         .then((response) => response.json())
         .then((responseJson) => {
             setFilteredDataSource(responseJson);
@@ -40,11 +44,13 @@ const SearchEvent = ({navigation}) => {
                 const textData = text.toUpperCase();
                 return itemData.indexOf(textData) > -1;
         });
-        setFilteredDataSource(newData);
-        setSearch(text);
+            setFilteredDataSource(newData);
+            setSearch(text);
+            setShowSearch(true)
         } else {
-        setFilteredDataSource(masterDataSource);
-        setSearch(text);
+            setFilteredDataSource(masterDataSource);
+            setSearch(text);
+            setShowSearch(true)
         }
     };
 
@@ -53,23 +59,19 @@ const SearchEvent = ({navigation}) => {
         <TouchableOpacity   
             onPress={() => _onPressChiTiet(item.id)}
         >
-            <View style ={{
-                flexDirection: 'row', height: 45, justifyContent: 'center', 
-                backgroundColor: '#EEEEEE' }}>
+            <View style ={{ flexDirection: 'row', height: 45, justifyContent: 'center',  backgroundColor: '#EEEEEE' }}>
                 <View style ={{flex: 1, flexDirection: 'row'}}>
                     <View style={{flex: 1.8, justifyContent: 'center', padding: 2}}>
-                        <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 14}}>
-                            {item.DoiTuong}
-                        </Text>
+                        <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 11}}>  {item.DoiTuong}</Text>
                     </View>
                     <View style={{flex: 3.5, borderLeftWidth: 0.5, borderLeftColor: 'gray', justifyContent: 'center'}}>
-                        <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 14, textAlign: 'center'}}>{item.Camera}</Text>
+                        <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 11, textAlign: 'center'}}>{item.Camera}</Text>
                     </View>
-                    <View style={{flex: 2.7, borderLeftWidth: 0.5, borderLeftColor: 'gray', justifyContent: 'center'}}>
-                        <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 14, textAlign: 'center'}}>{item.ViTri}</Text>
+                    <View style={{flex: 2.5, borderLeftWidth: 0.5, borderLeftColor: 'gray', justifyContent: 'center'}}>
+                        <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 11, textAlign: 'center'}}>{item.ViTri}</Text>
                     </View>
-                    <View style={{flex: 2, borderLeftWidth: 0.5, borderLeftColor: 'gray', justifyContent: 'center'}}>
-                        <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 14, textAlign: 'center'}}>{item.ThoiGian}</Text>
+                    <View style={{flex: 2.2, borderLeftWidth: 0.5, borderLeftColor: 'gray', justifyContent: 'center'}}>
+                        <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 11, textAlign: 'center'}}>{item.ThoiGian}</Text>
                     </View>
                 </View>
             </View>
@@ -80,10 +82,36 @@ const SearchEvent = ({navigation}) => {
     const ItemSeparatorView = () => {
         return ( <View  style={{ height: 0.5, width: '100%', backgroundColor: '#C8C8C8' }} /> );
     };
-    const _onPressChiTiet = (id) =>{ navigation.navigate('ChiTietDT',{id})  };
+    const _onPressChiTiet = (id) =>{ 
+        setShowDetail(true)
+        setShowSearch(false)
+        setId(id)
+    };
+    const goBack = () =>{ 
+        setShowDetail(false)
+        setShowSearch(true)
+    };
 
     return (
-        <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+        <SafeAreaView style={{flex: 1, backgroundColor: 'green'}}>
+            <StatusBar barStyle={'light-content'}/>
+            <View style = {{flexDirection: 'row', justifyContent: 'center', alignItems:'center', marginBottom: 20, marginTop: 10}}>
+                <TouchableOpacity
+                    style={{flex: 1.5, justifyContent: 'center', alignItems:'center'}}
+                    onPress={()=>navigation.goBack()}
+                >
+                    <Image style = {{width:30, height:30}} source={require('../../images/back_white.png')}></Image>
+                </TouchableOpacity>
+                <View style={{flex: 7, justifyContent: 'center', alignItems:'center'}}>
+                    <Text style = {{color: 'white', fontSize: 20, textAlign: 'center', fontWeight:'bold'}}>Tìm kiếm đối tượng</Text>
+                </View>
+                <TouchableOpacity
+                    style={{flex: 1.5, justifyContent: 'center', alignItems:'center'}}
+                    onPress={()=>navigation.navigate('Home')}
+                >
+                    <Image style = {{width:35, height: 35}} source={require('../../images/home.png')}></Image>
+                </TouchableOpacity>
+            </View>
             <View style={styles.container}>
                 <TextInput
                     style={styles.textInputStyle}
@@ -94,8 +122,8 @@ const SearchEvent = ({navigation}) => {
                     placeholderTextColor={'gray'}
                 />
                 {
-                    search !==''?
-                    <>
+                    showSearch?
+                    <View style={{width: '100%', height: 540}}>
                         <TitleEvent col1={'Đối tượng '} col2={'Camera'} col3={'Vị trí'} col4={'Thời gian'}/>
                         <FlatList
                             data={filteredDataSource}
@@ -103,9 +131,25 @@ const SearchEvent = ({navigation}) => {
                             ItemSeparatorComponent={ItemSeparatorView}
                             renderItem={ItemView}
                         />
-                    </>
+                    </View>
                     : null
                 }
+                {
+                    showDetail ?
+                    <View style={{flex: 1, backgroundColor: 'white'}}>
+                        <View  style={{width: 40, height: 40, justifyContent: 'center', alignItems:'center', position:'absolute', top: 5, left: 20, zIndex: 10}}>
+                            <TouchableOpacity
+                                onPress={()=>goBack()}
+                            >
+                                <Image style = {{width:30, height:30}} source={require('../../images/back_white.png')}></Image>
+                            </TouchableOpacity>
+                        </View>
+                        <ChiTietDoiTuong id={id}/>
+                    </View>
+                    :
+                    null
+                }
+                
                 
                 
             </View>
@@ -116,12 +160,15 @@ const SearchEvent = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
+        flex: 1,
+        marginBottom: -300
     },
     textInputStyle: {
         height: 40,
         borderWidth: 1,
         paddingLeft: 20,
         margin: 5,
+        color:'black',
         borderColor: '#009688',
         backgroundColor: '#FFFFFF',
     },

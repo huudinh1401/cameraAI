@@ -8,7 +8,7 @@ import { StyleSheet,
   Alert
  } from 'react-native';
 
-const urlCam = 'http://192.168.1.52/dataCamera/dsCam.php';
+const urlCam = 'https://odoo.nguyenluanbinhthuan.com/dataCamera/dsCam.php';
 
 export default class ItemArea extends React.Component {
   constructor(props) {
@@ -50,17 +50,17 @@ export default class ItemArea extends React.Component {
     } catch (error) {Alert.alert('Lỗi!','Không có kết nối mạng...\nVui lòng thử lại!')} 
   }
   _onPressGetRTSP = (rtsp, name) => {
-    const Rtsp1 = this.props.navigation.getParam ( 'RTSP1', 'No_Name');
-    const Rtsp2 = this.props.navigation.getParam ( 'RTSP2', 'No_Name');
-    const Rtsp3 = this.props.navigation.getParam ( 'RTSP3', 'No_Name');
-    if (Rtsp1 === '1'){
-      this.props.navigation.navigate('Camera',{rtsp1: rtsp, camName1: name}) 
+    const { navigation, route} = this.props;
+    const { RTSP1, RTSP2, RTSP3 } = route.params;
+    
+    if (RTSP1 === '1'){
+      navigation.navigate('Camera',{rtsp1: rtsp, camName1: name}) 
     }
-    if (Rtsp2 === '2'){
-      this.props.navigation.navigate('Camera',{rtsp2: rtsp, camName2: name}) 
+    if (RTSP2 === '2'){
+      navigation.navigate('Camera',{rtsp2: rtsp, camName2: name}) 
     }
-    if (Rtsp3 === '3'){
-      this.props.navigation.navigate('Camera',{rtsp3: rtsp, camName3: name}) 
+    if (RTSP3 === '3'){
+      navigation.navigate('Camera',{rtsp3: rtsp, camName3: name}) 
     }
   }
   render() {

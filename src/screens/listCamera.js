@@ -9,7 +9,7 @@ import { StyleSheet,
  } from 'react-native';
 import ItemArea from '../components/itemArea';
 
-const url = 'http://192.168.1.52/dataCamera/listArea.php';
+const url = 'https://odoo.nguyenluanbinhthuan.com/dataCamera/listArea.php';
 
 export default class DsCamera extends React.Component {
   constructor(props) {
@@ -53,7 +53,7 @@ export default class DsCamera extends React.Component {
     );
   };
   render() {
-    const {navigation} = this.props;
+    const {navigation, route} = this.props;
     return (
         <View style = { styles.container }>
           <StatusBar barStyle={'light-content'}/>
@@ -94,7 +94,7 @@ export default class DsCamera extends React.Component {
             </TouchableOpacity>
             {
               this.state.idChoose === item.key ?
-              (this.state.isShow ? <ItemArea idNVR = {this.state.nvrID} navigation = {navigation}/> : null) : null
+              (this.state.isShow ? <ItemArea idNVR = {this.state.nvrID} navigation = {navigation} route = {route}/> : null) : null
             }
           </View>
           }
