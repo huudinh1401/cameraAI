@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "809014780996",
+    "firebase_url": "https://nguyenluancamera-d22c7-default-rtdb.firebaseio.com",
+    "project_id": "nguyenluancamera-d22c7",
+    "storage_bucket": "nguyenluancamera-d22c7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809014780996:android:7eeda091eb26f53806c811",
+        "android_client_info": {
+          "package_name": "com.cameraai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgXkajt2GK9V0dfhA6mI20LTtF3_JHN9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

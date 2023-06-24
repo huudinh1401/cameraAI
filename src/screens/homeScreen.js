@@ -15,6 +15,18 @@ import RowNum2 from '../components/rowNum2.js';
 import Footer from '../components/footer.js';
 
 const urlNoti = 'https://odoo.nguyenluanbinhthuan.com/dataCamera/dsThongBao.php';
+
+async function requestUserPermission() {
+  const authStatus = await messaging().requestPermission();
+  const enabled =
+    authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+    authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+
+  if (enabled) {
+   // console.log('Authorization status:', authStatus);
+  }
+}
+
 const HomeScreen = ({navigation}) => {
   const [numberNoti, setNumberNoti] = useState('');
   const [dataNoti, setDataNoti] = useState([]);
