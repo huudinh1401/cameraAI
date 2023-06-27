@@ -6,9 +6,9 @@ export default class FooterNotify extends React.Component {
     const { navigation, numberNoti } = this.props;
     return (
       <View style ={styles.container}>
-      <View style = { styles.bgFooter }>
+        <View style = { styles.bgFooter }>
         <View style = { styles.iconfooterChoose }>
-        <View style = { styles.iconfooterIn }>
+          <View style = { styles.iconfooterIn }>
               {
                 numberNoti !== 0 ?
                 <View 
@@ -28,13 +28,6 @@ export default class FooterNotify extends React.Component {
             </View>
           
         </View>
-
-        {/* <View style = { styles.iconfooter }>
-          <Icon
-            name='heart-outline'
-            type='ionicon' />
-          <Text style = { styles.text }>abc</Text>
-        </View> */}
 
         <View style = { styles.iconfooter }>
           <TouchableOpacity onPress={() => navigation.navigate('Home')}>
@@ -62,7 +55,7 @@ export default class FooterNotify extends React.Component {
           </TouchableOpacity>
         </View>
         
-      </View>
+        </View>
       </View>
     );
   }
@@ -70,10 +63,9 @@ export default class FooterNotify extends React.Component {
 const styles = StyleSheet.create({
   container:{
     backgroundColor: '#DDDDDD', 
-    height: 80, 
+    height: 70, 
     borderTopRightRadius: 10, 
     borderTopLeftRadius: 10,
-
   },
     bgFooter: {
         backgroundColor: '#DDDDDD',

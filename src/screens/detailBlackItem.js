@@ -60,7 +60,6 @@ const DetailBlackListItem = ({navigation, id}) => {
     
     return (
         <View style={styles.container}>
-            
             {
                 isLoading ? 
                 <View style = {{alignItems: 'center', justifyContent: 'center', backgroundColor: 'beige', flex: 1}}>
@@ -138,8 +137,7 @@ const DetailBlackListItem = ({navigation, id}) => {
                         <View style={{alignItems:'center', marginTop: 15}}>
                             {
                                 imageTongQuan !== '' ? 
-                                <TouchableOpacity
-                                    style={{height: 180, width:'100%', alignItems:'center'}}
+                                <TouchableOpacity style={{height: 180, width:'100%', alignItems:'center'}}
                                     onPress={() => setModalVisible(true)}
                                 >
                                     <Image 
@@ -166,7 +164,7 @@ const DetailBlackListItem = ({navigation, id}) => {
                                         }}
                                         onPress={() => { setModalVisible(!modalVisible) }}
                                     >
-                                        <Text style={{fontSize: 18}}>X</Text>
+                                        <Text style={{fontSize: 18, color:'black'}}>X</Text>
                                     </TouchableOpacity>
                                     <ImageZoom
                                         cropWidth={Dimensions.get('window').width}

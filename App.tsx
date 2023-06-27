@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { enableScreens } from 'react-native-screens';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import HomeScreen from "./src/screens/homeScreen";
 import NotifyScreen from "./src/screens/notifyScreen";
 import LoginScreen from "./src/screens/loginScreen";
@@ -21,12 +22,13 @@ import HistoryItemBlackList from "./src/screens/historyItemBlackList";
 enableScreens();
 //const AppContainer = NavigationContainer(appNavigator);
 const Stack = createNativeStackNavigator();
-export default class App extends React.Component {
-  render() {
+
+const App = () => {
+  
     return (
       <NavigationContainer>
         <Stack.Navigator 
-          initialRouteName="Home"
+          initialRouteName="Login"
           screenOptions={{ headerTintColor: 'white', headerStyle: { backgroundColor: '#CC3300' }, headerTitleAlign: 'center'}}
         >
           <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
@@ -38,7 +40,7 @@ export default class App extends React.Component {
             initialParams={{ rtsp1: 'no_data', rtsp2: 'no_data', rtsp3: 'no_data', camName1: 'no_data', camName2: 'no_data', camName3: 'no_data'}}
             options={{ title: 'Camera An Ninh'}} 
           />
-          <Stack.Screen name="DsCam" component={DsCamera} options={{ title: 'Danh Sách Camera'}} />
+          <Stack.Screen name="DsCam" component={DsCamera} options={{ headerShown: false}} />
           <Stack.Screen name="Notify" component={NotifyScreen} options={{ headerShown: false}} />
           <Stack.Screen name="Info" component={InfoScreen} options={{ headerShown: false}} />
           <Stack.Screen  name="DsSuKien" component={ListEvent} options={{ title: 'Danh Sách Sự Kiện'}}  />
@@ -51,5 +53,5 @@ export default class App extends React.Component {
         </Stack.Navigator>
       </NavigationContainer>
     );
-  }
 }
+export default App;

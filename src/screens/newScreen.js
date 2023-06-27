@@ -6,6 +6,7 @@ import { StyleSheet,
 import { WebView } from 'react-native-webview';
 import {EatBeanLoader} from 'react-native-indicator';
 
+
 export default class NewScreen extends React.Component {
   componentDidMount() {
     setTimeout(() => {

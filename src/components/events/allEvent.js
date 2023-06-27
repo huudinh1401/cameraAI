@@ -1,13 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import { 
-    Text, 
-    StyleSheet, 
-    View, 
-    TouchableOpacity, 
-    FlatList,
-    Alert,
-    Image,
-    Dimensions
+    Text, StyleSheet, 
+    View, TouchableOpacity, 
+    FlatList, Alert,
+    Image, Dimensions, TextInput
 } from 'react-native';
 import TitleEvent from './titileEvent';
 import IconBar from './iconBar';
@@ -22,13 +18,12 @@ const AllEvent = ( {navigation}) => {
     const [showDetail, setShowDetail] = useState(false);
     const [showIconBar, setShowIconBar] = useState(true);
     const [id, setId] = useState('');
-    const [page, setPage] = useState(1);
     const [arrEventAll, setArrEventAll] = useState([]);
 
     useEffect(() => {
         getArrEvent()
         const interval = setInterval(() => {
-            fetch(url+page)
+            fetch(url+1)
                 .then((response) => response.json())
                 .then((responseJson) => {
                     setArrEventAll(responseJson)
@@ -40,19 +35,18 @@ const AllEvent = ( {navigation}) => {
     }, []);
 
     const getArrEvent=()=>{
-        fetch(url+page)
+        fetch(url+1)
             .then((response)=>response.json())
             .then(  (responseJson)=>{
                 setArrEventAll(responseJson)
                 setRefresh(false)
             })
-            .catch ((e)=>{ Alert.alert('Lỗi!','Không có kết nối mạng...\nVui lòng thử lại!')});
+            .catch (()=>{ Alert.alert('Lỗi!','Không có kết nối mạng...\nVui lòng thử lại!')});
     }
     const _onPressChiTiet = (id) =>{
         setShowDetail(true)
         setShowIconBar(false)
         setId(id)
-        //navigation.navigate('ChiTietDT',{id}) 
     }
     const goBack = () =>{ 
         setShowDetail(false)
@@ -70,7 +64,6 @@ const AllEvent = ( {navigation}) => {
             {
                 showIconBar ? <IconBar navigation={navigation}/> : null
             }
-            
             {
                 showDetail ? 
                 <View style={{flex: 1, backgroundColor: 'white'}}>
@@ -94,11 +87,11 @@ const AllEvent = ( {navigation}) => {
                         removeClippedSubviews={true}
                         refreshing={refresh}
                         onRefresh={()=>_refresh()}
-                        getItemLayout = {(data, index) => ({
-                            length: 10,
-                            offset: 10 * index,
-                            index,
-                        })}
+                        // getItemLayout = {(data, index) => ({
+                        //     length: 10,
+                        //     offset: 10 * index,
+                        //     index,
+                        // })}
                         renderItem={({item, index}) =>
                             <View key={index}>
                                 <TouchableOpacity   
@@ -124,12 +117,8 @@ const AllEvent = ( {navigation}) => {
                             </View>
                         }
                     />
-                    <View style={{borderTopColor:'gray', borderBottomColor:'gray', height: 45, borderTopWidth: 0.5, borderBottomWidth: 0.5}}>
-
-                    </View>
                 </View>
-            }
-            
+            }  
         </View>
         );
 }
@@ -143,6 +132,15 @@ const styles = StyleSheet.create({
         fontSize: 14,
         textAlign: 'center',
         fontWeight: 'bold'
+    },
+    btnPage:{
+        height: 35, 
+        width: 30, 
+        backgroundColor: '#990000', 
+        alignItems:'center', 
+        justifyContent:'center', 
+        marginLeft:5, 
+        borderRadius:7
     },
 
 });

@@ -87,7 +87,7 @@ const MapCamera = ({navigation}) => {
     };
 
     return (
-        <SafeAreaView style={{flex: 1, backgroundColor: '#fff', alignItems:'center'}}>
+        <View style={{flex: 1, backgroundColor: '#fff', alignItems:'center'}}>
             <View style={styles.container} >
                 <View style={{alignItems:'center', justifyContent: 'center', flex: 1, marginLeft: 10}}>
                     <Icon name='search-outline' type='ionicon' />
@@ -122,7 +122,7 @@ const MapCamera = ({navigation}) => {
                     </View> : null
             }
             <MapView
-                style={{height:'105%', width: '100%'}}
+                style={{height:'100%', width: '100%'}}
                 provider={PROVIDER_GOOGLE}
                 region={{
                     latitude: initLat, longitude: initLong,
@@ -165,7 +165,7 @@ const MapCamera = ({navigation}) => {
                                 style={{width: 30,height: 30, backgroundColor:'white', borderRadius: 15, alignItems:'center', justifyContent:'center'}}
                                 onPress={() => { setModalVisible(!modalVisible)}}
                             >
-                                <Text style={{fontSize: 18}}>X</Text>
+                                <Text style={{fontSize: 18, color:'black'}}>X</Text>
                             </TouchableOpacity>
                         </View> 
                         
@@ -182,7 +182,7 @@ const MapCamera = ({navigation}) => {
 
                 </View>
             </Modal>
-        </SafeAreaView>
+        </View>
     );
 };
 

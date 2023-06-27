@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   },
   text:{
     color: 'blue',
-    fontSize: 18,
+    fontSize: 16,
   },
  
 });

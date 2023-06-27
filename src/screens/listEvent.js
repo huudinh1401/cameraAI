@@ -26,18 +26,10 @@ export default class ListEvent extends React.Component {
   }
 
   _onPressEvent = (idEvent) => {
-    if (idEvent === 1){
-        this.setState({eventAll: true, eventBSX: false, eventFace: false, eventDD: false})
-    }
-    if (idEvent === 2){
-        this.setState({eventAll: false, eventBSX: true, eventFace: false, eventDD: false})
-    }
-    if (idEvent === 3){
-        this.setState({eventAll: false, eventBSX: false, eventFace: true, eventDD: false})
-    }
-    if (idEvent === 4){
-        this.setState({eventAll: false, eventBSX: false, eventFace: false, eventDD: true})
-    }
+    if (idEvent === 1){ this.setState({eventAll: true, eventBSX: false, eventFace: false, eventDD: false}) }
+    if (idEvent === 2){ this.setState({eventAll: false, eventBSX: true, eventFace: false, eventDD: false}) }
+    if (idEvent === 3){ this.setState({eventAll: false, eventBSX: false, eventFace: true, eventDD: false}) }
+    if (idEvent === 4){ this.setState({eventAll: false, eventBSX: false, eventFace: false, eventDD: true}) }
   }
   
   render() {
@@ -51,50 +43,30 @@ export default class ListEvent extends React.Component {
         <View style = { styles.mainView }>
             <StatusBar barStyle={'light-content'}/>
             <View style={{flexDirection: 'row', height: 50, width: '100%', backgroundColor: backgroundEventAll, alignItems: 'center', borderBottomColor: 'gray', borderBottomWidth: 0.5}}>
-                <TouchableOpacity
-                    style={{flex: 8.5, alignItems: 'center'}}
-                    onPress = { () => this._onPressEvent(1)}
-                >
-                    <Text style={{fontSize: 16, color: 'black'}}>
-                        Tất cả sự kiện
-                    </Text>
+                <TouchableOpacity style={{flex: 8.5, alignItems: 'center'}} onPress = { () => this._onPressEvent(1)}>
+                    <Text style={{fontSize: 16, color: 'black'}}>Tất cả sự kiện</Text>
                 </TouchableOpacity>
-                
-
             </View>
             <View style={{flexDirection: 'row', height: 50, width: '100%', backgroundColor:'#fff', borderBottomColor: 'gray', borderBottomWidth: 0.5}}>
                 <View style={{flex: 1/3, backgroundColor: backgroundEventBSX, justifyContent: 'center', padding: 3}}>
-                    <TouchableOpacity
-                        onPress = { () => this._onPressEvent(2)}
-                    >
-                        <Text style={{fontSize: 12, textAlign: 'center', color: 'black'}}>
-                            Nhận diện biển số xe
-                        </Text>
+                    <TouchableOpacity onPress = { () => this._onPressEvent(2)} >
+                        <Text style={{fontSize: 12, textAlign: 'center', color: 'black'}}>Nhận diện biển số xe</Text>
                     </TouchableOpacity>
                 </View>
 
                 <View style={{flex: 1/3, backgroundColor: backgroundEventFace, justifyContent: 'center', padding: 3, borderLeftColor: 'gray', borderLeftWidth: 0.5}}>
-                    <TouchableOpacity
-                        onPress = { () => this._onPressEvent(3)}
-                    >
-                        <Text style={{fontSize: 12, textAlign: 'center', color: 'black'}}>
-                            Nhận diện khuôn mặt
-                        </Text>
+                    <TouchableOpacity onPress = { () => this._onPressEvent(3)} >
+                        <Text style={{fontSize: 12, textAlign: 'center', color: 'black'}}> Nhận diện khuôn mặt </Text>
                     </TouchableOpacity>
 
                 </View>
                 <View style={{flex: 1/3, backgroundColor: backgroundEventDD, justifyContent: 'center', padding: 3, borderLeftColor: 'gray', borderLeftWidth: 0.5}}>
-                    <TouchableOpacity
-                        onPress = { () => this._onPressEvent(4)}
-                    >
-                        <Text style={{fontSize: 12, textAlign: 'center', color: 'black'}}>
-                            Nhận diện đám đông
-                        </Text>
+                    <TouchableOpacity onPress = { () => this._onPressEvent(4)}  >
+                        <Text style={{fontSize: 12, textAlign: 'center', color: 'black'}}> Nhận diện đám đông </Text>
                     </TouchableOpacity>
                 </View>
                 
             </View>
-        
             {
                 this.state.eventAll ? <AllEvent navigation={navigation}/>
                 : this.state.eventBSX ? <BsxEvent navigation={navigation}/>
@@ -110,9 +82,6 @@ export default class ListEvent extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  
-  mainView: {
-    flex: 1,
-  },
+  mainView: { flex: 1, },
  
 });

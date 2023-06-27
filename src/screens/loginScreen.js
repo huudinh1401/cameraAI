@@ -1,61 +1,101 @@
 import React, {useState, useEffect} from 'react';
 import { 
-  StyleSheet, 
-  View, Text, 
-  ImageBackground, 
-  TextInput, 
+  StyleSheet, View, Text, 
+  ImageBackground, TextInput, 
   KeyboardAvoidingView,
   TouchableOpacity,
-  StatusBar,
-  Alert,
-  SafeAreaView
+  StatusBar, Alert,
+  Platform,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Icon } from 'react-native-elements';
+import messaging from '@react-native-firebase/messaging';
+
+import {PermissionsAndroid} from 'react-native'; 
+Platform.OS === 'ios' ? null : PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
+
+async function requestUserPermission() {
+  const authStatus = await messaging().requestPermission();
+  const enabled =
+    authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+    authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+  if (enabled) {
+   // console.log('Authorization status:', authStatus);
+  }
+}
 
 const LoginScreen =({navigation}) =>{
   const [hidepassword, setHidepassword] = useState(true);
   const [id, setId] = useState('');
+  const [token, setToken] = useState('')
   const [password, setPassword] = useState('');
-  // useEffect(() => {
-  // }, []);
-  
-  const setPasswordVisibility = () => {
-    setHidepassword(!hidepassword)
+  useEffect(() => {
+    const notification = async () =>{
+      await requestUserPermission();
+      await getToken();
+      // messaging().onNotificationOpenedApp(remoteMessage => { Alert.alert('Xem thông báo!'); })
+    }
+    notification();
+    getID();
+  }, []);
+  async function getToken() {
+    const deviceToken = await messaging().getToken();
+    setToken(deviceToken);
   }
-  const handleLogin = () => {
+
+  const addToken = () =>{
+    fetch("http://192.168.1.9/dataCamera/addDeviceToken.php",{
+      method: "POST",
+      headers:{ "Accept":"application/json", "Content-Type":"application/json" },
+      body:JSON.stringify({  "TOKEN": token })
+    })
+    .then((response) => response.json())
+    .then((responseJson) => { console.log(responseJson) })
+    .catch((error) => { Alert.alert("Thông báo!","Không có kết nối mạng\nVui lòng thử lại!") });
+  }
+
+  const handleLogin = (id) => {
     fetch('https://odoo.nguyenluanbinhthuan.com/dataCamera/login.php', {
       method: "POST",
-      headers:{
-        "Accept":"application/json",
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({
-        "ID": id,
-        "PASS": password,
-      })
+      headers:{ "Accept":"application/json", "Content-Type":"application/json" },
+      body:JSON.stringify({ "ID": id, "PASS": password})
     })
       .then((response) => response.json())
       .then((responseJson) => {
         if(responseJson.login === 'true')
-          navigation.navigate('Home')
-          //navigation.navigate('Home', Alert.alert("Thông báo!","Đăng nhập thành công!"))
-        else  Alert.alert("Thông báo!","ID hoặc Mật Khẩu không đúng!\nVui lòng thử lại!")
+        {
+          navigation.navigate('Home');
+          addToken();
+          saveID(id);
+          
+        }  else  Alert.alert("Thông báo!","ID hoặc Mật Khẩu không đúng!\nVui lòng thử lại!")
       })
-      .catch((error) => { console.error(error) });
+      .catch((error) => { Alert.alert("Thông báo!","Không có kết nối mạng\nVui lòng thử lại!") });
   }
+  const saveID = async (value) => {
+    try {
+      await AsyncStorage.setItem('myID', value);
+    } catch (error) { }
+  };
+  const getID = async () => {
+    try {
+      const value = await AsyncStorage.getItem('myID');
+      if (value !== null) { setId(value)}
+    } catch (error) {}
+  };
     return (
       <View style = {{flex: 1,}}>
-        <ImageBackground source={require('../images/imageLogin.jpg')} style = {styles.image}>
+        <ImageBackground source={require('../images/imageLogin.jpg')} style = {{flex: 1, resizeMode: "cover", justifyContent: "center", flexDirection: 'column'}}>
           <StatusBar barStyle={'light-content'}/>
-          <KeyboardAvoidingView behavior='padding' style = { styles.mainView }>
-              <View style = { styles.titleContainer }>
+          <KeyboardAvoidingView behavior='padding' style = {{flex: 1}}>
+              <View style = {{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <View >
-                  <Text style = {styles.textTitle}>Camera An Ninh - AI</Text>
-                  <Text style = {styles.text}>Thông Tin Đăng Nhập</Text>
+                  <Text style = {{ color: '#FF0000', fontSize: 28, fontWeight: 'bold', textAlign: 'center' }}>Camera An Ninh - AI</Text>
+                  <Text style = {{ color: '#66FF00', fontSize: 20, fontWeight: 'bold', textAlign: 'center' }}>Thông Tin Đăng Nhập</Text>
                 </View>
                   
-                  <View style = {styles.infoContainer}>
+                  <View style = {{ height: 80, padding: 15, marginTop: 20 }}>
 
                     {/* Text input nhap tai khoan */} 
                     <View style = {styles.viewID}>
@@ -85,24 +125,15 @@ const LoginScreen =({navigation}) =>{
                         value={password}
                       />
 
-                      {/* Button an, hien mat khau */}
-                      <TouchableOpacity 
-                        style = {{position: 'absolute', right: 3}} 
-                        onPress={()=>setPasswordVisibility()}>
-                        {
-                          !hidepassword ? 
-                          <Icon name='eye-outline' type='ionicon' /> 
-                          : 
-                          <Icon name='eye-off-outline' type='ionicon' /> 
-                        }
+                      {/* btn an, hien mat khau */}
+                      <TouchableOpacity style = {{position: 'absolute', right: 3}}  onPress={()=>setHidepassword(!hidepassword)}>
+                        { !hidepassword ?  <Icon name='eye-outline' type='ionicon' /> : <Icon name='eye-off-outline' type='ionicon' />  }
                       </TouchableOpacity>
                     </View>
 
-                    {/* Button Dang Nhap */}
-                    <TouchableOpacity 
-                      style = {styles.buttonLogin} 
-                      onPress={()=>handleLogin()}>
-                      <Text style = {styles.textButtonLogin}>Đăng Nhập</Text>
+                    {/* btn Dang Nhap */}
+                    <TouchableOpacity style = {styles.buttonLogin}  onPress={()=>handleLogin(id)}>
+                      <Text style = {{ color: 'white', fontSize: 18, textAlign: 'center'}}>Đăng Nhập</Text>
                     </TouchableOpacity>
                   </View>
               </View>
@@ -113,64 +144,16 @@ const LoginScreen =({navigation}) =>{
 }
 export default LoginScreen;
 const styles = StyleSheet.create({
-  mainView: {
-    flex: 1,
-  },
-  image:{
-    flex: 1,
-    resizeMode: "cover",
-    justifyContent: "center",
-    flexDirection: 'column',
-  },
-  titleContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  textTitle: {
-    color: '#FF0000',
-    fontSize: 28,
-    fontWeight: 'bold',
-    textAlign: 'center'
-  },
-  text: {
-    color: '#66FF00',
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center'
-  },
-  infoContainer:{
-    height: 80,
-    padding: 15,
-    marginTop: 20
-  },
   viewID:{
-    alignItems: 'center',
-    flexDirection: 'row',
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    borderColor: 'white',
-    borderWidth: 1,
-    paddingHorizontal: 10,
-    marginBottom: 10,
-    marginHorizontal: 30,
-    height: 45,
+    alignItems: 'center',       flexDirection: 'row',         backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    borderColor: 'white',       borderWidth: 1,               paddingHorizontal: 10,
+    marginBottom: 10,           marginHorizontal: 30,         height: 45,
     width: 300
   },
   buttonLogin: {
-    marginTop: 15,
-    backgroundColor: '#0099FF',
-    paddingVertical: 8,
-    marginHorizontal: 80,
-    borderRadius: 20,
-    borderColor: 'white',
-    borderWidth:0.5,
-    height: 45,
-    justifyContent: 'center'
-  },
-  textButtonLogin: {
-    color: 'white',
-    fontSize: 18,
-    textAlign: 'center',
+    marginTop: 15,              backgroundColor: '#0099FF',   paddingVertical: 8,
+    marginHorizontal: 80,       borderRadius: 20,             borderColor: 'white',
+    borderWidth:0.5,            height: 45,                   justifyContent: 'center'
   },
 
 });

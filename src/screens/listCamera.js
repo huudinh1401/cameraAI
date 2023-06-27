@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import { StyleSheet,
   View,
-  Text,
+  Text, Image,
   StatusBar,
   FlatList,
   TouchableOpacity,
-  Alert
+  Alert, SafeAreaView
  } from 'react-native';
 import ItemArea from '../components/itemArea';
 
@@ -43,7 +43,7 @@ export default class DsCamera extends React.Component {
     return (
       <View
         style={{
-          height: 5,
+          height: 3,
           width: "90%",
           backgroundColor: "#CED0CE",
           marginLeft: "5%",
@@ -55,65 +55,76 @@ export default class DsCamera extends React.Component {
   render() {
     const {navigation, route} = this.props;
     return (
-        <View style = { styles.container }>
+        <SafeAreaView style = { styles.container }>
           <StatusBar barStyle={'light-content'}/>
-          <View style={{paddingBottom: 30}}>
-
-          </View>
-          <FlatList
-            data={this.state.arrArea}
-            ItemSeparatorComponent={this.renderSeparator}
-            renderItem={({item}) =>
-          <View>
+          <View style = {{flexDirection: 'row', justifyContent: 'center', alignItems:'center', marginBottom: 5, marginTop: 50}}>
             <TouchableOpacity
-            onPress={() => this._onPressShow(item.key, item.Nvr_id)}
+                style={{flex: 1.5, justifyContent: 'center', alignItems:'center'}}
+                onPress={()=>navigation.goBack()}
             >
-              <View style ={{flexDirection: 'row', height: 60, marginHorizontal: "5%", justifyContent: 'center'}}>
-                <View style ={{flex: 1, justifyContent:'center', paddingLeft: 5}}>
-                  <Text style = {styles.text}>{item.AreaName}</Text>
-                </View>
-                {
-                  this.state.idChoose === item.key ?
-                  (
-                    this.state.isShow ? 
-                    (<>
-                      <View style ={{paddingRight: 20, justifyContent:'center'}}>
-                        <Text style = {styles.text}>-</Text>
-                      </View>
-                    </>):
-                      <View style ={{paddingRight: 20, justifyContent:'center'}}>
-                        <Text style = {styles.text}>+</Text>
-                      </View>
-                  ):
-                  <View style ={{paddingRight: 20, justifyContent:'center'}}>
-                    <Text style = {styles.text}>+</Text>
-                  </View>
-                }
-                
-              </View>
+                <Image style = {{width:30, height:30}} source={require('../images/back_white.png')}></Image>
             </TouchableOpacity>
-            {
-              this.state.idChoose === item.key ?
-              (this.state.isShow ? <ItemArea idNVR = {this.state.nvrID} navigation = {navigation} route = {route}/> : null) : null
-            }
+            <View style={{flex: 7, justifyContent: 'center', alignItems:'center'}}>
+                <Text style = {{color: 'white', fontSize: 18, textAlign: 'center'}}>Danh sách Camera</Text>
+            </View>
+            <TouchableOpacity
+                style={{flex: 1.5, justifyContent: 'center', alignItems:'center'}}
+                onPress={()=>navigation.navigate('Home')}
+            >
+                <Image style = {{width:35, height: 35}} source={require('../images/home.png')}></Image>
+            </TouchableOpacity>
           </View>
-          }
-          />
-          <View style={{paddingBottom: 40}}/>
-        </View>
+          <View style={{height: '100%', width:'100%', backgroundColor:'white'}}>
+            <FlatList
+              data={this.state.arrArea}
+              ItemSeparatorComponent={this.renderSeparator}
+              renderItem={({item}) =>
+            <View>
+              <TouchableOpacity onPress={() => this._onPressShow(item.key, item.Nvr_id)} >
+                <View style ={{flexDirection: 'row', height: 40, marginHorizontal: "5%", justifyContent: 'center'}}>
+                  <View style ={{flex: 1, justifyContent:'center', paddingLeft: 5}}>
+                    <Text style = {styles.text}>{item.AreaName}</Text>
+                  </View>
+                  {
+                    this.state.idChoose === item.key ?
+                    (
+                      this.state.isShow ? 
+                        <View style ={{paddingRight: 20, justifyContent:'center'}}> 
+                          <Text style = {styles.text}>-</Text> 
+                        </View>
+                        :
+                        <View style ={{paddingRight: 20, justifyContent:'center'}}>
+                          <Text style = {styles.text}>+</Text>
+                        </View>
+                    ):
+                    <View style ={{paddingRight: 20, justifyContent:'center'}}>
+                      <Text style = {styles.text}>+</Text>
+                    </View>
+                  }
+                  
+                </View>
+              </TouchableOpacity>
+              {
+                this.state.idChoose === item.key ?
+                (this.state.isShow ? <ItemArea idNVR = {this.state.nvrID} navigation = {navigation} route = {route}/> : null) : null
+              }
+            </View>
+            }/>
+          </View>
+        </SafeAreaView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: 'orange',
     flex: 1,
     justifyContent:'center',
   },
   text:{
     color: 'black',
-    fontSize: 20,
+    fontSize: 16,
   },
  
 });

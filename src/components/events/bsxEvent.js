@@ -79,7 +79,7 @@ const BsxEvent =({navigation})=> {
                 </View>
                 
                 :
-                <View style={{width: '100%', height: 540}}>
+                <View style={{width: '100%', height: '90%'}}>
                     <TitleEvent col1={'Đối tượng '} col2={'Camera'} col3={'Vị trí'} col4={'Thời gian'}/>
                     <FlatList
                         data={arrEventBsx}
@@ -111,9 +111,6 @@ const BsxEvent =({navigation})=> {
                             </View>
                         }
                     />
-                    <View style={{borderTopColor:'gray', borderBottomColor:'gray', height: 45, borderTopWidth: 0.5, borderBottomWidth: 0.5}}>
-
-                    </View>
                 </View>
             }
             

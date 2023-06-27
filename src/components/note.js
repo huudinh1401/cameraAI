@@ -31,9 +31,5 @@ export default class Note extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    image: {
-      width: 20,
-      height: 20,
-    },
-  
+    image: { width: 20, height: 20, }, 
   });

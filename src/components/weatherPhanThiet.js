@@ -95,8 +95,5 @@ export default class WeatherPhanThiet extends React.Component {
 
 const styles = StyleSheet.create({
 
-  image:{
-    height: '100%',
-    justifyContent: "center"
-  },
+  image:{ height: '100%', justifyContent: "center" },
 });

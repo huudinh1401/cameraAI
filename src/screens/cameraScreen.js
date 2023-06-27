@@ -153,7 +153,7 @@ export default class CameraScreen extends React.Component {
                                     style={{width: 30,height: 30, backgroundColor:'white', borderRadius: 15, alignItems:'center', justifyContent:'center'}}
                                     onPress={() => { this.setState({modalVisible: !modalVisible})}}
                                 >
-                                    <Text style={{fontSize: 18}}>X</Text>
+                                    <Text style={{fontSize: 18, color:'black'}}>X</Text>
                                 </TouchableOpacity>
                             </View> 
                             

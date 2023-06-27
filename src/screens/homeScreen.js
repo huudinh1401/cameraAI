@@ -6,7 +6,8 @@ import {
   View, 
   ImageBackground,
   Platform, 
-  Image, 
+  Image,
+  Alert,
   StatusBar,
 } from 'react-native';
 import Header from '../components/Header.js';
@@ -15,17 +16,7 @@ import RowNum2 from '../components/rowNum2.js';
 import Footer from '../components/footer.js';
 
 const urlNoti = 'https://odoo.nguyenluanbinhthuan.com/dataCamera/dsThongBao.php';
-
-async function requestUserPermission() {
-  const authStatus = await messaging().requestPermission();
-  const enabled =
-    authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-    authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-
-  if (enabled) {
-   // console.log('Authorization status:', authStatus);
-  }
-}
+import messaging from '@react-native-firebase/messaging';
 
 const HomeScreen = ({navigation}) => {
   const [numberNoti, setNumberNoti] = useState('');
@@ -39,8 +30,16 @@ const HomeScreen = ({navigation}) => {
       setNumberNoti(responseJson.length);
     })
     .catch((error) => {console.error(error)} );
-  }, [dataNoti]);   
-
+  }, [dataNoti]);
+  useEffect(() => {
+    const notification = async () =>{
+      const unsubscribe = messaging().onMessage(async remoteMessage => {
+        Alert.alert('Chú ý...!','Phát hiện đối tượng trong danh sách cảnh báo!');
+      });
+      return unsubscribe;
+    }
+    notification();
+  }, []);
     return (
       <View style = {{flex: 1}}>
         <ImageBackground source={require('../images/HinhNenHome.jpeg')} style = {styles.image}>
@@ -61,8 +60,8 @@ const HomeScreen = ({navigation}) => {
               <Text style = {{ fontSize: 14, color: '#660000', paddingLeft: 10, fontStyle: 'italic'}}>
                 Chuyên nghiệp - Chính xác - Hiện đại
               </Text>
+              
             </View>
-            
             <ScrollView style = {styles.viewScroll}>
               
                   <RowNum1 navigation = {navigation}/>

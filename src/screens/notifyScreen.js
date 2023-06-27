@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, View, Text , FlatList, TouchableOpacity, Platform, Image, StatusBar} from 'react-native';
+import { StyleSheet, View, Text , FlatList, TouchableOpacity, Platform, Image, StatusBar, SafeAreaView} from 'react-native';
 import FooterNotify from '../components/footerNotify';
 import BouncingPreloader from 'react-native-bouncing-preloaders';
 
@@ -28,22 +28,22 @@ const NotifyScreen = ({navigation}) => {
       <TouchableOpacity
           onPress={() => _onPressHisItemBlack(item.DoiTuong)}
       >
-        <View style ={{height: 60, backgroundColor: 'beige', justifyContent:'center', paddingLeft: 20, margin: 3}}>
+        <View style ={{height: 60, backgroundColor: 'beige', justifyContent:'center', paddingLeft: 20, margin: 2}}>
 
-          <View style={{flexDirection: 'row', marginBottom: 5}}>
+          <View style={{flexDirection: 'row', marginBottom: 0}}>
             <Text style={{color:'black', fontSize: 12}}>Camera </Text>
-            <Text style={{color:'blue', fontSize: 12, fontWeight:'bold'}}> {item.Camera} </Text>
+            <Text style={{color:'black', fontSize: 12, fontWeight:'bold'}}> {item.Camera} </Text>
             <Text style={{color:'black', fontSize: 12}}> đã phát hiện </Text>
           </View>
 
-          <View style={{flexDirection: 'row', marginBottom: 5}}>
+          <View style={{flexDirection: 'row', marginBottom: 0}}>
             <Text style={{color:'black', fontSize: 12}}>Đối tượng </Text>
             <Text style={{color:'red', fontSize: 12, fontWeight:'bold'}}> {item.DoiTuong} </Text>
           </View>
           
           <View style={{flexDirection: 'row'}}>
             <Text style={{color:'black', fontSize: 12}}>Vào lúc </Text>
-            <Text style={{color:'blue', fontSize: 12, fontWeight:'bold'}}> {item.ThoiGian} </Text>
+            <Text style={{color:'black', fontSize: 12, fontWeight:'bold'}}> {item.ThoiGian} </Text>
           </View>
 
         </View>
@@ -55,9 +55,9 @@ const NotifyScreen = ({navigation}) => {
     return ( <View  style={{ height: 1, backgroundColor: 'black' }} /> );
   };
   return (
-    <View style = { styles.mainView }>
+    <SafeAreaView style = { styles.mainView }>
       <StatusBar barStyle={'light-content'}/>
-      <View style = {{flexDirection: 'row', justifyContent: 'center', alignItems:'center', marginBottom: 20, marginTop: Platform.OS === 'ios' ? 60 : 10}}>
+      <View style = {{flexDirection: 'row', justifyContent: 'center', alignItems:'center', marginBottom: 10, marginTop: 5}}>
           <TouchableOpacity
               style={{flex: 1.5, justifyContent: 'center', alignItems:'center'}}
               onPress={()=>navigation.goBack()}
@@ -97,8 +97,11 @@ const NotifyScreen = ({navigation}) => {
         </View>
         
       }
+      <View style={{position:'absolute', bottom: 0, left: 0, right: 0}}>
         <FooterNotify navigation = {navigation} numberNoti = {numberNoti} /> 
-    </View>
+      </View>
+        
+    </SafeAreaView>
     
   );
 }
@@ -111,7 +114,7 @@ const styles = StyleSheet.create({
   },
   notify:{
     width: '100%',
-    flex: 1,
+    height:'90%',
     backgroundColor:'#fff',
     marginBottom: -30,
   },
