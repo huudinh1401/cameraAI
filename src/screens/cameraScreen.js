@@ -28,9 +28,7 @@ export default class CameraScreen extends React.Component {
     }
   }
 
-  _onPressChangeCam = (rtsp) => {
-    this.props.navigation.navigate('DsCam',{rtsp}) 
-  }
+  _onPressChangeCam = (rtsp) => { this.props.navigation.navigate('DsCam',{rtsp})  }
 
   _onPressFullCame = (rtsp, nameFull) => {
     this.setState({modalVisible: true})
@@ -44,19 +42,13 @@ export default class CameraScreen extends React.Component {
     const { RTSP1, RTSP2, RTSP3, modalVisible } = this.state;
     // const Rtsp1 = this.props.navigation.getParam ( 'rtsp1', 'No_Name');
     // const name1 = this.props.navigation.getParam ( 'camName1', 'No_Name');
-
-    // const Rtsp2 = this.props.navigation.getParam ( 'rtsp2', 'No_Name');
-    // const name2 = this.props.navigation.getParam ( 'camName2', 'No_Name');
-
-    // const Rtsp3 = this.props.navigation.getParam ( 'rtsp3', 'No_Name');
-    // const name3 = this.props.navigation.getParam ( 'camName3', 'No_Name');
     return (
         <View style = { styles.mainView }>
             <ScrollView style = { styles.Scroll }>
                 <View style = { styles.viewCam }>
         {/* Cam 1*/}
                     <View style={{flexDirection: 'row',flex: 1}}>
-                        <ItemCamera url = { 'rtsp://admin:Admin123456@hoaphu.zapto.org:555/Streaming/channels/101' } widthItem = {width2} navigation = {navigation}/>
+                        <ItemCamera url = { rtsp1 } widthItem = {width2} navigation = {navigation}/>
                     </View>
 
                     {/* button change, full*/}

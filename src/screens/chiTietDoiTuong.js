@@ -77,12 +77,13 @@ const ChiTietDoiTuong = ({navigation, id}) => {
                     </View>
                     <View style={{marginTop: 10}}>
                         <View style={{marginLeft: 5, flexDirection: 'row', alignItems: 'center'}}>
-                            <View>
+                            <View style={{flex:0.8}}>
                                 <Icon name={'image-outline'} type='ionicon' /> 
                             </View>
-                            <View style={{marginLeft: 5}}>
+                            <View style={{flex: 2.5, marginLeft: 5}}>
                                 <Text style={{color: 'black', fontSize: 14, fontWeight: 'bold'}}>Hình ảnh:</Text>
                             </View>
+                            <View style={{flex:6.7}}/>
                         </View>
                         <View style={{alignItems:'center', height: 120, justifyContent: 'center'}}>
                             {
@@ -100,68 +101,71 @@ const ChiTietDoiTuong = ({navigation, id}) => {
                         </View>
                     </View>
                     <View style = {{flexDirection: 'row', marginLeft: 5, alignItems:'center'}}>
-                        <View>
+                        <View style={{flex:0.8}}>
                             <Icon name={'man-outline'} type='ionicon' /> 
                         </View>
-                        <View style={{marginLeft: 5}}>
+                        <View style={{flex: 2.5, marginLeft: 5}}>
                             <Text style={{color: 'black', fontSize: 14, fontWeight: 'bold'}}>Đối tượng:</Text>
                         </View>
-                        <View style={{marginLeft: 5, paddingLeft: 10, }}>
+                        <View style={{flex: 6.7, marginLeft: 5, paddingLeft: 10, }}>
                             <Text style={{color: 'blue', fontSize: 14}}>{doiTuong}</Text>
                         </View>
                     </View>
+
                     <View style = {{flexDirection: 'row', marginTop: 5, marginLeft: 5, alignItems:'center'}}>
-                        <View>
+                        <View style={{flex:0.8}}>
                             <Icon name={'checkmark-done-outline'} type='ionicon' /> 
                         </View>
-                        <View style={{ marginLeft: 5}}>
+                        <View style={{flex: 2.5,marginLeft: 5}}>
                             <Text style={{color: 'black', fontSize: 14, fontWeight: 'bold'}}>Loại sự kiện:</Text>
                         </View>
-                        <View style={{marginLeft: 5, paddingLeft: 10}}>
+                        <View style={{flex: 6.7,marginLeft: 5, paddingLeft: 10}}>
                             <Text style={{color: 'blue', fontSize: 14}}>{loaiSK}</Text>
                         </View>
                     </View>
+
                     <View style = {{flexDirection: 'row', marginTop: 5, alignItems: 'center', marginLeft: 5}}>
-                        <View>
+                        <View style={{flex:0.8}}>
                                 <Icon name={'hourglass-outline'} type='ionicon' /> 
                         </View>
-                        <View style={{ marginLeft: 5}}>
+                        <View style={{flex: 2.5, marginLeft: 5}}>
                             <Text style={{color: 'black', fontSize: 14, fontWeight: 'bold'}}>Thời gian:</Text>
                         </View>
-                        <View style={{marginLeft: 5, paddingLeft: 10}}>
+                        <View style={{flex: 6.7, marginLeft: 5, paddingLeft: 10}}>
                             <Text style={{color: 'blue', fontSize: 14}}>{time}</Text>
                         </View>
                     </View>
                     <View style = {{flexDirection: 'row', marginTop: 5, alignItems:'center', marginLeft: 5}}>
-                        <View>
-                                <Icon name={'videocam-outline'} type='ionicon' /> 
+                        <View style={{flex:0.8}}>
+                            <Icon name={'videocam-outline'} type='ionicon' /> 
                         </View>
-                        <View style={{ marginLeft: 5}}>
+                        <View style={{flex: 2.5, marginLeft: 5}}>
                             <Text style={{color: 'black', fontSize: 14, fontWeight: 'bold'}}>Camera:</Text>
                         </View>
-                        <View style={{marginLeft: 5, paddingLeft: 10}}>
+                        <View style={{flex: 6.7, marginLeft: 5, paddingLeft: 10}}>
                             <Text style={{color: 'blue', fontSize: 14}}>{cam}</Text>
                         </View>
                     </View>
                     <View style = {{flexDirection: 'row', marginTop: 5, alignItems: 'center', marginLeft: 5}}>
-                        <View>
+                        <View style={{flex:0.8}}>
                             <Icon name={'location-outline'} type='ionicon' /> 
                         </View>
-                        <View style={{ marginLeft: 5}}>
+                        <View style={{flex: 2.5, marginLeft: 5}}>
                             <Text style={{color: 'black', fontSize: 14, fontWeight: 'bold'}}>Vị trí:</Text>
                         </View>
-                        <View style={{marginLeft: 5, paddingLeft: 10}}>
+                        <View style={{flex: 6.7, marginLeft: 5, paddingLeft: 10}}>
                             <Text style={{color: 'blue', fontSize: 14}}>{location}</Text>
                         </View>
                     </View>
                     <View style = {{marginTop: 5}}>
                         <View style={{ marginLeft: 5, alignItems:'center', flexDirection: 'row'}}>
-                            <View>
+                            <View style={{flex:0.8}}>
                                 <Icon name={'image-outline'} type='ionicon' /> 
                             </View>
-                            <View style={{ marginLeft: 5}}>
+                            <View style={{flex: 3.5, marginLeft: 5}}>
                                 <Text style={{color: 'black', fontSize: 14, fontWeight: 'bold'}}>Hình ảnh tổng quan:</Text>
                             </View>
+                            <View style={{flex: 5.7, marginLeft: 5}}/>
                         </View>
                         <View style={{alignItems:'center', marginTop: 5}}>
                             {

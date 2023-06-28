@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
       flex: 1,
     },
     iconfooterIn: {
-      backgroundColor: 'seashell',
+      backgroundColor: 'white',
       alignItems: 'center',
       borderRadius: 35,
     },

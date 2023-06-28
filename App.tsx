@@ -40,15 +40,15 @@ const App = () => {
             initialParams={{ rtsp1: 'no_data', rtsp2: 'no_data', rtsp3: 'no_data', camName1: 'no_data', camName2: 'no_data', camName3: 'no_data'}}
             options={{ title: 'Camera An Ninh'}} 
           />
-          <Stack.Screen name="DsCam" component={DsCamera} options={{ headerShown: false}} />
-          <Stack.Screen name="Notify" component={NotifyScreen} options={{ headerShown: false}} />
-          <Stack.Screen name="Info" component={InfoScreen} options={{ headerShown: false}} />
-          <Stack.Screen  name="DsSuKien" component={ListEvent} options={{ title: 'Danh Sách Sự Kiện'}}  />
-          <Stack.Screen name="TimDoiTuong" component={SearchEvent} options={{ headerShown: false}} />
-          <Stack.Screen name="LocDoiTuong" component={FilterEvent} options={{ headerShown: false}} />
-          <Stack.Screen name="Black" component={BlackList} options={{ title: 'Danh sách đối tượng cảnh báo'}} />
-          <Stack.Screen name="HisItemBlack" component={HistoryItemBlackList} options={{ headerShown: false }} />
-          <Stack.Screen name="Map" component={MapCamera} options={{ title: 'Bản đồ Camera'}} />
+          <Stack.Screen name="DsCam"        component={DsCamera}              options={{ headerShown: false}} />
+          <Stack.Screen name="Notify"       component={NotifyScreen}          options={{ headerShown: false}} />
+          <Stack.Screen name="Info"         component={InfoScreen}            options={{ headerShown: false}} />
+          <Stack.Screen name="DsSuKien"     component={ListEvent}             options={{ title: 'Danh Sách Sự Kiện'}}  />
+          <Stack.Screen name="TimDoiTuong"  component={SearchEvent}           options={{ headerShown: false}} />
+          <Stack.Screen name="LocDoiTuong"  component={FilterEvent}           options={{ headerShown: false}} />
+          <Stack.Screen name="Black"        component={BlackList}             options={{ title: 'Danh sách đối tượng cảnh báo'}} />
+          <Stack.Screen name="HisItemBlack" component={HistoryItemBlackList}  options={{ headerShown: false }} />
+          <Stack.Screen name="Map"          component={MapCamera}             options={{ title: 'Bản đồ Camera'}} />
 
         </Stack.Navigator>
       </NavigationContainer>

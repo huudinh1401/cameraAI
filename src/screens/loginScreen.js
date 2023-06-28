@@ -34,7 +34,6 @@ const LoginScreen =({navigation}) =>{
     const notification = async () =>{
       await requestUserPermission();
       await getToken();
-      // messaging().onNotificationOpenedApp(remoteMessage => { Alert.alert('Xem thông báo!'); })
     }
     notification();
     getID();
@@ -45,7 +44,7 @@ const LoginScreen =({navigation}) =>{
   }
 
   const addToken = () =>{
-    fetch("http://192.168.1.9/dataCamera/addDeviceToken.php",{
+    fetch("https://odoo.nguyenluanbinhthuan.com/dataCamera/addDeviceToken.php",{
       method: "POST",
       headers:{ "Accept":"application/json", "Content-Type":"application/json" },
       body:JSON.stringify({  "TOKEN": token })

@@ -95,7 +95,7 @@ const SearchEvent = ({navigation}) => {
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: 'green'}}>
             <StatusBar barStyle={'light-content'}/>
-            <View style = {{flexDirection: 'row', justifyContent: 'center', alignItems:'center', marginBottom: 20, marginTop: 10}}>
+            <View style = {{flexDirection: 'row', justifyContent: 'center', alignItems:'center', marginBottom: 10, marginTop: 10}}>
                 <TouchableOpacity
                     style={{flex: 1.5, justifyContent: 'center', alignItems:'center'}}
                     onPress={()=>navigation.goBack()}
@@ -123,7 +123,7 @@ const SearchEvent = ({navigation}) => {
                 />
                 {
                     showSearch?
-                    <View style={{width: '100%', height: 540}}>
+                    <View style={{width: '100%', height:'65%'}}>
                         <TitleEvent col1={'Đối tượng '} col2={'Camera'} col3={'Vị trí'} col4={'Thời gian'}/>
                         <FlatList
                             data={filteredDataSource}
@@ -149,8 +149,6 @@ const SearchEvent = ({navigation}) => {
                     :
                     null
                 }
-                
-                
                 
             </View>
         </SafeAreaView>

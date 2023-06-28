@@ -41,16 +41,16 @@ const HistoryItemBlackList = ({navigation, route}) => {
                 <View style ={{flexDirection: 'row', height: 50, justifyContent: 'center', backgroundColor: 'white'}}>
                     <View style ={{flex: 1, flexDirection: 'row'}}>
                         <View style={{flex: 1, justifyContent: 'center'}}>
-                            <Text style = {{color: 'blue', fontSize: 12, textAlign: 'center'}}> {index+1}</Text>
+                            <Text style = {{color: 'blue', fontSize: 11, textAlign: 'center'}}> {index+1}</Text>
                         </View>
                         <View style={{flex: 3, justifyContent: 'center', borderLeftWidth: 0.5, borderLeftColor: 'gray'}}>
-                            <Text style = {{color: 'blue', fontSize: 12, textAlign: 'center'}}> {item.ThoiGian}</Text>
+                            <Text style = {{color: 'blue', fontSize: 11, textAlign: 'center'}}> {item.ThoiGian}</Text>
                         </View>
                         <View style={{flex: 2.5, borderLeftWidth: 0.5, borderLeftColor: 'gray', justifyContent: 'center'}}>
-                            <Text style = {{color: 'blue', fontSize: 12, textAlign: 'center'}}>  {item.Camera}</Text>
+                            <Text style = {{color: 'blue', fontSize: 11, textAlign: 'center'}}>  {item.Camera}</Text>
                         </View>
                         <View style={{flex: 3.5, borderLeftWidth: 0.5, borderLeftColor: 'gray', justifyContent: 'center'}}>
-                            <Text style = {{color: 'blue', fontSize: 12, textAlign: 'center'}}>{item.ViTri}</Text>
+                            <Text style = {{color: 'blue', fontSize: 11, textAlign: 'center'}}>{item.ViTri}</Text>
                         </View>
                     </View>
                 </View>
@@ -93,13 +93,13 @@ const HistoryItemBlackList = ({navigation, route}) => {
                             <Text style = {{fontSize: 16, color: 'black'}}>Đối tượng: </Text>
                             <Text style = {{color: 'red', fontSize: 16, fontWeight:'bold'}}> {name}</Text>
                         </View>
-                        <View  style={{width: 40, height: 40, justifyContent: 'center', alignItems:'center', flex: 2}}>
+                        <View  style={{width: 30, height: 30, justifyContent: 'center', alignItems:'center', flex: 2}}>
                             {
                                 showDetail ? 
                                 <TouchableOpacity
                                     onPress={()=>setShowDetail(false)}
                                 >
-                                    <Image style = {{width:40, height:40}} source={require('../images/x.png')}></Image>
+                                    <Image style = {{width:25, height:25}} source={require('../images/x.png')}></Image>
                                 </TouchableOpacity> : null
                             }
                             
@@ -107,7 +107,7 @@ const HistoryItemBlackList = ({navigation, route}) => {
                     </View>
                     <View style = {{flexDirection: 'row', paddingLeft: 20, marginBottom: 10}}>
                         <Text style = {{fontSize: 13, color: 'black'}}>Chú ý: </Text>
-                        <Text style = {{color: '#CC3300', fontSize: 13}}> Biển số xe trong danh sách cảnh báo</Text>
+                        <Text style = {{color: '#990000', fontSize: 13}}> Biển số xe trong danh sách cảnh báo</Text>
                     </View>
                 </View>
                 {
@@ -135,7 +135,7 @@ const HistoryItemBlackList = ({navigation, route}) => {
                                 </View>
 
                             </View>
-                            <View style={{width: '100%', height: '82%'}}>
+                            <View style={{width: '100%', height: '80%'}}>
                                 <FlatList
                                     data={hisItemBlackList}
                                     keyExtractor={(item, index) => index.toString()}

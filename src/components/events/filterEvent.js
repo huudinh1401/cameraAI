@@ -64,8 +64,7 @@ const FilterEvent = ({navigation}) => {
             .then((responseJson) => {
                 setFilteredDataSource(responseJson);
                 setMasterDataSource(responseJson);
-            })
-            .catch((error) => {console.error(error)} );
+            }).catch((error) => {console.error(error)} );
     }
 
      // *** Fetch data danh sach Tat ca Event
@@ -75,8 +74,7 @@ const FilterEvent = ({navigation}) => {
             .then((responseJson) => {
                 setAllEvent(responseJson);
                 setMasterAllEvent(responseJson);
-            })
-            .catch((error) => {console.error(error)} );
+            }).catch((error) => {console.error(error)} );
     }
     const searchCamera = (text) => {
         if (text) {
@@ -136,58 +134,38 @@ const FilterEvent = ({navigation}) => {
 
         // *** Loc danh sach theo 2 yeu cau
         if (searchCam && searchTime && !searchLoaiSK && !idPhanLoaiSearch) {
-            i = masterAllEvent.filter(
-                (e) => e.Camera.indexOf(searchCam) >-1 && e.ThoiGian.indexOf(searchTime)>-1
-            );
+            i = masterAllEvent.filter( (e) => e.Camera.indexOf(searchCam) >-1 && e.ThoiGian.indexOf(searchTime)>-1 );
         }
         if (searchCam && !searchTime && searchLoaiSK && !idPhanLoaiSearch) {
-            i = masterAllEvent.filter(
-                (e) => e.Camera.indexOf(searchCam) >-1 && e.LoaiSuKien === searchLoaiSK
-            );
+            i = masterAllEvent.filter( (e) => e.Camera.indexOf(searchCam) >-1 && e.LoaiSuKien === searchLoaiS );
         }
         if (searchCam && !searchTime && !searchLoaiSK && idPhanLoaiSearch) {
-            i = masterAllEvent.filter(
-                (e) => e.Camera.indexOf(searchCam) >-1 && e.CanhBao===idPhanLoaiSearch
-            );
+            i = masterAllEvent.filter( (e) => e.Camera.indexOf(searchCam) >-1 && e.CanhBao===idPhanLoaiSearch );
         }
 
         if (!searchCam && searchTime && searchLoaiSK && !idPhanLoaiSearch) {
-            i = masterAllEvent.filter(
-                (e) => e.ThoiGian.indexOf(searchTime)>-1 && e.LoaiSuKien === searchLoaiSK 
-            );
+            i = masterAllEvent.filter( (e) => e.ThoiGian.indexOf(searchTime)>-1 && e.LoaiSuKien === searchLoaiSK  );
         }
         if (!searchCam && searchTime && !searchLoaiSK && idPhanLoaiSearch) {
-            i = masterAllEvent.filter(
-                (e) => e.ThoiGian.indexOf(searchTime)>-1 && e.CanhBao===idPhanLoaiSearch
-            );
+            i = masterAllEvent.filter( (e) => e.ThoiGian.indexOf(searchTime)>-1 && e.CanhBao===idPhanLoaiSearch );
         }
         
         if (!searchCam && !searchTime && searchLoaiSK && idPhanLoaiSearch) {
-            i = masterAllEvent.filter(
-                (e) => e.LoaiSuKien === searchLoaiSK  && e.CanhBao===idPhanLoaiSearch
-            );
+            i = masterAllEvent.filter( (e) => e.LoaiSuKien === searchLoaiSK  && e.CanhBao===idPhanLoaiSearch );
         }
 
         // *** Loc danh sach theo tung yeu cau
         if (searchCam && !searchTime && !searchLoaiSK && !idPhanLoaiSearch) {
-            i = masterAllEvent.filter(
-                (e) => e.Camera.indexOf(searchCam) >-1
-            );
+            i = masterAllEvent.filter( (e) => e.Camera.indexOf(searchCam) >-1 );
         }
         if (!searchCam && searchTime && !searchLoaiSK && !idPhanLoaiSearch) {
-            i = masterAllEvent.filter(
-                (e) => e.ThoiGian.indexOf(searchTime) >-1
-            );
+            i = masterAllEvent.filter( (e) => e.ThoiGian.indexOf(searchTime) >-1 );
         }
         if (!searchCam && !searchTime && searchLoaiSK && !idPhanLoaiSearch) {
-            i = masterAllEvent.filter(
-                (e) => e.LoaiSuKien === searchLoaiSK
-            );
+            i = masterAllEvent.filter( (e) => e.LoaiSuKien === searchLoaiSK );
         }
         if (!searchCam && !searchTime && !searchLoaiSK && idPhanLoaiSearch) {
-            i = masterAllEvent.filter(
-                (e) => e.CanhBao===idPhanLoaiSearch
-            );
+            i = masterAllEvent.filter( (e) => e.CanhBao===idPhanLoaiSearch );
         }
         
         setAllEvent(i)
@@ -273,7 +251,7 @@ const FilterEvent = ({navigation}) => {
 
     // onPress search theo Time
     const _onPressGetTime = (name) =>{
-        setSearchTime(name)
+        setSearchTime(name) 
         setShowSearchTime(false)
     };
     const _onPressSetShowTime = () =>{
@@ -353,7 +331,7 @@ const FilterEvent = ({navigation}) => {
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'purple'}}>
         <StatusBar barStyle={'light-content'}/>
-        <View style = {{flexDirection: 'row', justifyContent: 'center', alignItems:'center', marginBottom: 20, marginTop: 10}}>
+        <View style = {{flexDirection: 'row', justifyContent: 'center', alignItems:'center', marginBottom: 10, marginTop: 10}}>
             <TouchableOpacity
                 style={{flex: 1.5, justifyContent: 'center', alignItems:'center'}}
                 onPress={()=>navigation.goBack()}
@@ -375,9 +353,7 @@ const FilterEvent = ({navigation}) => {
                 showDetail ?
                 <View style={{marginTop: 10, height: '100%', backgroundColor: 'white',marginBottom:-100}}>
                     <View  style={{width: 40, height: 40, justifyContent: 'center', alignItems:'center', position:'absolute', top: 10, right: 20, zIndex: 10}}>
-                        <TouchableOpacity
-                            onPress={()=>goBack()}
-                        >
+                        <TouchableOpacity onPress={()=>goBack()}  >
                             <Image style = {{width:30, height:30}} source={require('../../images/x.png')}></Image>
                         </TouchableOpacity>
                     </View>
@@ -432,10 +408,7 @@ const FilterEvent = ({navigation}) => {
                             underlineColorAndroid="transparent"
                         />
                         <View style={{flex: 1, justifyContent:'center'}}>
-                            <Icon
-                                name='calendar-outline'
-                                type='ionicon'
-                            />
+                            <Icon name='calendar-outline' type='ionicon' />
                         </View>
                     </TouchableOpacity> 
                 </View>
@@ -454,16 +427,12 @@ const FilterEvent = ({navigation}) => {
                     </View> : null
                 }
 
-
                 {/* InputText Loai Su kien*/}
                 <View style={{flexDirection:'row', marginHorizontal: 5}}>
                     <View style={{justifyContent:'center', flex: 2.5}}>
                         <Text style={{fontSize: 16, color:'black'}}>Loại sự kiện:</Text>
                     </View>
-                    <TouchableOpacity 
-                        style={styles.textInputStyle}
-                        onPress={()=>_onPressSetShowLoaiSK()}
-                    >
+                    <TouchableOpacity  style={styles.textInputStyle} onPress={()=>_onPressSetShowLoaiSK()} >
                         <TextInput
                             style={{justifyContent: 'center', alignItems: 'center', flex: 4, color:'black'}}
                             editable={false}
@@ -471,11 +440,8 @@ const FilterEvent = ({navigation}) => {
                             value={searchLoaiSK}
                             underlineColorAndroid="transparent"
                         />
-                        <View style={{flex: 1, justifyContent:'center'}}>
-                            <Icon
-                                name='chevron-down-outline'
-                                type='ionicon'
-                            />
+                        <View style={{flex: 1, justifyContent:'center'}}> 
+                            <Icon name='chevron-down-outline' type='ionicon' /> 
                         </View>
                     </TouchableOpacity>  
                 </View>
@@ -495,10 +461,7 @@ const FilterEvent = ({navigation}) => {
                     <View style={{justifyContent:'center', flex: 2.5, }}>
                         <Text style={{fontSize: 16, color:'black'}}>Phân loại:</Text>
                     </View>
-                    <TouchableOpacity
-                        style={styles.textInputStyle}
-                        onPress={()=>_onPressSetShowPhanLoai()}
-                    >
+                    <TouchableOpacity style={styles.textInputStyle} onPress={()=>_onPressSetShowPhanLoai()} >
                         <TextInput
                             style={{justifyContent: 'center', alignItems: 'center', flex: 4, color:'black'}}
                             editable={false}
@@ -507,10 +470,7 @@ const FilterEvent = ({navigation}) => {
                             underlineColorAndroid="transparent"
                         />
                         <View style={{flex: 1, justifyContent:'center'}}>
-                            <Icon
-                                name='chevron-down-outline'
-                                type='ionicon'
-                            />
+                            <Icon name='chevron-down-outline' type='ionicon' />
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -543,8 +503,7 @@ const FilterEvent = ({navigation}) => {
                     </TouchableOpacity>
                 </View>
                 {
-                    showComFilter ? 
-                    (
+                    showComFilter ?  (
                         isAllEvent ?
                         <View style={{marginTop: 10, width: '100%', height: 405}}>
                             <TitleEvent col1={'Đối tượng '} col2={'Camera'} col3={'Vị trí'} col4={'Thời gian'}/>
@@ -560,18 +519,13 @@ const FilterEvent = ({navigation}) => {
                             <TitleEvent col1={'Đối tượng '} col2={'Camera'} col3={'Vị trí'} col4={'Thời gian'}/>
                             <View style={{height: 45, alignItems: 'center', justifyContent:'center'}}>
                                 <Text style={{fontSize: 18}}>Không tìm thấy!</Text>
-                            </View>
-                            
+                            </View> 
                         </View>
                     ) : null
-                }
-                
-                    
+                }  
             </View>
-            
         </View>
-        }
-        
+        } 
     </SafeAreaView>
   );
 };

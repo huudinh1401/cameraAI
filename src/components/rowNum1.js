@@ -11,7 +11,7 @@ export default class RowNum1 extends React.Component {
           <View style = { styles.bgIcon }>
             <Image style = { styles.icon } source={require('../images/new.png')} />
           </View>
-          <View style={{paddingVertical: 10}}>
+          <View style={{paddingVertical: 5}}>
             <Text style = { styles.text } >Tin tức</Text>
           </View>
         </TouchableOpacity>
@@ -20,8 +20,8 @@ export default class RowNum1 extends React.Component {
           <View style = { styles.bgIcon }>
             <Image style = { styles.icon } source={require('../images/camera.png')} />
           </View>
-          <View style={{paddingVertical: 10}}>
-            <Text style = { styles.text } >Camera an ninh</Text>
+          <View style={{paddingVertical: 5}}>
+            <Text style = { styles.text } >Camera</Text>
           </View>
         </TouchableOpacity>
 
@@ -29,7 +29,7 @@ export default class RowNum1 extends React.Component {
           <View style = { styles.bgIcon }>
             <Image style = { styles.icon } source={require('../images/weather.png')} />
           </View>
-          <View style={{paddingVertical: 10}}>
+          <View style={{paddingVertical: 5}}>
             <Text style = { styles.text } >Thời tiết</Text>
           </View>
         </TouchableOpacity>
@@ -45,9 +45,19 @@ const styles = StyleSheet.create({
         height: 120,
     },
     col: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        flex: 1,    
+      justifyContent: 'center',
+      alignItems: 'center',
+      flex: 1,
+      margin: 15,
+      backgroundColor:'white',
+      //backgroundColor: 'rgba(255, 255, 255, 0.5)',
+      borderRadius: 15,
+      marginHorizontal: 15,
+      shadowColor: '#00000',
+      shadowOffset:{width: 4, height:5},
+      shadowRadius: 2,
+      shadowOpacity: 0.3,
+      elevation: 10,
     },
     bgIcon: {
       borderWidth: 1,
@@ -55,12 +65,13 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       borderColor: '#FF0000',
       borderRadius: 20,
-      width: 60,
-      height: 60,      
+      width: 55,
+      height: 55,
+      marginTop: 5,
     },
     icon: {
-      width: 40,
-      height: 40,      
+      width: 30,
+      height: 30,      
     },
     text: {
       fontSize: 12,

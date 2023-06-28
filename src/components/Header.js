@@ -21,10 +21,6 @@ const styles = StyleSheet.create({
         height: 170,
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 20,
-        shadowColor: '#00000',
-        shadowOffset:{width: 0, height:5},
-        shadowRadius: 2,
-        shadowOpacity: 0.2,
         position: 'relative',
         flexDirection: 'row',
 

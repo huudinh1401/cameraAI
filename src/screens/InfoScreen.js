@@ -114,7 +114,7 @@ const InfoScreen = ({navigation}) => {
           <View style={{ width: '100%', height:'100%', backgroundColor: 'beige', justifyContent:'center', alignItems:'center',}}>
             <GioiThieu/>
             <TouchableOpacity 
-              style = {{justifyContent:'center', alignItems:'center', position:'absolute', bottom: 100, left: 150, right: 150, backgroundColor:'#990000', height: 40, borderRadius:10}} 
+              style = {{justifyContent:'center', alignItems:'center', position:'absolute', bottom: 50, left: 150, right: 150, backgroundColor:'#990000', height: 40, borderRadius:10}} 
               onPress={() => setModalVisible(false)}
             >
               <Text style = {{ color:'white', fontSize: 14 }}>Quay lại</Text>

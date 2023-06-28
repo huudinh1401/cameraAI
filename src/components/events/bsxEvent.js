@@ -62,9 +62,7 @@ const BsxEvent =({navigation})=> {
     };
     return (
         <View style = { styles.container }>
-            {
-                showIconBar ? <IconBar navigation={navigation}/> : null
-            }
+            { showIconBar ? <IconBar navigation={navigation}/> : null }
             {
                 showDetail ? 
                 <View style={{flex: 1, backgroundColor: 'white'}}>

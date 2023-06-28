@@ -33,8 +33,20 @@ const HomeScreen = ({navigation}) => {
   }, [dataNoti]);
   useEffect(() => {
     const notification = async () =>{
+      messaging().setBackgroundMessageHandler(async remoteMessage => {
+        navigation.navigate('Notify')
+      });
+      
+      //messaging().onNotificationOpenedApp(remoteMessage => { Alert.alert('Xem thông báo!'); })
       const unsubscribe = messaging().onMessage(async remoteMessage => {
-        Alert.alert('Chú ý...!','Phát hiện đối tượng trong danh sách cảnh báo!');
+        Alert.alert(
+          'Chú ý...!', 'Phát hiện đối tượng trong danh sách cảnh báo!',
+          [
+            { text: 'Đóng', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+            { text: 'Xem thông báo', onPress: () => { navigation.navigate('Notify') }},
+          ],
+          {cancelable: false},
+        );
       });
       return unsubscribe;
     }
@@ -42,25 +54,29 @@ const HomeScreen = ({navigation}) => {
   }, []);
     return (
       <View style = {{flex: 1}}>
-        <ImageBackground source={require('../images/HinhNenHome.jpeg')} style = {styles.image}>
+        <ImageBackground source={require('../images/image_home.jpeg')} style = {styles.image}>
         <StatusBar barStyle={'light-content'}/>
-          <View >
+          <View 
+            style={{
+              shadowColor: 'black', borderBottomLeftRadius: 20, borderBottomRightRadius: 20,
+              shadowOffset:{width: 4, height:5}, shadowRadius: 2, shadowOpacity: 0.3, elevation: 10, backgroundColor:'white'
+          }} >
               <Header/>
           </View>
-          <View style = {[
-            { backgroundColor: 'orange' ,height: 60, marginTop: -15, marginHorizontal: 50, borderRadius: 5, alignItems: 'center', justifyContent: 'center', flexDirection: 'row'},
-            Platform.select({ ios: { zIndex: 10 }, android: { zIndex: 10 } }),
-          ]}>
+          <View  style = {styles.title}>
             <Image style = {{width:45, height: 45}} source={require('../images/NL.jpg')} />
             <Text style = {{paddingLeft: 10, fontSize: 20, color: '#fff', fontWeight: 'bold'}}>Camera An Ninh - AI</Text>
           </View>
-          <View style = {{flex: 1, marginHorizontal: 10, backgroundColor: 'rgba(245,245,220, 0.5)', borderTopLeftRadius: 8, borderTopRightRadius: 8, marginTop: -15,}}>
-            <View style ={{flexDirection:'row', marginTop: 30,  paddingLeft: 20, alignItems:'center'}}>
+          <View style = {{flex: 1, backgroundColor: 'rgba(255,255,255, 0.4)', borderTopLeftRadius: 15, borderTopRightRadius: 15, marginTop: -15,}}>
+            <View style ={{ flexDirection:'row', marginTop: 30,  paddingLeft: 20, alignItems:'center', }}>
               <Image style = {{width:25, height: 25, }} source={require('../images/service.png')}></Image>
-              <Text style = {{ fontSize: 14, color: '#660000', paddingLeft: 10, fontStyle: 'italic'}}>
+              <Text 
+                style = {{ 
+                  fontSize: 14, color: '#660000', paddingLeft: 10, fontStyle: 'italic',
+                  textShadowColor: 'gray', textShadowOffset: {width: -1, height: 1}, textShadowRadius: 10
+              }}>
                 Chuyên nghiệp - Chính xác - Hiện đại
               </Text>
-              
             </View>
             <ScrollView style = {styles.viewScroll}>
               
@@ -84,9 +100,24 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     flexDirection: 'column',
   },
+  title:{
+    backgroundColor: 'orange', 
+    zIndex: 10, 
+    height: 60,
+    marginTop: -15, 
+    marginHorizontal: 50, 
+    borderRadius: 5, 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    flexDirection: 'row',
+    shadowColor: 'black', shadowOffset:{width: 4, height:5},
+    shadowRadius: 2, shadowOpacity: 0.3,
+    elevation: 10,
+  },
   viewScroll:{
     marginTop: 10,
     flex: 1,
+    marginHorizontal: 20
   },
   
 });
