@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-
 import {
   SafeAreaView,
   Text,
@@ -29,18 +28,14 @@ const SearchEvent = ({navigation}) => {
             setFilteredDataSource(responseJson);
             setMasterDataSource(responseJson);
         })
-        .catch((error) => {
-            console.error(error);
-        });
+        .catch((error) => { console.error(error); });
     }, []);
 
     const searchDoiTuong = (text) => {
         if (text) {
         const newData = masterDataSource.filter(
             function (item) {
-                const itemData = item.DoiTuong
-                    ? item.DoiTuong.toUpperCase()
-                    : ''.toUpperCase();
+                const itemData = item.DoiTuong ? item.DoiTuong.toUpperCase() : ''.toUpperCase();
                 const textData = text.toUpperCase();
                 return itemData.indexOf(textData) > -1;
         });
@@ -56,32 +51,27 @@ const SearchEvent = ({navigation}) => {
 
   const ItemView = ({item}) => {
     return (
-        <TouchableOpacity   
-            onPress={() => _onPressChiTiet(item.id)}
-        >
-            <View style ={{ flexDirection: 'row', height: 45, justifyContent: 'center',  backgroundColor: '#EEEEEE' }}>
-                <View style ={{flex: 1, flexDirection: 'row'}}>
-                    <View style={{flex: 1.8, justifyContent: 'center', padding: 2}}>
-                        <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 11}}>  {item.DoiTuong}</Text>
-                    </View>
-                    <View style={{flex: 3.5, borderLeftWidth: 0.5, borderLeftColor: 'gray', justifyContent: 'center'}}>
-                        <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 11, textAlign: 'center'}}>{item.Camera}</Text>
-                    </View>
-                    <View style={{flex: 2.5, borderLeftWidth: 0.5, borderLeftColor: 'gray', justifyContent: 'center'}}>
-                        <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 11, textAlign: 'center'}}>{item.ViTri}</Text>
-                    </View>
-                    <View style={{flex: 2.2, borderLeftWidth: 0.5, borderLeftColor: 'gray', justifyContent: 'center'}}>
-                        <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 11, textAlign: 'center'}}>{item.ThoiGian}</Text>
-                    </View>
+        <View style={styles.itemFlat}>
+            <TouchableOpacity onPress={() => _onPressChiTiet(item.id)}>
+                <View style={{justifyContent: 'center',}}>
+                    <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 15, textAlign: 'center', fontWeight: 'bold', marginBottom: 5}}>{item.DoiTuong}</Text>
                 </View>
-            </View>
-        </TouchableOpacity> 
+
+                <View style={{justifyContent: 'center'}}>
+                    <Text style = {{color: 'black', fontSize: 13, textAlign: 'center', marginBottom: 5}}>{item.Camera}</Text>
+                </View>
+
+                <View style={{justifyContent: 'center'}}>
+                    <Text style = {{color: 'black', fontSize: 13, textAlign: 'center', marginBottom: 5}}>{item.ViTri}</Text>
+                </View>
+
+                <View style={{justifyContent: 'center'}}>
+                    <Text style = {{color: 'black', fontSize: 13, textAlign: 'center', marginBottom: 5}}>{item.ThoiGian}</Text>
+                </View>
+            </TouchableOpacity>
+        </View>
     );
   };
-
-    const ItemSeparatorView = () => {
-        return ( <View  style={{ height: 0.5, width: '100%', backgroundColor: '#C8C8C8' }} /> );
-    };
     const _onPressChiTiet = (id) =>{ 
         setShowDetail(true)
         setShowSearch(false)
@@ -100,16 +90,16 @@ const SearchEvent = ({navigation}) => {
                     style={{flex: 1.5, justifyContent: 'center', alignItems:'center'}}
                     onPress={()=>navigation.goBack()}
                 >
-                    <Image style = {{width:30, height:30}} source={require('../../images/back_white.png')}></Image>
+                    <Image style = {{width:25, height:25}} source={require('../../images/back_white.png')}></Image>
                 </TouchableOpacity>
                 <View style={{flex: 7, justifyContent: 'center', alignItems:'center'}}>
-                    <Text style = {{color: 'white', fontSize: 20, textAlign: 'center', fontWeight:'bold'}}>Tìm kiếm đối tượng</Text>
+                    <Text style = {{color: 'white', fontSize: 18, textAlign: 'center'}}>Tìm kiếm đối tượng</Text>
                 </View>
                 <TouchableOpacity
                     style={{flex: 1.5, justifyContent: 'center', alignItems:'center'}}
                     onPress={()=>navigation.navigate('Home')}
                 >
-                    <Image style = {{width:35, height: 35}} source={require('../../images/home.png')}></Image>
+                    <Image style = {{width:25, height: 25}} source={require('../../images/home.png')}></Image>
                 </TouchableOpacity>
             </View>
             <View style={styles.container}>
@@ -124,11 +114,12 @@ const SearchEvent = ({navigation}) => {
                 {
                     showSearch?
                     <View style={{width: '100%', height:'65%'}}>
-                        <TitleEvent col1={'Đối tượng '} col2={'Camera'} col3={'Vị trí'} col4={'Thời gian'}/>
                         <FlatList
                             data={filteredDataSource}
                             keyExtractor={(item, index) => index.toString()}
-                            ItemSeparatorComponent={ItemSeparatorView}
+                            horizontal={false}
+                            numColumns={2}
+                            //ItemSeparatorComponent={ItemSeparatorView}
                             renderItem={ItemView}
                         />
                     </View>
@@ -138,9 +129,7 @@ const SearchEvent = ({navigation}) => {
                     showDetail ?
                     <View style={{flex: 1, backgroundColor: 'white'}}>
                         <View  style={{width: 40, height: 40, justifyContent: 'center', alignItems:'center', position:'absolute', top: 5, left: 20, zIndex: 10}}>
-                            <TouchableOpacity
-                                onPress={()=>goBack()}
-                            >
+                            <TouchableOpacity onPress={()=>goBack()}>
                                 <Image style = {{width:30, height:30}} source={require('../../images/back_white.png')}></Image>
                             </TouchableOpacity>
                         </View>
@@ -167,8 +156,24 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         margin: 5,
         color:'black',
-        borderColor: '#009688',
+        borderColor: 'orange',
+        borderRadius: 10,
         backgroundColor: '#FFFFFF',
+        shadowColor: 'black', shadowOffset:{width: 0, height: 5},
+        shadowRadius: 2, shadowOpacity: 0.3,
+        elevation: 10,
+    },
+    itemFlat:{
+        width: '49%',
+        justifyContent: 'center', 
+        alignItems:'center', 
+        margin: 2, 
+        borderRadius: 10,
+        backgroundColor: 'white',
+        shadowColor: 'black', shadowOffset:{width: 2, height: 5},
+        shadowRadius: 2, shadowOpacity: 0.3,
+        elevation: 10,
+        paddingVertical: 5,
     },
 });
 

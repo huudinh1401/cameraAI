@@ -57,7 +57,12 @@ export default class WeatherDaLat extends React.Component {
         {
           this.state.isLoading ?  (<ActivityIndicator size="large" color="#0000ff" />) :
           (<>
-              <View style ={{marginTop: -200, backgroundColor: 'rgba(238,130,238, 0.2)', marginHorizontal: 20, borderRadius: 20, padding: 30, alignItems:'center'}}>
+              <View 
+                style ={{
+                  marginTop: -200, backgroundColor: 'rgba(255,255,255, 0.2)', marginHorizontal: 20, 
+                  borderRadius: 20, padding: 30, alignItems:'center',
+                  shadowColor: 'black', shadowOffset:{width: 4, height:5}, shadowRadius: 2, shadowOpacity: 0.2,
+              }}>
                 <Text style ={{color: 'white', fontSize: 22}}> Thành phố Đà Lạt </Text>
                 <Text style = {{color:'#00FFFF', fontSize: 18}}>{currentDate}</Text>
                 <Text style ={{color:'yellow', fontSize: 22, marginTop: 30}}>{Description}</Text>

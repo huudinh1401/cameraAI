@@ -47,7 +47,8 @@ export default class CameraScreen extends React.Component {
             <ScrollView style = { styles.Scroll }>
                 <View style = { styles.viewCam }>
         {/* Cam 1*/}
-                    <View style={{flexDirection: 'row',flex: 1}}>
+                    <View style={{  flexDirection: 'row', flex: 1, 
+                                    shadowColor: 'black', shadowOffset:{width: 4, height:5}, shadowRadius: 2, shadowOpacity: 0.3, elevation: 10,}}>
                         <ItemCamera url = { rtsp1 } widthItem = {width2} navigation = {navigation}/>
                     </View>
 
@@ -89,7 +90,8 @@ export default class CameraScreen extends React.Component {
                     
 
  {/* Cam 2*/}
-                    <View style={{flexDirection: 'row',flex: 1}}>
+                    <View style={{  flexDirection: 'row',flex: 1,
+                                    shadowColor: 'black', shadowOffset:{width: 4, height:5}, shadowRadius: 2, shadowOpacity: 0.3, elevation: 10,}}>
                         <ItemCamera url = {rtsp2} widthItem = {width2} navigation = {navigation}/>
                     </View>
 
@@ -109,7 +111,8 @@ export default class CameraScreen extends React.Component {
                     </View>
 
   {/* Cam 3 */}
-                    <View style={{flexDirection: 'row',flex: 1}}>
+                    <View style={{  flexDirection: 'row', flex: 1,
+                                    shadowColor: 'black', shadowOffset:{width: 4, height:5}, shadowRadius: 2, shadowOpacity: 0.3, elevation: 10, }}>
                         <ItemCamera url = {rtsp3} widthItem = {width2} navigation = {navigation}/>
                     </View>
 

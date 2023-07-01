@@ -54,7 +54,12 @@ export default class WeatherHCM extends React.Component {
         {
           this.state.isLoading ?  (<ActivityIndicator size="large" color="#0000ff" />) :
           (<>
-              <View style ={{ backgroundColor: 'rgba(0,0,255, 0.5)', marginHorizontal: 20, borderRadius: 20, padding: 30, marginTop: -200, alignItems:'center'}}>
+              <View 
+                style ={{ 
+                  backgroundColor: 'rgba(0,0,255, 0.5)', marginHorizontal: 20, borderRadius: 20, 
+                  padding: 30, marginTop: -200, alignItems:'center',
+                  shadowColor: 'black', shadowOffset:{width: 4, height:5}, shadowRadius: 2, shadowOpacity: 0.2,
+                }}>
                   <Text style ={{color: 'white', fontSize: 22}}>Thành phố  Hồ Chí Minh</Text>
                   <Text style = {{color:'limegreen', fontSize: 18}}>{currentDate}</Text>
                   <Text style ={{color:'yellow', fontSize: 22, marginTop: 10}}>{Description}</Text>

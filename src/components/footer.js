@@ -5,7 +5,12 @@ export default class Footer extends React.Component {
   render() {
     const { navigation, numberNoti } = this.props;
     return (
-      <View style={{backgroundColor: '#DDDDDD', height: 70, borderTopRightRadius: 10, borderTopLeftRadius: 10,}}>
+      <View 
+        style={{
+          backgroundColor: '#DDDDDD', height: 70, borderTopRightRadius: 10, borderTopLeftRadius: 10,
+          shadowColor: 'black', shadowOffset:{width: 0, height: -2},
+          shadowRadius: 2, shadowOpacity: 0.3, elevation: 10,
+      }}>
       <View style = { styles.bgFooter }>
         <View style = { styles.iconfooter }>
             <TouchableOpacity onPress={() => navigation.navigate('Notify')}>

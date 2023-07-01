@@ -68,9 +68,7 @@ const AllEvent = ( {navigation}) => {
                 showDetail ? 
                 <View style={{flex: 1, backgroundColor: 'white'}}>
                     <View  style={{width: 40, height: 40, justifyContent: 'center', alignItems:'center', position:'absolute', top: 5, left: 20, zIndex: 10}}>
-                        <TouchableOpacity
-                            onPress={()=>goBack()}
-                        >
+                        <TouchableOpacity onPress={()=>goBack()}>
                             <Image style = {{width:30, height:30}} source={require('../../images/back_white.png')}></Image>
                         </TouchableOpacity>
                     </View>
@@ -78,40 +76,35 @@ const AllEvent = ( {navigation}) => {
                 </View>
                 
                 :
-                <View style={{width: '100%', height: '90%'}}>
-                    <TitleEvent col1={'Đối tượng '} col2={'Loại sự kiện'} col3={'Vị trí'} col4={'Thời gian'}/>
+                <View style={{width: '100%', height: '90%', justifyContent: 'center', alignItems:'center',}}>
+                    {/* <TitleEvent col1={'Đối tượng '} col2={'Loại sự kiện'} col3={'Vị trí'} col4={'Thời gian'}/> */}
                     <FlatList
                         data={arrEventAll}
                         keyExtractor={(item, index) => index}
-                        ItemSeparatorComponent={renderSeparator}
+                        //ItemSeparatorComponent={renderSeparator}
+                        horizontal={false}
+                        numColumns={2}
                         removeClippedSubviews={true}
                         refreshing={refresh}
                         onRefresh={()=>_refresh()}
-                        // getItemLayout = {(data, index) => ({
-                        //     length: 10,
-                        //     offset: 10 * index,
-                        //     index,
-                        // })}
+                        //getItemLayout = { (data, index) => ({ length: 10, offset: 10 * index, index }) }
                         renderItem={({item, index}) =>
-                            <View key={index}>
-                                <TouchableOpacity   
-                                    onPress={() => _onPressChiTiet(item.id)}
-                                >
-                                    <View style ={{ flexDirection: 'row', height: 45, justifyContent: 'center', backgroundColor: '#EEEEEE' }}>
-                                        <View style ={{flex: 1, flexDirection: 'row'}}>
-                                            <View style={{flex: 1.8, justifyContent: 'center', padding: 2}}>
-                                                <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 0.025*windowWidth}}>  {item.DoiTuong}</Text>
-                                            </View>
-                                            <View style={{flex: 3.5, borderLeftWidth: 0.5, borderLeftColor: 'gray', justifyContent: 'center'}}>
-                                                <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 0.025*windowWidth, textAlign: 'center'}}>{item.LoaiSuKien}</Text>
-                                            </View>
-                                            <View style={{flex: 2.5, borderLeftWidth: 0.5, borderLeftColor: 'gray', justifyContent: 'center'}}>
-                                                <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize:  0.025*windowWidth, textAlign: 'center'}}>{item.ViTri}</Text>
-                                            </View>
-                                            <View style={{flex: 2.2, borderLeftWidth: 0.5, borderLeftColor: 'gray', justifyContent: 'center'}}>
-                                                <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize:  0.025*windowWidth, textAlign: 'center'}}>{item.ThoiGian}</Text>
-                                            </View>
-                                        </View>
+                            <View key={index} style={styles.itemFlat}>
+                                <TouchableOpacity onPress={() => _onPressChiTiet(item.id)} >
+                                    <View style={{justifyContent: 'center',}}>
+                                        <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 13, textAlign: 'center', fontWeight: 'bold', marginBottom: 3}}>{item.DoiTuong}</Text>
+                                    </View>
+
+                                    <View style={{justifyContent: 'center'}}>
+                                        <Text style = {{color: 'black', fontSize: 11, textAlign: 'center', marginBottom: 3}}>{item.LoaiSuKien}</Text>
+                                    </View>
+
+                                    <View style={{justifyContent: 'center'}}>
+                                        <Text style = {{color: 'black', fontSize: 11, textAlign: 'center', marginBottom: 3}}>{item.ViTri}</Text>
+                                    </View>
+
+                                    <View style={{justifyContent: 'center'}}>
+                                        <Text style = {{color: 'black', fontSize: 11, textAlign: 'center', marginBottom: 3}}>{item.ThoiGian}</Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -127,20 +120,17 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    textTitle:{
-        color: 'black',
-        fontSize: 14,
-        textAlign: 'center',
-        fontWeight: 'bold'
-    },
-    btnPage:{
-        height: 35, 
-        width: 30, 
-        backgroundColor: '#990000', 
+    itemFlat:{
+        width: '49%',
+        justifyContent: 'center', 
         alignItems:'center', 
-        justifyContent:'center', 
-        marginLeft:5, 
-        borderRadius:7
+        margin: 2, 
+        borderRadius: 10,
+        backgroundColor: 'white',
+        shadowColor: 'black', shadowOffset:{width: 4, height: 5},
+        shadowRadius: 2, shadowOpacity: 0.3,
+        elevation: 10,
+        paddingVertical: 5,
     },
 
 });

@@ -5,7 +5,7 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
   StatusBar, Alert,
-  Platform,
+  Platform, Image
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -17,11 +17,8 @@ Platform.OS === 'ios' ? null : PermissionsAndroid.request(PermissionsAndroid.PER
 
 async function requestUserPermission() {
   const authStatus = await messaging().requestPermission();
-  const enabled =
-    authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-    authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-  if (enabled) {
-   // console.log('Authorization status:', authStatus);
+  const enabled = authStatus === messaging.AuthorizationStatus.AUTHORIZED || authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+  if (enabled) { // console.log('Authorization status:', authStatus);
   }
 }
 
@@ -75,7 +72,7 @@ const LoginScreen =({navigation}) =>{
   const saveID = async (value) => {
     try {
       await AsyncStorage.setItem('myID', value);
-    } catch (error) { }
+    } catch (error) {}
   };
   const getID = async () => {
     try {
@@ -85,56 +82,60 @@ const LoginScreen =({navigation}) =>{
   };
     return (
       <View style = {{flex: 1,}}>
-        <ImageBackground source={require('../images/imageLogin.jpg')} style = {{flex: 1, resizeMode: "cover", justifyContent: "center", flexDirection: 'column'}}>
+        <ImageBackground source={require('../images/nenLogin.jpg')} style = {{flex: 1, resizeMode: "cover", justifyContent: "center", flexDirection: 'column'}}>
           <StatusBar barStyle={'light-content'}/>
-          <KeyboardAvoidingView behavior='padding' style = {{flex: 1}}>
-              <View style = {{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <View >
-                  <Text style = {{ color: '#FF0000', fontSize: 28, fontWeight: 'bold', textAlign: 'center' }}>Camera An Ninh - AI</Text>
-                  <Text style = {{ color: '#66FF00', fontSize: 20, fontWeight: 'bold', textAlign: 'center' }}>Thông Tin Đăng Nhập</Text>
+          <KeyboardAvoidingView 
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'} 
+            style = {{flex: 1, alignItems: 'center', justifyContent: 'center'}}
+          >
+                <View style = {{ alignItems: 'center', justifyContent: 'center' }}>
+                  <View style = {{  width: 120, height: 120, alignItems: 'center', justifyContent: 'center', shadowColor: 'black', shadowOffset:{width: 0, height: 5}, shadowRadius: 2, shadowOpacity: 0.5}}>
+                    <Image style = {{  width: 120, height: 120, marginBottom: 10}} source={require('../images/logoVn.png')} />
+                  </View>
+                  <View style={{shadowColor: 'black', shadowOffset:{width: 1, height: 3}, shadowRadius: 2, shadowOpacity: 0.5}}>
+                    <Text style = {{ color: '#FF0000', fontSize: 24, fontWeight: 'bold', textAlign: 'center'}}>Camera an ninh - AI</Text>
+                    <Text style = {{ color: '#00FFFF', fontSize: 18, fontWeight: 'bold', textAlign: 'center'}}>Thông tin đăng nhập</Text>
+                  </View>
                 </View>
                   
-                  <View style = {{ height: 80, padding: 15, marginTop: 20 }}>
+                <View style = {{padding: 15, marginTop: 5}}>
 
-                    {/* Text input nhap tai khoan */} 
-                    <View style = {styles.viewID}>
-                      <Icon name='person-circle' type='ionicon' />
-                      <TextInput style = {{paddingHorizontal: 15, width: 250, height:40, color: 'black', fontSize: 11, marginTop: 5}}
-                        placeholder= 'Nhập tên tài khoản'
-                        placeholderTextColor= {'grey'}
-                        returnKeyType='next'
-                        autoCorrect={false}
-                        autoCapitalize= 'none'
-                        onChangeText={(text) => setId(text)}
-                        value={id}
-                      />
-                    </View>
+                  {/* Text input nhap tai khoan */} 
+                  <View style = {styles.viewID}>
+                    <Icon name='person-circle' type='ionicon' />
+                    <TextInput style = {{paddingHorizontal: 15, width: 250, height:40, color: 'black', fontSize: 12, marginTop: 5}}
+                      placeholder= 'Nhập tên tài khoản'
+                      placeholderTextColor= {'grey'}
+                      returnKeyType='next'
+                      autoCorrect={false}
+                      autoCapitalize= 'none'
+                      onChangeText={(text) => setId(text)}
+                      value={id}
+                    />
+                  </View>
 
-                    {/* Text input nhap mat khau */}
-                    <View style = {styles.viewID}>
-                      <Icon name='key' type='ionicon' />
-                      <TextInput style = {{paddingHorizontal: 15, width: 220,height:40, color: 'black',fontSize: 11, marginTop: 5}}
-                        placeholder= 'Nhập mật khẩu'
-                        placeholderTextColor= {'grey'}
-                        returnKeyType='go'
-                        secureTextEntry = {hidepassword}
-                        autoCapitalize= 'none'
-                        autoCorrect={false}
-                        onChangeText={(text) => setPassword(text)}
-                        value={password}
-                      />
-
-                      {/* btn an, hien mat khau */}
-                      <TouchableOpacity style = {{position: 'absolute', right: 3}}  onPress={()=>setHidepassword(!hidepassword)}>
-                        { !hidepassword ?  <Icon name='eye-outline' type='ionicon' /> : <Icon name='eye-off-outline' type='ionicon' />  }
-                      </TouchableOpacity>
-                    </View>
-
-                    {/* btn Dang Nhap */}
-                    <TouchableOpacity style = {styles.buttonLogin}  onPress={()=>handleLogin(id)}>
-                      <Text style = {{ color: 'white', fontSize: 18, textAlign: 'center'}}>Đăng Nhập</Text>
+                  {/* Text input nhap mat khau */}
+                  <View style = {styles.viewID}>
+                    <Icon name='key' type='ionicon' />
+                    <TextInput style = {{paddingHorizontal: 15, width: 220, height:40, color: 'black', fontSize: 12, marginTop: 5}}
+                      placeholder= 'Nhập mật khẩu'
+                      placeholderTextColor= {'grey'}
+                      returnKeyType='go'
+                      secureTextEntry = {hidepassword}
+                      autoCapitalize= 'none'
+                      autoCorrect={false}
+                      onChangeText={(text) => setPassword(text)}
+                      value={password}
+                    />
+                    {/* btn an, hien mat khau */}
+                    <TouchableOpacity style = {{position: 'absolute', right: 3}}  onPress={()=>setHidepassword(!hidepassword)}>
+                      { !hidepassword ?  <Icon name='eye-outline' type='ionicon' /> : <Icon name='eye-off-outline' type='ionicon' />  }
                     </TouchableOpacity>
                   </View>
+                  {/* btn Dang Nhap */}
+                  <TouchableOpacity style = {styles.buttonLogin}  onPress={()=>handleLogin(id)}>
+                    <Text style = {{ color: 'white', fontSize: 16, textAlign: 'center'}}>Đăng nhập</Text>
+                  </TouchableOpacity>
               </View>
           </KeyboardAvoidingView>
         </ImageBackground>
@@ -147,12 +148,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',       flexDirection: 'row',         backgroundColor: 'rgba(255, 255, 255, 0.8)',
     borderColor: 'white',       borderWidth: 1,               paddingHorizontal: 10,
     marginBottom: 10,           marginHorizontal: 30,         height: 45,
-    width: 300
+    width: 300,                 borderRadius: 5,
+    shadowColor: 'black',       shadowOffset:{width: 4, height:5},
+    shadowRadius: 2,            shadowOpacity: 0.3,
   },
-  buttonLogin: {
-    marginTop: 15,              backgroundColor: '#0099FF',   paddingVertical: 8,
+  buttonLogin:{
+    marginTop: 10,              backgroundColor: '#990000',   paddingVertical: 8,
     marginHorizontal: 80,       borderRadius: 20,             borderColor: 'white',
-    borderWidth:0.5,            height: 45,                   justifyContent: 'center'
+    borderWidth:0.5,            height: 45,                   justifyContent: 'center',
+    shadowColor: 'black',       shadowOffset:{width: 4, height:5},
+    shadowRadius: 2,            shadowOpacity: 0.3,
+    elevation: 10,
   },
 
 });

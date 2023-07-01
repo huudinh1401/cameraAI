@@ -62,7 +62,7 @@ export default class DsCamera extends React.Component {
                 style={{flex: 1.5, justifyContent: 'center', alignItems:'center'}}
                 onPress={()=>navigation.goBack()}
             >
-                <Image style = {{width:30, height:30}} source={require('../images/back_white.png')}></Image>
+                <Image style = {{width:25, height:25}} source={require('../images/back_white.png')}></Image>
             </TouchableOpacity>
             <View style={{flex: 7, justifyContent: 'center', alignItems:'center'}}>
                 <Text style = {{color: 'white', fontSize: 18, textAlign: 'center'}}>Danh sách Camera</Text>
@@ -71,7 +71,7 @@ export default class DsCamera extends React.Component {
                 style={{flex: 1.5, justifyContent: 'center', alignItems:'center'}}
                 onPress={()=>navigation.navigate('Home')}
             >
-                <Image style = {{width:35, height: 35}} source={require('../images/home.png')}></Image>
+                <Image style = {{width:25, height: 25}} source={require('../images/home.png')}></Image>
             </TouchableOpacity>
           </View>
           <View style={{height: '100%', width:'100%', backgroundColor:'white'}}>

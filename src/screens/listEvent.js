@@ -34,35 +34,38 @@ export default class ListEvent extends React.Component {
   
   render() {
     const { navigation } = this.props;
-    const backgroundEventAll = this.state.eventAll ? 'yellow' : 'blanchedalmond';
-    const backgroundEventBSX = this.state.eventBSX ? 'yellow' : 'blanchedalmond';
-    const backgroundEventFace = this.state.eventFace ? 'yellow' : 'blanchedalmond';
-    const backgroundEventDD = this.state.eventDD ? 'yellow' : 'blanchedalmond';
+    const { eventAll, eventBSX, eventFace, eventDD} = this.state;
+    const borderColorAll    = eventAll  ?   'orange' : '';
+    const borderColorBSX    = eventBSX  ?   'orange' : '';
+    const borderColorFace   = eventFace ?   'orange' : '';
+    const borderColorDD     = eventDD   ?   'orange' : '';
     
     return (
         <View style = { styles.mainView }>
             <StatusBar barStyle={'light-content'}/>
-            <View style={{flexDirection: 'row', height: 50, width: '100%', backgroundColor: backgroundEventAll, alignItems: 'center', borderBottomColor: 'gray', borderBottomWidth: 0.5}}>
-                <TouchableOpacity style={{flex: 8.5, alignItems: 'center'}} onPress = { () => this._onPressEvent(1)}>
-                    <Text style={{fontSize: 16, color: 'black'}}>Tất cả sự kiện</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={{flexDirection: 'row', height: 50, width: '100%', backgroundColor:'#fff', borderBottomColor: 'gray', borderBottomWidth: 0.5}}>
-                <View style={{flex: 1/3, backgroundColor: backgroundEventBSX, justifyContent: 'center', padding: 3}}>
+            
+            <View style={styles.title}>
+                <View style={{flex: 1/3, justifyContent: 'center', padding: 3, height: 45, borderBottomWidth: eventAll ? 3 : 0, borderBottomColor: borderColorAll}}>
+                    <TouchableOpacity onPress = { () => this._onPressEvent(1)} >
+                        <Text style={{fontSize: 13, textAlign: 'center', color: 'black', fontWeight: eventAll ? 'bold' : 'normal'}}>Tất cả</Text>
+                    </TouchableOpacity>
+                </View>
+
+                <View style={{flex: 1/3, justifyContent: 'center', padding: 3, height: 45, borderBottomWidth: eventBSX ? 3 : 0, borderBottomColor: borderColorBSX}}>
                     <TouchableOpacity onPress = { () => this._onPressEvent(2)} >
-                        <Text style={{fontSize: 12, textAlign: 'center', color: 'black'}}>Nhận diện biển số xe</Text>
+                        <Text style={{fontSize: 13, textAlign: 'center', color: 'black', fontWeight: eventBSX ? 'bold' : 'normal'}}>Biển số xe</Text>
                     </TouchableOpacity>
                 </View>
 
-                <View style={{flex: 1/3, backgroundColor: backgroundEventFace, justifyContent: 'center', padding: 3, borderLeftColor: 'gray', borderLeftWidth: 0.5}}>
+                <View style={{flex: 1/3, justifyContent: 'center', padding: 3, height: 45, borderBottomWidth: eventFace ? 3 : 0, borderBottomColor: borderColorFace}}>
                     <TouchableOpacity onPress = { () => this._onPressEvent(3)} >
-                        <Text style={{fontSize: 12, textAlign: 'center', color: 'black'}}> Nhận diện khuôn mặt </Text>
+                        <Text style={{fontSize: 13, textAlign: 'center', color: 'black', fontWeight: eventFace ? 'bold' : 'normal'}}>Khuôn mặt</Text>
                     </TouchableOpacity>
-
                 </View>
-                <View style={{flex: 1/3, backgroundColor: backgroundEventDD, justifyContent: 'center', padding: 3, borderLeftColor: 'gray', borderLeftWidth: 0.5}}>
+                
+                <View style={{flex: 1/3, justifyContent: 'center', padding: 3, height: 45, borderBottomWidth: eventDD ? 3 : 0, borderBottomColor: borderColorDD}}>
                     <TouchableOpacity onPress = { () => this._onPressEvent(4)}  >
-                        <Text style={{fontSize: 12, textAlign: 'center', color: 'black'}}> Nhận diện đám đông </Text>
+                        <Text style={{fontSize: 13, textAlign: 'center', color: 'black', fontWeight: eventDD ? 'bold' : 'normal'}}>Đám đông</Text>
                     </TouchableOpacity>
                 </View>
                 
@@ -82,6 +85,18 @@ export default class ListEvent extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  mainView: { flex: 1, },
+    mainView: { flex: 1, },
+    title: {
+        flexDirection: 'row', 
+        height: 45, width: '100%', 
+        backgroundColor:'#fff', 
+        borderBottomColor: 'gray', 
+        borderBottomWidth: 0.5,
+        shadowColor: '#00000',
+        shadowOffset:{width: 0, height:3},
+        shadowRadius: 2,
+        shadowOpacity: 0.3,
+        elevation: 10,
+    },
  
 });

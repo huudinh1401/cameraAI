@@ -36,7 +36,7 @@ const InfoScreen = ({navigation}) => {
                 <Image style = {{width:30, height:30}} source={require('../images/back_white.png')}></Image>
             </TouchableOpacity>
             <View style={{flex: 7, justifyContent: 'center', alignItems:'center'}}>
-                <Text style = {{color: 'white', fontSize: 20, textAlign: 'center', fontWeight:'bold'}}>Thông tin ứng dụng</Text>
+                <Text style = {{color: 'white', fontSize: 20, textAlign: 'center'}}>Thông tin ứng dụng</Text>
             </View>
             <TouchableOpacity
                 style={{flex: 1.5, justifyContent: 'center', alignItems:'center'}}
@@ -46,7 +46,12 @@ const InfoScreen = ({navigation}) => {
             </TouchableOpacity>
         </View>
         <View style = {{flex: 1, backgroundColor:'whitesmoke'}}>
-          <View style = {{ alignItems: 'center', marginTop: 10}}>
+          <View 
+            style = {{ 
+              alignItems: 'center', marginTop: 10,
+              shadowColor: 'black', shadowOffset:{width: 3, height: 5}, 
+              shadowRadius: 2, shadowOpacity: 0.4, elevation: 10,
+          }}>
               <Image style = {{marginTop: 5, width: 80, height: 80}} source={require('../images/NL.jpg')} /> 
           </View>
           
@@ -100,7 +105,7 @@ const InfoScreen = ({navigation}) => {
               </View>
           </View>
           <View style = {{flex: 1}}>
-            <Text style = {{marginTop: 10, textAlign: 'center', fontSize: 12, color: 'gray',}}>© Bản quyền ứng dụng thuộc</Text>
+            <Text style = {{marginTop: 20, textAlign: 'center', fontSize: 12, color: 'gray',}}>© Bản quyền ứng dụng thuộc</Text>
             <Text style = {{marginTop: 3, textAlign: 'center', fontSize: 14, color: 'gray'}}>Công Ty TNHH Nguyên Luân</Text>
           </View>
           
@@ -114,7 +119,12 @@ const InfoScreen = ({navigation}) => {
           <View style={{ width: '100%', height:'100%', backgroundColor: 'beige', justifyContent:'center', alignItems:'center',}}>
             <GioiThieu/>
             <TouchableOpacity 
-              style = {{justifyContent:'center', alignItems:'center', position:'absolute', bottom: 50, left: 150, right: 150, backgroundColor:'#990000', height: 40, borderRadius:10}} 
+              style = {{
+                justifyContent:'center', alignItems:'center', position:'absolute', 
+                bottom: 50, left: 150, right: 150, backgroundColor:'#990000', height: 40, borderRadius:10,
+                shadowColor: 'black', shadowOffset:{width: 4, height:5},
+                shadowRadius: 2, shadowOpacity: 0.3, elevation: 10,
+              }} 
               onPress={() => setModalVisible(false)}
             >
               <Text style = {{ color:'white', fontSize: 14 }}>Quay lại</Text>
@@ -130,12 +140,15 @@ export default InfoScreen;
 const styles = StyleSheet.create({
   info: {
     marginTop: 15, marginHorizontal: 15, backgroundColor: 'white', flexDirection: 'column', borderRadius: 10,
+    shadowColor: 'black', shadowOffset:{width: 0, height: 5}, 
+    shadowRadius: 2, shadowOpacity: 0.3,
+    elevation: 10,
   },
   miniInfoTop: {
-    paddingHorizontal: 8, paddingVertical: 15, flexDirection: 'row', alignItems: 'center'
+    paddingHorizontal: 8, paddingVertical: 15, flexDirection: 'row', alignItems: 'center',
   },
   miniInfo: {
-    paddingHorizontal: 8, paddingVertical: 15, flexDirection: 'row', borderTopColor: 'grey', borderTopWidth: 0.3, alignItems:'center'
+    paddingHorizontal: 8, paddingVertical: 15, flexDirection: 'row', borderTopColor: 'grey', borderTopWidth: 0.3, alignItems:'center',
   },
   image: {
      width: 20, height: 20, 

@@ -57,9 +57,7 @@ const BsxEvent =({navigation})=> {
         setRefresh(true)
         getArrEvent()
     }
-    const renderSeparator = () => {
-        return ( <View style={{height: 0.5, width: "100%", backgroundColor: "gray"}}/>);
-    };
+    //const renderSeparator = () => { return ( <View style={{height: 0.5, width: "100%", backgroundColor: "gray"}}/>); };
     return (
         <View style = { styles.container }>
             { showIconBar ? <IconBar navigation={navigation}/> : null }
@@ -78,37 +76,36 @@ const BsxEvent =({navigation})=> {
                 
                 :
                 <View style={{width: '100%', height: '90%'}}>
-                    <TitleEvent col1={'Đối tượng '} col2={'Camera'} col3={'Vị trí'} col4={'Thời gian'}/>
                     <FlatList
                         data={arrEventBsx}
                         keyExtractor={(item, index) => index}
-                        ItemSeparatorComponent={renderSeparator}
+                        //ItemSeparatorComponent={renderSeparator}
                         initialNumToRender={10}
+                        horizontal={false}
+                        numColumns={2}
                         refreshing={refresh}
                         onRefresh={()=>_refresh()}
                         renderItem={({item, index}) =>
-                            <View>
-                                <TouchableOpacity key={index} onPress={() => _onPressChiTiet(item.id)} >
-                                    <View style ={{ flexDirection: 'row', height: 45, justifyContent: 'center', backgroundColor: '#EEEEEE' }}>
-                                        <View style ={{flex: 1, flexDirection: 'row'}}>
-                                            <View style={{flex: 1.8, justifyContent: 'center', padding: 2}}>
-                                                <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 11}}> {item.DoiTuong}</Text>
-                                            </View>
-                                            <View style={{flex: 3.5, borderLeftWidth: 0.5, borderLeftColor: 'gray', justifyContent: 'center'}}>
-                                                <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 11, textAlign: 'center'}}>{item.Camera}</Text>
-                                            </View>
-                                            <View style={{flex: 2.5, borderLeftWidth: 0.5, borderLeftColor: 'gray', justifyContent: 'center'}}>
-                                                <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 11, textAlign: 'center'}}>{item.ViTri}</Text>
-                                            </View>
-                                            <View style={{flex: 2.2, borderLeftWidth: 0.5, borderLeftColor: 'gray', justifyContent: 'center'}}>
-                                                <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 11, textAlign: 'center'}}>{item.ThoiGian}</Text>
-                                            </View>
-                                        </View>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                        }
-                    />
+                        <View key={index} style={styles.itemFlat}>
+                            <TouchableOpacity onPress={() => _onPressChiTiet(item.id)} >
+                                <View style={{justifyContent: 'center',}}>
+                                    <Text style = {{color: item.CanhBao === '0'? 'green' : 'red', fontSize: 13, textAlign: 'center', fontWeight: 'bold', marginBottom: 3}}>{item.DoiTuong}</Text>
+                                </View>
+
+                                <View style={{justifyContent: 'center'}}>
+                                    <Text style = {{color: 'black', fontSize: 11, textAlign: 'center', marginBottom: 3}}>{item.Camera}</Text>
+                                </View>
+
+                                <View style={{justifyContent: 'center'}}>
+                                    <Text style = {{color: 'black', fontSize: 11, textAlign: 'center', marginBottom: 3}}>{item.ViTri}</Text>
+                                </View>
+
+                                <View style={{justifyContent: 'center'}}>
+                                    <Text style = {{color: 'black', fontSize: 11, textAlign: 'center', marginBottom: 3}}>{item.ThoiGian}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                    }/>
                 </View>
             }
             
@@ -118,10 +115,16 @@ const BsxEvent =({navigation})=> {
 export default BsxEvent;
 const styles = StyleSheet.create({
     container: { flex: 1 },
-    textTitle:{
-        color: 'black',
-        fontSize: 14,
-        textAlign: 'center',
-        fontWeight: 'bold'
+    itemFlat:{
+        width: '49%',
+        justifyContent: 'center', 
+        alignItems:'center', 
+        margin: 2, 
+        borderRadius: 10,
+        backgroundColor: 'white',
+        shadowColor: 'black', shadowOffset:{width: 4, height: 5},
+        shadowRadius: 2, shadowOpacity: 0.3,
+        elevation: 10,
+        paddingVertical: 5,
     },
 });

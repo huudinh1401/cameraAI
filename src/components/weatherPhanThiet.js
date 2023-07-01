@@ -55,7 +55,12 @@ export default class WeatherPhanThiet extends React.Component {
           {
             this.state.isLoading ?  (<ActivityIndicator size="large" color="#0000ff" />) :
             (<>
-                <View style ={{ backgroundColor: 'rgba(25, 25, 112, 0.5)', marginHorizontal: 20, borderRadius: 20, padding: 30, marginTop: -200, alignItems:'center'}}>
+                <View 
+                  style ={{ 
+                    backgroundColor: 'rgba(25, 25, 112, 0.5)', marginHorizontal: 20, 
+                    borderRadius: 20, padding: 30, marginTop: -200, alignItems:'center',
+                    shadowColor: 'black', shadowOffset:{width: 0, height:0}, shadowRadius: 1, shadowOpacity: 0.2,
+                  }}>
             
                   <Text style ={{color: 'white', fontSize: 22}}> Thành phố  Phan Thiết </Text>
                   <Text style = {{color:'#00FFFF', fontSize: 18}}>{this.state.currentDate}</Text>

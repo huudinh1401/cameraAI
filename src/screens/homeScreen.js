@@ -33,9 +33,7 @@ const HomeScreen = ({navigation}) => {
   }, [dataNoti]);
   useEffect(() => {
     const notification = async () =>{
-      messaging().setBackgroundMessageHandler(async remoteMessage => {
-        navigation.navigate('Notify')
-      });
+      messaging().setBackgroundMessageHandler(async remoteMessage => { navigation.navigate('Notify') });
       
       //messaging().onNotificationOpenedApp(remoteMessage => { Alert.alert('Xem thông báo!'); })
       const unsubscribe = messaging().onMessage(async remoteMessage => {
@@ -65,9 +63,13 @@ const HomeScreen = ({navigation}) => {
           </View>
           <View  style = {styles.title}>
             <Image style = {{width:45, height: 45}} source={require('../images/NL.jpg')} />
-            <Text style = {{paddingLeft: 10, fontSize: 20, color: '#fff', fontWeight: 'bold'}}>Camera An Ninh - AI</Text>
+            <Text style = {{paddingLeft: 10, fontSize: 16, color: '#fff', fontWeight: 'bold'}}>Camera An Ninh - AI</Text>
           </View>
-          <View style = {{flex: 1, backgroundColor: 'rgba(255,255,255, 0.4)', borderTopLeftRadius: 15, borderTopRightRadius: 15, marginTop: -15,}}>
+          <View 
+            style = {{
+              flex: 1, backgroundColor: 'rgba(255,255,255, 0.4)', borderTopLeftRadius: 15, borderTopRightRadius: 15, marginTop: -15,
+              shadowColor: 'black', shadowOffset:{width: 0, height: -8}, shadowRadius: 2, shadowOpacity: 0.3,
+          }}>
             <View style ={{ flexDirection:'row', marginTop: 30,  paddingLeft: 20, alignItems:'center', }}>
               <Image style = {{width:25, height: 25, }} source={require('../images/service.png')}></Image>
               <Text 
@@ -80,10 +82,10 @@ const HomeScreen = ({navigation}) => {
             </View>
             <ScrollView style = {styles.viewScroll}>
               
-                  <RowNum1 navigation = {navigation}/>
-                  <RowNum2 navigation = {navigation}/>
-                  
-                  <View style = {{height: 100}}></View>
+              <RowNum1 navigation = {navigation}/>
+              <RowNum2 navigation = {navigation}/>
+              
+              <View style = {{height: 100}}></View>
             </ScrollView>
           </View>
           
@@ -115,9 +117,9 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   viewScroll:{
-    marginTop: 10,
+    marginTop: 3,
     flex: 1,
-    marginHorizontal: 20
+    marginHorizontal: 20,
   },
   
 });

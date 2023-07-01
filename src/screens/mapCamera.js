@@ -198,7 +198,8 @@ const styles = StyleSheet.create({
         zIndex: 5,
         width: windowWidth-20,
         position: "absolute", 
-        top: 5
+        top: 5,
+        shadowColor: 'black', shadowOffset:{width: 4, height:5}, shadowRadius: 2, shadowOpacity: 0.3
     },
     textInputStyle: {
         flex: 9,

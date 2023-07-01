@@ -66,16 +66,16 @@ const ChiTietDoiTuong = ({navigation, id}) => {
             
             {
                 isLoading ? 
-                <View style = {{alignItems: 'center', justifyContent: 'center', backgroundColor: 'beige', height: 500}}>
-                  <Image style = {{height: 150, width: 150, marginBottom: 30, marginTop:-100}} source={require('../images/cam_ko_nen.jpg')} />
+                <View style = {{alignItems: 'center', justifyContent: 'center', backgroundColor: 'beige', flex: 1}}>
+                  <Image style = {{height: 150, width: 150, marginBottom: 30, marginTop:-300}} source={require('../images/cam_ko_nen.jpg')} />
                   <LinesLoader />
                 </View>
                 :
-                <View style={{backgroundColor: 'beige', flex: 1, paddingTop: 10}}>
+                <View style={{backgroundColor: 'white', flex: 1, paddingTop: 10}}>
                     <View style={{alignItems: 'center', marginVertical: 10}}>
                         <Text style={{color: colorText, fontSize: 13, fontWeight: 'bold'}}>{note}</Text>
                     </View>
-                    <View style={{marginTop: 10}}>
+                    <View style={{marginTop: 3}}>
                         <View style={{marginLeft: 5, flexDirection: 'row', alignItems: 'center'}}>
                             <View style={{flex:0.8}}>
                                 <Icon name={'image-outline'} type='ionicon' /> 
@@ -85,7 +85,10 @@ const ChiTietDoiTuong = ({navigation, id}) => {
                             </View>
                             <View style={{flex:6.7}}/>
                         </View>
-                        <View style={{alignItems:'center', height: 120, justifyContent: 'center'}}>
+                        <View style={{
+                            alignItems:'center', height: 120, justifyContent: 'center',
+                            shadowColor: 'black', shadowOffset:{width: 4, height: 5}, shadowRadius: 2, shadowOpacity: 0.5, elevation: 10
+                        }}>
                             {
                                 image === '' ?
                                 <Image 
@@ -100,7 +103,7 @@ const ChiTietDoiTuong = ({navigation, id}) => {
                             }
                         </View>
                     </View>
-                    <View style = {{flexDirection: 'row', marginLeft: 5, alignItems:'center'}}>
+                    <View style = {{flexDirection: 'row', marginLeft: 5, alignItems:'center', marginTop: 8}}>
                         <View style={{flex:0.8}}>
                             <Icon name={'man-outline'} type='ionicon' /> 
                         </View>
@@ -112,7 +115,7 @@ const ChiTietDoiTuong = ({navigation, id}) => {
                         </View>
                     </View>
 
-                    <View style = {{flexDirection: 'row', marginTop: 5, marginLeft: 5, alignItems:'center'}}>
+                    <View style = {{flexDirection: 'row', marginTop: 3, marginLeft: 5, alignItems:'center'}}>
                         <View style={{flex:0.8}}>
                             <Icon name={'checkmark-done-outline'} type='ionicon' /> 
                         </View>
@@ -124,7 +127,7 @@ const ChiTietDoiTuong = ({navigation, id}) => {
                         </View>
                     </View>
 
-                    <View style = {{flexDirection: 'row', marginTop: 5, alignItems: 'center', marginLeft: 5}}>
+                    <View style = {{flexDirection: 'row', marginTop: 3, alignItems: 'center', marginLeft: 5}}>
                         <View style={{flex:0.8}}>
                                 <Icon name={'hourglass-outline'} type='ionicon' /> 
                         </View>
@@ -135,7 +138,7 @@ const ChiTietDoiTuong = ({navigation, id}) => {
                             <Text style={{color: 'blue', fontSize: 14}}>{time}</Text>
                         </View>
                     </View>
-                    <View style = {{flexDirection: 'row', marginTop: 5, alignItems:'center', marginLeft: 5}}>
+                    <View style = {{flexDirection: 'row', marginTop: 3, alignItems:'center', marginLeft: 5}}>
                         <View style={{flex:0.8}}>
                             <Icon name={'videocam-outline'} type='ionicon' /> 
                         </View>
@@ -146,7 +149,7 @@ const ChiTietDoiTuong = ({navigation, id}) => {
                             <Text style={{color: 'blue', fontSize: 14}}>{cam}</Text>
                         </View>
                     </View>
-                    <View style = {{flexDirection: 'row', marginTop: 5, alignItems: 'center', marginLeft: 5}}>
+                    <View style = {{flexDirection: 'row', marginTop: 3, alignItems: 'center', marginLeft: 5}}>
                         <View style={{flex:0.8}}>
                             <Icon name={'location-outline'} type='ionicon' /> 
                         </View>
@@ -157,7 +160,7 @@ const ChiTietDoiTuong = ({navigation, id}) => {
                             <Text style={{color: 'blue', fontSize: 14}}>{location}</Text>
                         </View>
                     </View>
-                    <View style = {{marginTop: 5}}>
+                    <View style = {{marginTop: 3}}>
                         <View style={{ marginLeft: 5, alignItems:'center', flexDirection: 'row'}}>
                             <View style={{flex:0.8}}>
                                 <Icon name={'image-outline'} type='ionicon' /> 
@@ -167,7 +170,11 @@ const ChiTietDoiTuong = ({navigation, id}) => {
                             </View>
                             <View style={{flex: 5.7, marginLeft: 5}}/>
                         </View>
-                        <View style={{alignItems:'center', marginTop: 5}}>
+                        <View 
+                            style={{
+                                alignItems:'center', marginTop: 5,
+                                shadowColor: 'black', shadowOffset:{width: 4, height: 5}, shadowRadius: 2, shadowOpacity: 0.5, elevation: 10
+                        }}>
                             {
                                 imageTongQuan !== '' ? 
                                 <TouchableOpacity
@@ -222,19 +229,8 @@ const ChiTietDoiTuong = ({navigation, id}) => {
                         </View>
                         
                     </View>
-                    <View style={{height: 300}}>
-                            <Text>dasfdasfasf</Text>
-                            <Text>dasfdasfasf</Text>
-                            <Text>dasfdasfasf</Text>
-                            <Text>dasfdasfasf</Text>
-                            <Text>dasfdasfasf</Text>
-                            <Text>dasfdasfasf</Text>
-                            <Text>dasfdasfasf</Text>
-
-                         </View>
                 </View>
             }
-        
         </View>
     );
 }
@@ -242,7 +238,7 @@ export default ChiTietDoiTuong;
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor:'beige',
+        backgroundColor:'white',
     },
     textTitle:{
         color: 'black',

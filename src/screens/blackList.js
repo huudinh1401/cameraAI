@@ -17,72 +17,47 @@ const BlackList = ({navigation}) => {
     useEffect(() => {
         fetch(urlBlackList)
             .then((response) => response.json())
-            .then((responseJson) => {
-                setBlackList(responseJson);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-        }, [blackList]);
+            .then((responseJson) => { setBlackList(responseJson); })
+            .catch((error) => { console.error(error); });
+    }, [blackList]);
+
     const ItemView = ({item, index}) => {
         return (
-            <TouchableOpacity   
-                onPress={() => _onPressHisItemBlack(item.DoiTuong)}
-            >
-                <View style ={{flexDirection: 'row', height: 50, justifyContent: 'center', backgroundColor: 'beige'}}>
-                    <View style ={{flex: 1, flexDirection: 'row'}}>
-                        <View style={{flex: 1, justifyContent: 'center'}}>
-                            <Text style = {{color: 'blue', fontSize: 12, textAlign: 'center'}}> {index+1}</Text>
+            <View style={styles.itemFlat}>
+                <TouchableOpacity style={{flexDirection:'row'}} onPress={() => _onPressHisItemBlack(item.DoiTuong)}>
+                    <View style={{justifyContent: 'center', alignItems: 'center', flex: 2}}>
+                        <Text style = {{color: 'black', fontSize: 13, textAlign: 'center', marginBottom: 5, fontWeight: 'bold'}}>{index+1}</Text>
+                    </View>
+                    <View style={{justifyContent: 'center', flex: 8}}>
+                        <View style={{justifyContent: 'center',}}>
+                            <Text style = {{color: 'red', fontSize: 13, textAlign: 'center', fontWeight: 'bold', marginBottom: 5}}>{item.DoiTuong}</Text>
                         </View>
-                        <View style={{flex: 2, justifyContent: 'center', borderLeftWidth: 0.5, borderLeftColor: 'gray'}}>
-                            <Text style = {{color: 'blue', fontSize: 12}}>  {item.DoiTuong}</Text>
+
+                        <View style={{justifyContent: 'center'}}>
+                            <Text style = {{color: 'black', fontSize: 11, textAlign: 'center', marginBottom: 5}}>{item.LoaiSuKien}</Text>
                         </View>
-                        <View style={{flex: 3.5, borderLeftWidth: 0.5, borderLeftColor: 'gray', justifyContent: 'center'}}>
-                            <Text style = {{color: 'blue', fontSize: 12}}>  {item.LoaiSuKien}</Text>
-                        </View>
-                        <View style={{flex: 3.5, borderLeftWidth: 0.5, borderLeftColor: 'gray', justifyContent: 'center'}}>
-                            <Text style = {{color: 'blue', fontSize: 12, textAlign: 'center'}}>{item.ThoiGian}</Text>
+
+                        <View style={{justifyContent: 'center'}}>
+                            <Text style = {{color: 'black', fontSize: 11, textAlign: 'center', marginBottom: 5}}>{item.ThoiGian}</Text>
                         </View>
                     </View>
-                </View>
-            </TouchableOpacity> 
+                </TouchableOpacity>
+            </View>
         );
     };
 
-    const ItemSeparatorView = () => {
-        return ( <View  style={{ height: 3, width: '100%', backgroundColor: '#C8C8C8' }} /> );
-    };
     const _onPressHisItemBlack = (name) =>{ navigation.navigate('HisItemBlack',{name})  };
 
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
-            <View >
-                <View style={{flexDirection:'row', height: 50, backgroundColor: '#cfe2ff', borderColor: 'black', borderBottomWidth: 3, borderTopWidth: 0.5}}>
-                    <View style={{flex: 1, justifyContent: 'center'}}>
-                        <Text style = {styles.textTitle}>STT</Text>
-                    </View>
-                    <View style={{flex: 2, justifyContent: 'center', borderLeftWidth: 0.5, borderColor: 'black'}}>
-                        <Text style = {styles.textTitle}>Đối tượng</Text>
-                    </View>
-
-                    <View style={{flex: 3.5, justifyContent: 'center', borderLeftWidth: 0.5, borderColor: 'black'}}>
-                        <Text style = {styles.textTitle}>Loại nhận diện</Text>
-                    </View>
-
-                    <View style={{flex: 3.5, justifyContent: 'center', borderLeftWidth: 0.5, borderColor: 'black'}}>
-                        <Text style = {styles.textTitle}>Thời gian</Text>
-                    </View>
-
-                </View>
-                <View style={{width: '100%', height: '90%'}}>
-                    <FlatList
-                        data={blackList}
-                        keyExtractor={(item, index) => index.toString()}
-                        ItemSeparatorComponent={ItemSeparatorView}
-                        renderItem={ItemView}
-                    />
-                </View>
-                
+            <View style={{width: '100%', height: '90%', marginHorizontal: 2}}>
+                <FlatList
+                    data={blackList}
+                    keyExtractor={(item, index) => index.toString()}
+                    horizontal={false}
+                    numColumns={2}
+                    renderItem={ItemView}
+                />
             </View>
         </SafeAreaView>
     );
@@ -90,10 +65,21 @@ const BlackList = ({navigation}) => {
 
 const styles = StyleSheet.create({
     textTitle:{
-        color: 'black',
-        fontSize: 13,
+        color: 'black', fontSize: 13,
         textAlign: 'center',
         fontWeight: 'bold'
+    },
+    itemFlat:{
+        width: '48%',
+        justifyContent: 'center', 
+        alignItems:'center', 
+        margin: 3, 
+        borderRadius: 10,
+        backgroundColor: 'white',
+        shadowColor: 'black', shadowOffset:{width:0, height: 0},
+        shadowRadius: 2, shadowOpacity: 0.3,
+        elevation: 10,
+        paddingVertical: 5,
     },
 });
 

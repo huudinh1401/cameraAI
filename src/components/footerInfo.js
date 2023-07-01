@@ -51,7 +51,9 @@ export default class FooterInfo extends React.Component {
 const styles = StyleSheet.create({
   container:{
     backgroundColor: '#DDDDDD',  height: 70, 
-    borderTopRightRadius: 10,  borderTopLeftRadius: 10, 
+    borderTopRightRadius: 10,  borderTopLeftRadius: 10,
+    shadowColor: 'black', shadowOffset:{width: 0, height: -2},
+    shadowRadius: 2, shadowOpacity: 0.3, elevation: 10,
   },
     bgFooter: {
         backgroundColor: '#DDDDDD',

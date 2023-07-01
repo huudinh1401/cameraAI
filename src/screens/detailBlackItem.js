@@ -1,15 +1,12 @@
 import React, {useState, useEffect} from 'react';
 
 import {
-  SafeAreaView,
   Text,
   StyleSheet,
   View,
   Image,
   Dimensions,
-  ScrollView,
   Modal,
-  StatusBar,
   TouchableOpacity
 } from 'react-native';
 
@@ -18,7 +15,6 @@ import { WebView } from 'react-native-webview';
 import {LinesLoader} from 'react-native-indicator';
 import ImageZoom from 'react-native-image-pan-zoom';
 
-//const urlBlackList = 'https://odoo.nguyenluanbinhthuan.com/dataCamera/historyBlackList.php';
 const urlBlackList = 'https://odoo.nguyenluanbinhthuan.com/dataCamera/detailBlackList.php';
 const widthImage=Dimensions.get('window').width;
 const DetailBlackListItem = ({navigation, id}) => {
@@ -39,13 +35,10 @@ const DetailBlackListItem = ({navigation, id}) => {
               "Accept":"application/json",
               "Content-Type":"application/json"
             },
-            body:JSON.stringify({
-              "id": id
-            })
+            body:JSON.stringify({ "id": id })
         })
             .then((response) => response.json())
             .then((responseJson) => {
-               
                 setNote(responseJson[0].LoaiSuKien);
                 setDoiTuong(responseJson[0].DoiTuong);
                 setImage(responseJson[0].Hinh);
@@ -62,13 +55,13 @@ const DetailBlackListItem = ({navigation, id}) => {
         <View style={styles.container}>
             {
                 isLoading ? 
-                <View style = {{alignItems: 'center', justifyContent: 'center', backgroundColor: 'beige', flex: 1}}>
+                <View style = {{alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', flex: 1}}>
                   <Image style = {{height: 150, width: 150, marginBottom: 10, marginTop:-300}} source={require('../images/cam_ko_nen.jpg')} />
                   <LinesLoader/>
                 </View>
                 :
-                <View style={{backgroundColor: 'beige', flex: 1, marginBottom: -100}}>
-                    <View style={{marginTop: 5}}>
+                <View style={{backgroundColor: 'white', flex: 1, marginBottom: -100}}>
+                    <View style={{marginTop: 2}}>
                         <View style={{marginLeft: 5, flexDirection: 'row', alignItems: 'center'}}>
                             <View style={{ flex: 0.8}}>
                                 <Icon name={'image-outline'} type='ionicon' /> 
@@ -78,21 +71,19 @@ const DetailBlackListItem = ({navigation, id}) => {
                             </View>
                             <View style={{ flex: 7.2}}/>
                         </View>
-                        <View style={{alignItems:'center', height: 130, justifyContent: 'center'}}>
-                            {
-                                image === '' ?
-                                <Image 
-                                    style = {{width: 250, height: 120, borderRadius: 10, resizeMode:"stretch"}} 
-                                    source={require('../images/noImage.jpeg')} 
-                                />
-                                :
-                                <Image 
-                                    style = {{width: 370, height: 120, borderRadius: 10, resizeMode:"stretch"}} 
-                                    source={{uri: image,}} 
-                                />
-                            }
+                        <View style={{
+                            alignItems:'center', height: 130, justifyContent: 'center', shadowColor: 'black', 
+                            shadowOffset:{width: 4, height:5}, shadowRadius: 2, shadowOpacity: 0.5, elevation: 10
+                        }}>
+                        {
+                            image === '' ?
+                            <Image style = {{width: 250, height: 120, borderRadius: 10, resizeMode:"stretch"}} source={require('../images/noImage.jpeg')}/>
+                            :
+                            <Image style = {{width: 370, height: 120, borderRadius: 10, resizeMode:"stretch"}} source={{uri: image,}}/>
+                        }
                         </View>
                     </View>
+
                     <View style = {{flexDirection: 'row', marginTop: 5, alignItems: 'center', marginLeft: 5}}>
                         <View style={{ flex: 0.8}}>
                                 <Icon name={'hourglass-outline'} type='ionicon' /> 
@@ -104,7 +95,8 @@ const DetailBlackListItem = ({navigation, id}) => {
                             <Text style={{color: 'blue', fontSize: 14}}>{time}</Text>
                         </View>
                     </View>
-                    <View style = {{flexDirection: 'row', marginTop: 5, alignItems:'center', marginLeft: 5}}>
+
+                    <View style = {{flexDirection: 'row', marginTop: 3, alignItems:'center', marginLeft: 5}}>
                         <View style={{ flex: 0.8}}>
                                 <Icon name={'videocam-outline'} type='ionicon' /> 
                         </View>
@@ -115,7 +107,8 @@ const DetailBlackListItem = ({navigation, id}) => {
                             <Text style={{color: 'blue', fontSize: 14}}>{cam}</Text>
                         </View>
                     </View>
-                    <View style = {{flexDirection: 'row', marginTop: 5, alignItems: 'center', marginLeft: 5}}>
+
+                    <View style = {{flexDirection: 'row', marginTop: 3, alignItems: 'center', marginLeft: 5}}>
                         <View style={{ flex: 0.8}}>
                             <Icon name={'location-outline'} type='ionicon' /> 
                         </View>
@@ -126,7 +119,8 @@ const DetailBlackListItem = ({navigation, id}) => {
                             <Text style={{color: 'blue', fontSize: 14}}>{location}</Text>
                         </View>
                     </View>
-                    <View style = {{marginTop: 5}}>
+
+                    <View style = {{marginTop: 3}}>
                         <View style={{ marginLeft: 5, alignItems:'center', flexDirection: 'row'}}>
                             <View style={{ flex: 0.8}}>
                                 <Icon name={'image-outline'} type='ionicon' /> 
@@ -136,23 +130,19 @@ const DetailBlackListItem = ({navigation, id}) => {
                             </View>
                             <View style={{ flex: 5.2}}/>
                         </View>
-                        <View style={{alignItems:'center', marginTop: 15}}>
-                            {
-                                imageTongQuan !== '' ? 
-                                <TouchableOpacity style={{height: 180, width:'100%', alignItems:'center'}}
-                                    onPress={() => setModalVisible(true)}
-                                >
-                                    <Image 
-                                        style = {{width: '99%', height: 180, borderRadius: 10, resizeMode:'stretch'}} 
-                                        source={{uri: imageTongQuan}} 
-                                    />
-                                </TouchableOpacity>
-                                : 
-                                <Image 
-                                    style = {{width: '96%', height: 250, borderRadius: 10, resizeMode:'stretch'}} 
-                                    source={require('../images/noImage.jpeg')} 
-                                />
-                            }
+                        <View 
+                            style={{
+                                alignItems:'center', marginTop: 15, shadowColor: 'gray', 
+                                shadowOffset:{width: 4, height: 5}, shadowRadius: 2, shadowOpacity: 0.5, elevation: 10
+                        }}>
+                        {
+                            imageTongQuan !== '' ? 
+                            <TouchableOpacity style={{height: 180, width:'100%', alignItems:'center'}} onPress={() => setModalVisible(true)}>
+                                <Image style = {{ width: '99%', height: 180, borderRadius: 10, resizeMode:'stretch' }} source={{uri: imageTongQuan}}/>
+                            </TouchableOpacity>
+                            : 
+                            <Image style = {{ width: '96%', height: 250, borderRadius: 10, resizeMode:'stretch' }} source={require('../images/noImage.jpeg')}/>
+                        }
                             <Modal
                                 visible={modalVisible}
                                 transparent={true}
@@ -174,22 +164,15 @@ const DetailBlackListItem = ({navigation, id}) => {
                                         imageWidth={widthImage}
                                         imageHeight={260}
                                     >
-                                        <Image 
-                                            style = {{width: '100%', height: 260, borderRadius: 10, resizeMode:'stretch'}} 
-                                            source={{uri: imageTongQuan}} 
-                                        />
+                                        <Image style = {{width: '100%', height: 260, borderRadius: 10, resizeMode:'stretch'}} source={{uri: imageTongQuan}}/>
                                     </ImageZoom>
                                 </View>
                             </Modal>
+
                             <View renderToHardwareTextureAndroid={true}>
-                                <WebView
-                                    style={{ width: '1%', height: 1, borderRadius: 10, resizeMode:'stretch' }}
-                                    source={{ uri: imageTongQuan }}
-                                />
+                                <WebView style={{ width: '1%', height: 1, borderRadius: 10, resizeMode:'stretch' }} source={{ uri: imageTongQuan }}/>
                             </View>
-                            
                         </View>
-                        
                     </View>
                     <View style={{marginBottom: 300}}/>
                 </View>
@@ -202,7 +185,6 @@ const styles = StyleSheet.create({
     container:{
         flex: 1,
         backgroundColor: 'green',
-
     },
     textTitle:{
         color: 'black',

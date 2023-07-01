@@ -54,7 +54,12 @@ export default class WeatherDaNang extends React.Component {
         {
           this.state.isLoading ?  (<ActivityIndicator size="large" color="#0000ff" />) :
           (<>
-            <View style ={{marginTop: -200, backgroundColor: 'rgba(0,139,139, 0.5)', marginHorizontal: 20, borderRadius: 20, padding: 30, alignItems:'center'}}>
+            <View 
+              style ={{
+                marginTop: -200, backgroundColor: 'rgba(0,139,139, 0.5)', marginHorizontal: 20, 
+                borderRadius: 20, padding: 30, alignItems:'center',
+                shadowColor: 'black', shadowOffset:{width: 4, height:5}, shadowRadius: 2, shadowOpacity: 0.2,
+            }}>
               <Text style ={{color: 'white', fontSize: 22}}>Thành phố  Đà Nẵng</Text>
               <Text style = {{color:'#00FFFF', fontSize: 18}}>{currentDate}</Text>
               <Text style ={{color:'yellow', fontSize: 22, marginTop: 30}}>{Description}</Text>

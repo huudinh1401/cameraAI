@@ -25,10 +25,12 @@ const NotifyScreen = ({navigation}) => {
   
   const ItemViewNoti = ({item}) => {
     return (
-      <TouchableOpacity
-          onPress={() => _onPressHisItemBlack(item.DoiTuong)}
-      >
-        <View style ={{height: 60, backgroundColor: 'beige', justifyContent:'center', paddingLeft: 20, margin: 2}}>
+      <TouchableOpacity onPress={() => _onPressHisItemBlack(item.DoiTuong)} >
+        <View 
+          style ={{
+            height: 60, backgroundColor: 'beige', justifyContent:'center', paddingLeft: 20, margin: 2, borderRadius: 10, marginHorizontal: 7,
+            shadowColor: 'black', shadowOffset:{width: 0, height: 5}, shadowRadius: 2, shadowOpacity: 0.3, elevation: 10,
+        }}>
 
           <View style={{flexDirection: 'row', marginBottom: 0}}>
             <Text style={{color:'black', fontSize: 12}}>Camera </Text>
@@ -51,13 +53,11 @@ const NotifyScreen = ({navigation}) => {
     );
   };
   const _onPressHisItemBlack = (name) =>{ navigation.navigate('HisItemBlack',{name})  };
-  const ItemSeparatorView = () => {
-    return ( <View  style={{ height: 1, backgroundColor: 'black' }} /> );
-  };
+ 
   return (
     <SafeAreaView style = { styles.mainView }>
       <StatusBar barStyle={'light-content'}/>
-      <View style = {{flexDirection: 'row', justifyContent: 'center', alignItems:'center', marginBottom: 10, marginTop: 5}}>
+      <View style = {{flexDirection: 'row', justifyContent: 'center', alignItems:'center', marginBottom: 2, marginTop: 5}}>
           <TouchableOpacity
               style={{flex: 1.5, justifyContent: 'center', alignItems:'center'}}
               onPress={()=>navigation.goBack()}
@@ -76,14 +76,18 @@ const NotifyScreen = ({navigation}) => {
       </View>
       {
         numberNoti !== ''?
-        <View style = { styles.notify }>
-          <FlatList
-            data={dataNoti}
-            keyExtractor={(item, index) => index.toString()}
-            ItemSeparatorComponent={ItemSeparatorView}
-            renderItem={ItemViewNoti}
-          />
-        </View>
+          <View style = { styles.notify }>
+            <View 
+              style={{
+                width: '100%', height: 5, backgroundColor: 'green', marginBottom: 5,
+                shadowColor: 'black', shadowOffset:{width: 2, height: 5}, shadowRadius: 2, shadowOpacity: 0.3,
+            }}/>
+            <FlatList
+              data={dataNoti}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={ItemViewNoti}
+            />
+          </View>
         :
         <View style = {{flex: 1, alignItems: 'center', backgroundColor: 'white', marginBottom: -30}}>
           <Text style = {{paddingTop: 20, fontSize: 18, color:'blue'}}>Hiện tại không có thông báo!</Text>
@@ -95,7 +99,6 @@ const NotifyScreen = ({navigation}) => {
               speed={1500} />
           </View>
         </View>
-        
       }
       <View style={{position:'absolute', bottom: 0, left: 0, right: 0}}>
         <FooterNotify navigation = {navigation} numberNoti = {numberNoti} /> 
@@ -113,9 +116,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   notify:{
-    width: '100%',
-    height:'90%',
+    width: '100%', height:'100%',
     backgroundColor:'#fff',
     marginBottom: -30,
+    marginTop: 5,
   },
 });
